@@ -1,0 +1,91 @@
+```{r include = FALSE}
+if(!knitr:::is_html_output())
+{
+  options("width"=56)
+  knitr::opts_chunk$set(tidy.opts=list(width.cutoff=56, indent = 2), tidy = TRUE)
+  knitr::opts_chunk$set(fig.pos = 'H')
+}
+```
+
+# (PART) Online Attribution {-}
+
+# Types of Attribution 
+
+## Group vs. Individual Attribution  
+
+Historically, marketers got inspired by the marketing performance and strategies 
+of offline channels such as newspaper and broadcasts, but there were some 
+drawbacks. For example, they could not be used for investigating customer 
+conversions at an *individual* level. 
+
+Marketing attribution in this case was largely done at the group level by 
+aggregating the performance of all users responding via a particular 
+channel. Furthermore it was difficult and often impossible to understand which 
+customers experienced multiple touch points in these offline channels. 
+
+Currently, the prevalence of digital marketing provides the marketer with a 
+better way to gain insights on how marketing activities perform at the individual 
+level. 
+
+## Simplistic vs. Fractional Modelling
+
+### Simplistic modelling 
+
+Simplistic models assign complete conversion credit to just a single touch 
+point. A consequence of this is all other touch points in a user's conversion 
+pathway are effectively ignored.  
+
+There are several types of simplistic attribution models, but we mainly focus on 
+two of them, which have been widely adopted. In the **Last Touch** model, 
+100% credit for a conversion is assigned to the final touch point which happens 
+before the conversion. In contrast, in the **First Touch** model, 100% credit 
+is assigned to the first touch point a customer uses in their conversion pathway.  
+
+
+### Fractional modelling
+
+Unlike simplistic modelling techniques, fractional modelling determines the 
+'fractional' contribution of each touch point and helps the marketer apply 
+appropriate weights to all channels in a client's decision-making journey. 
+
+Fractional attribution modelling is subdivided into heuristic modelling and 
+algorithmic modelling as discussed in more detail below.
+
+
+## Heuristic vs. Algorithmic Modelling
+
+### The Heuristic model
+
+The concept of the heuristic model, also known as rule-based fractional modelling, 
+is summarised in Jayawardane et. al (2015) who define it as fixed rules to 
+assign the credits to all touch points leading to the conversion.
+
+These 'rules' that the heuristic modelling is based on include **Linear**, 
+**Position Based**, **Time Decay** and others which we will explore further in
+later sections.
+
+Compared to simplistic modelling, heuristic models better capture the 
+contributions of multiple advertising and marketing channels.
+
+### The Algorithmic model
+
+Extending the idea of fractional attribution is algorithmic attribution.
+
+Rather than using a rule-of-thumb, an algorithmic model will analyse
+both converting and non-converting paths customers take and make a
+probabilistic assessment of each channel's contribution to a conversion. Often 
+using advanced statistics and machine learning algorithms, algorithmic methods 
+develop custom weightings for each channel based on their effectiveness.
+
+Currently, some popular approaches are Markov Chain models, the Shapley Value and
+survival analysis. We will take a detailed look into these methods and which are 
+appropriate for your analysis goals.
+
+## Classification of Methods
+Below is a useful taxonomy of the commonly used methods for marketing attribution
+modelling in eCommerce.  
+
+```{r echo=FALSE}
+knitr::include_graphics("img/attributionModel.png", dpi = 200)
+```
+

@@ -1,0 +1,94 @@
+```{r include = FALSE}
+if(!knitr:::is_html_output())
+{
+  options("width"=56)
+  knitr::opts_chunk$set(tidy.opts=list(width.cutoff=56, indent = 2), tidy = TRUE)
+  knitr::opts_chunk$set(fig.pos = 'H')
+}
+```
+
+# Introduction
+
+## What is attribution modelling
+
+The ideal world for marketers is that customers will fall in love with your 
+products or services and make a purchase the first time they see an advertisement. 
+But, the truth is the customer might have hundreds of interactions with a 
+brand before they make a purchase. Actually, they might get exposed to the 
+products or services through different marketing channels such as social media,
+other web sites, search engines and apps etc.
+
+So why do we care about this? The ultimate aim is to arm decision makers with
+the data needed to make complex decisions. We do this by measuring the return on 
+investment (ROI) of marketing efforts. In Jayawardane et. al (2015) they discuss
+how customers who interact with a brand across multiple channels bring in more
+value. While it is typical to have parallel streams of marketing efforts, 
+it is not straightforward to understand which of these channels actually helped make
+the conversion and to what extent. 
+
+We present a tour of methods that solve this problem with practical implementation
+guides and code examples. We aim to give decision
+makers the data to understand the true return from each channel and therefore
+guide marketing strategy in a data driven way.  
+
+
+## Definitions  
+
+In this guide we talk about the 'customer pathway' or the 'conversion journey'. 
+We define this as the sequence of steps a customer takes when interacting with a brand
+which will ultimately lead to either the customer converting
+or not converting.   
+
+```{r echo=FALSE}
+knitr::include_graphics("img/last_touch.png", dpi = 100)
+```
+
+We say *conversion* to mean the user has completed a desired action. This may 
+indeed be purchasing an item from a website eStore, however in other domains
+this may simply mean signing up to a service or newsletter or completing some
+other pre-defined action. 
+
+
+## Scope of this paper  
+
+First we break down the types of models that solve this attribution problem in different ways. 
+
+For each type of approach we present an explanation and a practical example 
+of how they work as well as a review of their strengths and weaknesses.  
+
+At Internetrix, we are accredited Google Partners and support clients with
+tracking and optimising their online presence using tools from the Google
+Marketing Platform. We review the existing methods that are available in 
+tools like Google Analytics and Analytics 360. 
+
+However, this guide is largely aimed at users who want to customise and extend
+these methods and tailor them to their specific company goals. We present
+a toolkit using the R programming language, complete with reproducible code examples
+to showcase attribution modelling methods, from the very
+basic to more complicated and powerful algorithms.  
+
+In doing this, we use example data from Google Analytics 360 and BigQuery. We cover
+the often neglected steps of how to query and prepare this data for modelling. However,
+for users who collect their digital marketing data in other platforms, the 
+implementation guides will still be relevant and valuable.  
+
+Finally we extend attribution modelling in a bonus section to cover *offline* 
+attribution. That is, measuring the impact of channels outside the digital sphere 
+like TV, radio, billboard etc. This unlocks some powerful tools to extend 
+beyond what is tracked from your website. 
+
+
+
+## Where to go for further help 
+
+While not a complete guide, we hope it provides some insights to the various
+methods that can help arm your organisation with the data to make effective
+marketing decisions.   
+
+For further help please reach out to us any time:  
+
+**Internetrix Data Science**
+
+**Web:** [https://www.internetrix.com.au/services/data-science/](https://www.internetrix.com.au/services/data-science/)   
+**Phone:** +61242535300  
+**email:** irx.info@internetrix.com.au  

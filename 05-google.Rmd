@@ -1,0 +1,114 @@
+```{r include = FALSE}
+if(!knitr:::is_html_output())
+{
+  options("width"=56)
+  knitr::opts_chunk$set(tidy.opts=list(width.cutoff=56, indent = 2), tidy = TRUE)
+  knitr::opts_chunk$set(fig.pos = 'H')
+}
+```
+
+# Google Analytics Data  
+
+Google Analytics users can benefit from a range of simple and heuristic attribution
+models for their digital data, build right into the platform. [@noauthor_google_nodate]  
+
+This is a great start, but they have one thing in common - they are heuristics. 
+In other words, you ultimately make the decision on which model to use and this 
+logic is hard-wired into the report. While these methods are quite intuitive, 
+they are also quite naive.
+
+
+## Survey of Basic Methods in Google Analytics  
+
++ **Last Interaction**
++ **First Interaction**
++ **Linear**
++ **Time Decay**
++ **Last Non-Direct Click**
++ **Last Google Ads Click** 
++ **Position Based**  
+
+A full overview is contained on the [Google Help Pages](https://support.google.com/analytics/answer/1665189?hl=en&ref_topic=3205717)
+
+Google also has a useful feature called the [Model Comparison Tool](https://support.google.com/analytics/answer/6148697)
+which allows the comparison of up to 3 attribution models at once.  
+
+
+## About Data Driven Attribution   
+
+Google’s [Data-Driven Attribution](https://support.google.com/analytics/answer/3264076?
+hl=en&ref_topic=3180362) is a feature only available in Google Analytics 360, part of Google Marketing Platform.
+Rather than using the position-based heuristics above, Data-Driven Attribution uses real data from your Google
+Analytics account to generate a custom model, driven by a more sophisticated algorithm.
+
+### How does it work?
+
+The more basic, position-based methods are only interested in the paths that led 
+to a conversion. Google’s Data-Driven Attribution model analyses both converting 
+and non-converting pathways. According to Google, it has two main steps:  
+
+1. Analyse all available path data to develop a probabilistic model of how 
+customer journey’s progress on your site.  
+
+2. Apply a sophisticated algorithm to this data to assign credit to particular 
+marketing touch points.  
+
+The algorithm used in Data-Driven Attribution is based on a concept called the 
+Shapley Value [See Section 4.3.2](#shapley-value), which is from the field of cooperative game theory. This method 
+recognises the contribution a marketing touch point makes depends on where in 
+the conversion pathway it occurs. By comparing many similar customer pathway
+sequences both with and without a given touch point included, a form of weighted 
+contribution can be calculated. Put another way, intuitively this is like 
+removing a particular marketing channel from a sequence of touch points in
+a user’s journey and wondering what downstream impact it would have on 
+conversions.  
+
+### Limitations
+There are some important factors to be aware of with Data-Driven Attribution.
+Firstly, the results presented are refreshed by Google on a weekly basis and 
+look back at the last 28 days of conversion history at the time the model is 
+trained. The benefit here is that models will evolve as your online activity 
+does. Also, the model will only look back to a maximum of 4 interactions 
+within the prior 90 days to each conversion.
+
+Given this method learns from historical data, for the results to be meaningful 
+there are thresholds imposed. These thresholds set the minimum amount of 
+pathways and conversions to ensure there is enough data to train the model. 
+At the time of writing these thresholds are:  
+
++ 400 conversions per conversion type with a path length of 2+ interactions 
+(i.e., 400 conversions for a specific goal or transaction, not a sum of 400 
+over all conversion types) AND  
++ 10,000 paths in the selected reporting view (roughly equivalent to 10,000 
+users, although a single user may generate multiple paths)
+
+
+## BigQuery  
+
+> BigQuery is a Google Developers tool that lets you run super-fast queries of 
+large datasets.   
+
+While Google Analytics contains a plethora of online tool for analysis, when
+aiming to conduct more advanced digital analytics and attribution modelling, 
+having *all* of your hit level data available is key. [@noauthor_bigquery_nodate] 
+
+For customers that use Google Analytics 360 as part of the Google Marketing Platform,
+they have access to the [BigQuery Export for Analytics.](https://support.google.com/analytics/answer/3437618?hl=en&ref_topic=3416089)  
+
+Using BigQuery lets you access both session and hit level data using an SQL
+like syntax. Plus you benefit from the speed and scale of BigQuery along with
+the ability to create tables, data sets and manage jobs with your data.  
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,222 @@
+```{r include = FALSE}
+if(!knitr:::is_html_output())
+{
+  options("width"=56)
+  knitr::opts_chunk$set(tidy.opts=list(width.cutoff=56, indent = 2), tidy = TRUE)
+  knitr::opts_chunk$set(fig.pos = 'H')
+}
+```
+
+# Algorithmic Methods  
+
+Now we move into algorithmic methods for modelling marketing attribution.  
+
+These methods use more advanced statistical algorithms to create a data driven
+model for assigning conversion credit to channels in a multi-touch point 
+conversion pathway.  
+
+## Markov Chains
+
+The first method we will review are markov chains. We introduced these in 
+[section 4.3.3](#markov-methods).
+
+First we load the required packages. In this case we again use `ChannelAttribution` 
+as well as the `tidyverse` and `lubridate` packages for data manipulation and 
+date handling. We also read in our raw results from BigQuery that contains the event log and
+timestamps of visits, complete with channel and outcome.
+
+```{r echo=TRUE, message=FALSE, warning=FALSE}
+library(tidyverse)
+library(lubridate)
+library(ChannelAttribution)
+
+paths_raw <- read_csv('bigquery/bq-results.csv')
+```
+
+```{r echo=FALSE, message=FALSE, warning=FALSE}
+head(paths_raw, n = 10) %>% knitr::kable()
+```
+
+Next we need to transform the data. We use the same procedure as in [Section 7.1](#transform-data).
+We now have one row per conversion path, with total conversions/non-conversions.  
+
+```{r message=FALSE, warning=FALSE, include=FALSE}
+paths <- paths_raw %>% 
+  mutate(visitStartTime = ymd_hms(visitStartTime)) %>% 
+  group_by(fullVisitorId, outcome) %>% 
+  arrange(visitStartTime) %>% 
+  summarise(path = paste(channelGrouping, collapse = ' > ')) %>% 
+  ungroup() %>% 
+  count(outcome, path, name = "n") %>% 
+  spread(outcome, n) %>% 
+  replace_na(list(conversion = 0, non_conversion = 0)) %>% 
+  arrange(desc(conversion))
+```
+
+```{r echo=FALSE, message=FALSE, warning=FALSE}
+head(paths, n = 10) %>% knitr::kable()
+```
+
+We now call the `markov_model()` function from the `ChannelAttribution` package. It accepts
+arguments for the data frame, the variable that contains the conversion path,
+the variable that encodes both number of conversions and non conversions and the
+order of the markov model.  
+
+Below we can see it's output is a list of distinct channels with the total 
+attributed conversions per channel.  The channel that receives the most
+credit is 'Referral', followed by 'Organic Search'.  
+
+As a marketer we could multiply these by the average conversion value to get
+a total attributed value for each channel. By comparing this to the cost of 
+marketing in each channel we get a robust calculation for ROI.  
+
+In fact, if the actual sales revenue per customer is recorded we can go 
+one step further and have this model calculate the attributed value without
+having to estimate using the average value. This is handled with the argument
+`var_value`. 
+
+```{r}
+fit_m <- markov_model(Data = paths, 
+                      var_path = 'path', 
+                      var_conv = 'conversion', 
+                      var_null = 'non_conversion', 
+                      order = 1)
+
+fit_m
+```
+
+We can also iterate on this by calculating a 1, 2, and 3 order markov model.  
+
+Below we display a chart of the results. As we can see, there is not much
+difference in the results.
+
+```{r echo=TRUE}
+fit_mult <- map_dfr(.x = c(1, 2, 3), 
+                    .f = ~markov_model(Data = paths, 
+                                       var_path = 'path', 
+                                       var_conv = 'conversion', 
+                                       var_null = 'non_conversion', 
+                                       order = .x), 
+                    .id = "order")
+```
+
+
+```{r echo=FALSE, message=FALSE, warning=FALSE}
+fit_mult %>% 
+  ggplot(aes(x = fct_reorder(channel_name, total_conversions), y = total_conversions, fill = order)) +
+  geom_col(show.legend = FALSE) +
+  coord_flip() +
+  labs(title = "Markov Model Attribution Results",
+       subtitle = "Comparing Markov Model of order 1, 2, and 3.",
+       x = "Channel",
+       y = "Attributed Conversions",
+       caption = "Google Merchant Store: 1 Month Window with 7 day lookback") +
+  theme_bw() +
+  facet_wrap(~order)
+```
+
+
+## Survival Analysis  
+
+The next model we demonstrate is survival analysis. Here we define 'survival'
+as non-conversion and the event of interest is when a customer converts. 
+
+As usual we start by loading the data and the required packages. 
+
+```{r echo=TRUE, message=FALSE, warning=FALSE}
+library(tidyverse)
+library(lubridate)
+library(survival)
+library(survminer)
+
+paths_raw <- read_csv('bigquery/bq-results.csv')
+```
+
+
+```{r echo=FALSE, message=FALSE, warning=FALSE}
+head(paths_raw, n = 10) %>% knitr::kable()
+```
+
+The data transformation steps here are a little different.  
+
+We want to condense our data into one row per customer. For our analysis, 
+three key pieces of information are required:  
+
+1) The interval of time:
+  a) For converting customers, between the first visit and the purchase time.
+  b) For non-converting customers, between the first visit and the last recorded
+  visit.
+2) The outcome: 1 for converted, 0 for non-converted.
+3) The channel used to convert.  
+
+Firstly, this analysis is slightly different. We aren't strictly attributing
+credit between channels, but rather analysing at various points in time, what
+is the probability of a customer converting through any given channel.  
+
+Secondly, we have made some assumptions around excluding (or censoring) customers
+who don't convert at the point of the most recent visit. In effect we are declaring
+these customer lost to follow up. An alternative method
+would be to calculate the time interval for non-converters right up until the
+end of the analysis period. Both are ok, but given we constrained our look back
+period to just 7 days we will go with our chosen method.  
+
+
+```{r}
+surv_data <- paths_raw %>% 
+  mutate(visitStartTime = ymd_hms(visitStartTime)) %>% 
+  group_by(fullVisitorId) %>% 
+  mutate(mindate = min(visitStartTime),
+         maxdate = max(visitStartTime)) %>% 
+  filter(visitStartTime == maxdate) %>% 
+  mutate(time = (maxdate - mindate)/3600,
+         status = ifelse(outcome == "conversion", 1, 0)) %>% 
+  dplyr::select(fullVisitorId, time, status, channelGrouping)
+```
+
+```{r echo=FALSE, message=FALSE, warning=FALSE}
+surv_data[sample(nrow(surv_data), size = 10),]
+```
+
+Next we create a special object called a survival object using the `Surv` function.
+
+```{r}
+surv_object <- Surv(time = surv_data$time, event = surv_data$status)
+```
+
+We can now compute our estimate for a survival curve using the `survfit` function.
+
+We include a grouping variable of the converting channel. This will calculate
+one survival curve per group so we have a basis for comparison.
+
+```{r message=FALSE, warning=FALSE, paged.print=FALSE}
+fit_surv <- survfit(surv_object ~ channelGrouping, data = surv_data)
+```
+
+```{r echo=FALSE}
+fit_surv
+```
+
+The results are best viewed graphically.
+
+It is important to note that the terminology 'survival' in this context means
+'non-conversion'. It shows, up to a given time along the x-axis, what is the probability
+of a customer *not* converting through a particular channel.
+
+```{r echo=FALSE, fig.height=8, fig.width=10, message=FALSE, warning=FALSE, paged.print=FALSE}
+ggsurvplot(fit_surv, data = surv_data, fun = "pct", title = "Survival Curve for each converting channel")
+```
+
+What we want is the complement of this, that is, the cumulative event plot.
+
+We can see that Referral channel achieves high levels of conversion very 
+quickly, representing a valuable channel.  This is followed by Display, however
+as time goes on, after 150 hours (~6 days) from first visit, channels such as
+'Direct' and 'Organic Search' have a strong conversion probability. This indicates
+that advertising and referral traffic are essential to raising awareness early on, and 
+after this, customer recall of the brand is high with customers returning 
+days later via direct and organic channels. 
+
+```{r echo=FALSE, fig.height=8, fig.width=10, message=FALSE, warning=FALSE}
+ggsurvplot(fit_surv, surv_data, fun = "event", title = "Cumulative Event Plot for Customer Conversion")
+```
+

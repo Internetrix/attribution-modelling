@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html >
+
+<head>
+
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>The Internetrix Advanced Guide to Attribution Modelling</title>
+  <meta name="description" content="This is an Internetrix guide on advanced marketing attribution modelling for eCommerce data">
+  <meta name="generator" content="bookdown  and GitBook 2.6.7">
+
+  <meta property="og:title" content="The Internetrix Advanced Guide to Attribution Modelling" />
+  <meta property="og:type" content="book" />
+  
+  <meta property="og:image" content="img/cover.png" />
+  <meta property="og:description" content="This is an Internetrix guide on advanced marketing attribution modelling for eCommerce data" />
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="The Internetrix Advanced Guide to Attribution Modelling" />
+  
+  <meta name="twitter:description" content="This is an Internetrix guide on advanced marketing attribution modelling for eCommerce data" />
+  <meta name="twitter:image" content="img/cover.png" />
+
+<meta name="author" content="Dean Marchiori - Head of Data Science, Internetrix">
+<meta name="author" content="Tiffany Chen - Data Analyst, Internetrix">
+
+
+<meta name="date" content="2019-05-07">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  
+  
+
+<link rel="next" href="introduction.html">
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+<style type="text/css">
+div.sourceCode { overflow-x: auto; }
+table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
+  margin: 0; padding: 0; vertical-align: baseline; border: none; }
+table.sourceCode { width: 100%; line-height: 100%; }
+td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
+td.sourceCode { padding-left: 5px; }
+code > span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code > span.dt { color: #902000; } /* DataType */
+code > span.dv { color: #40a070; } /* DecVal */
+code > span.bn { color: #40a070; } /* BaseN */
+code > span.fl { color: #40a070; } /* Float */
+code > span.ch { color: #4070a0; } /* Char */
+code > span.st { color: #4070a0; } /* String */
+code > span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code > span.ot { color: #007020; } /* Other */
+code > span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code > span.fu { color: #06287e; } /* Function */
+code > span.er { color: #ff0000; font-weight: bold; } /* Error */
+code > span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+code > span.cn { color: #880000; } /* Constant */
+code > span.sc { color: #4070a0; } /* SpecialChar */
+code > span.vs { color: #4070a0; } /* VerbatimString */
+code > span.ss { color: #bb6688; } /* SpecialString */
+code > span.im { } /* Import */
+code > span.va { color: #19177c; } /* Variable */
+code > span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code > span.op { color: #666666; } /* Operator */
+code > span.bu { } /* BuiltIn */
+code > span.ex { } /* Extension */
+code > span.pp { color: #bc7a00; } /* Preprocessor */
+code > span.at { color: #7d9029; } /* Attribute */
+code > span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code > span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code > span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./index.html">Home</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Welcome</a><ul>
+<li class="chapter" data-level="1.1" data-path="index.html"><a href="index.html#contact-internetrix"><i class="fa fa-check"></i><b>1.1</b> Contact Internetrix</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="introduction.html"><a href="introduction.html"><i class="fa fa-check"></i><b>2</b> Introduction</a><ul>
+<li class="chapter" data-level="2.1" data-path="introduction.html"><a href="introduction.html#what-is-attribution-modelling"><i class="fa fa-check"></i><b>2.1</b> What is attribution modelling</a></li>
+<li class="chapter" data-level="2.2" data-path="introduction.html"><a href="introduction.html#definitions"><i class="fa fa-check"></i><b>2.2</b> Definitions</a></li>
+<li class="chapter" data-level="2.3" data-path="introduction.html"><a href="introduction.html#scope-of-this-paper"><i class="fa fa-check"></i><b>2.3</b> Scope of this paper</a></li>
+<li class="chapter" data-level="2.4" data-path="introduction.html"><a href="introduction.html#where-to-go-for-further-help"><i class="fa fa-check"></i><b>2.4</b> Where to go for further help</a></li>
+</ul></li>
+<li class="part"><span><b>I Online Attribution</b></span></li>
+<li class="chapter" data-level="3" data-path="types-of-attribution.html"><a href="types-of-attribution.html"><i class="fa fa-check"></i><b>3</b> Types of Attribution</a><ul>
+<li class="chapter" data-level="3.1" data-path="types-of-attribution.html"><a href="types-of-attribution.html#group-vs.individual-attribution"><i class="fa fa-check"></i><b>3.1</b> Group vs. Individual Attribution</a></li>
+<li class="chapter" data-level="3.2" data-path="types-of-attribution.html"><a href="types-of-attribution.html#simplistic-vs.fractional-modelling"><i class="fa fa-check"></i><b>3.2</b> Simplistic vs. Fractional Modelling</a><ul>
+<li class="chapter" data-level="3.2.1" data-path="types-of-attribution.html"><a href="types-of-attribution.html#simplistic-modelling"><i class="fa fa-check"></i><b>3.2.1</b> Simplistic modelling</a></li>
+<li class="chapter" data-level="3.2.2" data-path="types-of-attribution.html"><a href="types-of-attribution.html#fractional-modelling"><i class="fa fa-check"></i><b>3.2.2</b> Fractional modelling</a></li>
+</ul></li>
+<li class="chapter" data-level="3.3" data-path="types-of-attribution.html"><a href="types-of-attribution.html#heuristic-vs.algorithmic-modelling"><i class="fa fa-check"></i><b>3.3</b> Heuristic vs. Algorithmic Modelling</a><ul>
+<li class="chapter" data-level="3.3.1" data-path="types-of-attribution.html"><a href="types-of-attribution.html#the-heuristic-model"><i class="fa fa-check"></i><b>3.3.1</b> The Heuristic model</a></li>
+<li class="chapter" data-level="3.3.2" data-path="types-of-attribution.html"><a href="types-of-attribution.html#the-algorithmic-model"><i class="fa fa-check"></i><b>3.3.2</b> The Algorithmic model</a></li>
+</ul></li>
+<li class="chapter" data-level="3.4" data-path="types-of-attribution.html"><a href="types-of-attribution.html#classification-of-methods"><i class="fa fa-check"></i><b>3.4</b> Classification of Methods</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="methods.html"><a href="methods.html"><i class="fa fa-check"></i><b>4</b> Methods</a><ul>
+<li class="chapter" data-level="4.1" data-path="methods.html"><a href="methods.html#simplisitic-methods"><i class="fa fa-check"></i><b>4.1</b> Simplisitic Methods</a><ul>
+<li class="chapter" data-level="4.1.1" data-path="methods.html"><a href="methods.html#last-touch"><i class="fa fa-check"></i><b>4.1.1</b> Last Touch</a></li>
+<li class="chapter" data-level="4.1.2" data-path="methods.html"><a href="methods.html#first-touch"><i class="fa fa-check"></i><b>4.1.2</b> First Touch</a></li>
+<li class="chapter" data-level="4.1.3" data-path="methods.html"><a href="methods.html#others"><i class="fa fa-check"></i><b>4.1.3</b> Others</a></li>
+</ul></li>
+<li class="chapter" data-level="4.2" data-path="methods.html"><a href="methods.html#fractional-heuristic-methods"><i class="fa fa-check"></i><b>4.2</b> Fractional Heuristic Methods</a><ul>
+<li class="chapter" data-level="4.2.1" data-path="methods.html"><a href="methods.html#linear"><i class="fa fa-check"></i><b>4.2.1</b> Linear</a></li>
+<li class="chapter" data-level="4.2.2" data-path="methods.html"><a href="methods.html#time-decay"><i class="fa fa-check"></i><b>4.2.2</b> Time Decay</a></li>
+<li class="chapter" data-level="4.2.3" data-path="methods.html"><a href="methods.html#position-based"><i class="fa fa-check"></i><b>4.2.3</b> Position Based</a></li>
+</ul></li>
+<li class="chapter" data-level="4.3" data-path="methods.html"><a href="methods.html#fractional-algorithmic-methods"><i class="fa fa-check"></i><b>4.3</b> Fractional Algorithmic Methods</a><ul>
+<li class="chapter" data-level="4.3.1" data-path="methods.html"><a href="methods.html#logistic-regression"><i class="fa fa-check"></i><b>4.3.1</b> Logistic Regression</a></li>
+<li class="chapter" data-level="4.3.2" data-path="methods.html"><a href="methods.html#shapley-value"><i class="fa fa-check"></i><b>4.3.2</b> Shapley Value</a></li>
+<li class="chapter" data-level="4.3.3" data-path="methods.html"><a href="methods.html#markov-methods"><i class="fa fa-check"></i><b>4.3.3</b> Markov Methods</a></li>
+<li class="chapter" data-level="4.3.4" data-path="methods.html"><a href="methods.html#survivial-analysis"><i class="fa fa-check"></i><b>4.3.4</b> Survivial Analysis</a></li>
+</ul></li>
+<li class="chapter" data-level="4.4" data-path="methods.html"><a href="methods.html#comparison-of-methods"><i class="fa fa-check"></i><b>4.4</b> Comparison of Methods</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="google-analytics-data.html"><a href="google-analytics-data.html"><i class="fa fa-check"></i><b>5</b> Google Analytics Data</a><ul>
+<li class="chapter" data-level="5.1" data-path="google-analytics-data.html"><a href="google-analytics-data.html#survey-of-basic-methods-in-google-analytics"><i class="fa fa-check"></i><b>5.1</b> Survey of Basic Methods in Google Analytics</a></li>
+<li class="chapter" data-level="5.2" data-path="google-analytics-data.html"><a href="google-analytics-data.html#about-data-driven-attribution"><i class="fa fa-check"></i><b>5.2</b> About Data Driven Attribution</a><ul>
+<li class="chapter" data-level="5.2.1" data-path="google-analytics-data.html"><a href="google-analytics-data.html#how-does-it-work"><i class="fa fa-check"></i><b>5.2.1</b> How does it work?</a></li>
+<li class="chapter" data-level="5.2.2" data-path="google-analytics-data.html"><a href="google-analytics-data.html#limitations"><i class="fa fa-check"></i><b>5.2.2</b> Limitations</a></li>
+</ul></li>
+<li class="chapter" data-level="5.3" data-path="google-analytics-data.html"><a href="google-analytics-data.html#bigquery"><i class="fa fa-check"></i><b>5.3</b> BigQuery</a></li>
+</ul></li>
+<li class="part"><span><b>II Implementation Guides</b></span></li>
+<li class="chapter" data-level="6" data-path="setup.html"><a href="setup.html"><i class="fa fa-check"></i><b>6</b> Setup</a><ul>
+<li class="chapter" data-level="6.1" data-path="setup.html"><a href="setup.html#r"><i class="fa fa-check"></i><b>6.1</b> R</a><ul>
+<li class="chapter" data-level="6.1.1" data-path="setup.html"><a href="setup.html#about-r"><i class="fa fa-check"></i><b>6.1.1</b> About R</a></li>
+<li class="chapter" data-level="6.1.2" data-path="setup.html"><a href="setup.html#install-r"><i class="fa fa-check"></i><b>6.1.2</b> Install R</a></li>
+<li class="chapter" data-level="6.1.3" data-path="setup.html"><a href="setup.html#install-rstudio"><i class="fa fa-check"></i><b>6.1.3</b> Install RStudio</a></li>
+<li class="chapter" data-level="6.1.4" data-path="setup.html"><a href="setup.html#install-required-r-packages"><i class="fa fa-check"></i><b>6.1.4</b> Install Required R Packages</a></li>
+</ul></li>
+<li class="chapter" data-level="6.2" data-path="setup.html"><a href="setup.html#bigquery-1"><i class="fa fa-check"></i><b>6.2</b> BigQuery</a><ul>
+<li class="chapter" data-level="6.2.1" data-path="setup.html"><a href="setup.html#setup-1"><i class="fa fa-check"></i><b>6.2.1</b> Setup</a></li>
+<li class="chapter" data-level="6.2.2" data-path="setup.html"><a href="setup.html#export-schema"><i class="fa fa-check"></i><b>6.2.2</b> Export Schema</a></li>
+<li class="chapter" data-level="6.2.3" data-path="setup.html"><a href="setup.html#running-queries"><i class="fa fa-check"></i><b>6.2.3</b> Running Queries</a></li>
+<li class="chapter" data-level="6.2.4" data-path="setup.html"><a href="setup.html#using-r-with-bigquery"><i class="fa fa-check"></i><b>6.2.4</b> Using R with BigQuery</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="extracting-data-from-bigquery.html"><a href="extracting-data-from-bigquery.html"><i class="fa fa-check"></i><b>7</b> Extracting Data from BigQuery</a><ul>
+<li class="chapter" data-level="7.1" data-path="extracting-data-from-bigquery.html"><a href="extracting-data-from-bigquery.html#about-the-data"><i class="fa fa-check"></i><b>7.1</b> About the data</a></li>
+<li class="chapter" data-level="7.2" data-path="extracting-data-from-bigquery.html"><a href="extracting-data-from-bigquery.html#get-full-event-log"><i class="fa fa-check"></i><b>7.2</b> Get full event log</a></li>
+<li class="chapter" data-level="7.3" data-path="extracting-data-from-bigquery.html"><a href="extracting-data-from-bigquery.html#identify-those-who-converted"><i class="fa fa-check"></i><b>7.3</b> Identify those who converted</a></li>
+<li class="chapter" data-level="7.4" data-path="extracting-data-from-bigquery.html"><a href="extracting-data-from-bigquery.html#converting-touchpoints-in-last-7-days"><i class="fa fa-check"></i><b>7.4</b> Converting touchpoints in last 7 days</a></li>
+<li class="chapter" data-level="7.5" data-path="extracting-data-from-bigquery.html"><a href="extracting-data-from-bigquery.html#non-converting-touchpoints-in-last-7-days"><i class="fa fa-check"></i><b>7.5</b> Non-converting touchpoints in last 7 days</a></li>
+<li class="chapter" data-level="7.6" data-path="extracting-data-from-bigquery.html"><a href="extracting-data-from-bigquery.html#complete-query"><i class="fa fa-check"></i><b>7.6</b> Complete Query</a></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="heuristic-models.html"><a href="heuristic-models.html"><i class="fa fa-check"></i><b>8</b> Heuristic Models</a><ul>
+<li class="chapter" data-level="8.1" data-path="heuristic-models.html"><a href="heuristic-models.html#transform-data"><i class="fa fa-check"></i><b>8.1</b> Transform Data</a></li>
+<li class="chapter" data-level="8.2" data-path="heuristic-models.html"><a href="heuristic-models.html#heuristic-models-1"><i class="fa fa-check"></i><b>8.2</b> Heuristic Models</a></li>
+</ul></li>
+<li class="chapter" data-level="9" data-path="algorithmic-methods.html"><a href="algorithmic-methods.html"><i class="fa fa-check"></i><b>9</b> Algorithmic Methods</a><ul>
+<li class="chapter" data-level="9.1" data-path="algorithmic-methods.html"><a href="algorithmic-methods.html#markov-chains"><i class="fa fa-check"></i><b>9.1</b> Markov Chains</a></li>
+<li class="chapter" data-level="9.2" data-path="algorithmic-methods.html"><a href="algorithmic-methods.html#survival-analysis"><i class="fa fa-check"></i><b>9.2</b> Survival Analysis</a></li>
+</ul></li>
+<li class="part"><span><b>III Offline Attribution</b></span></li>
+<li class="chapter" data-level="10" data-path="about-offline-attribution.html"><a href="about-offline-attribution.html"><i class="fa fa-check"></i><b>10</b> About Offline Attribution</a><ul>
+<li class="chapter" data-level="10.1" data-path="about-offline-attribution.html"><a href="about-offline-attribution.html#scenario"><i class="fa fa-check"></i><b>10.1</b> Scenario</a></li>
+<li class="chapter" data-level="10.2" data-path="about-offline-attribution.html"><a href="about-offline-attribution.html#causal-inference-modelling"><i class="fa fa-check"></i><b>10.2</b> Causal Inference Modelling</a></li>
+<li class="chapter" data-level="10.3" data-path="about-offline-attribution.html"><a href="about-offline-attribution.html#comparing-to-other-methods"><i class="fa fa-check"></i><b>10.3</b> Comparing to other methods</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i>References</a></li>
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">The Internetrix Advanced Guide to Attribution Modelling</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="header">
+<h1 class="title">The Internetrix Advanced Guide to Attribution Modelling</h1>
+<h2 class="subtitle"><em>With applications in R</em></h2>
+<p class="author"><em>Dean Marchiori - Head of Data Science, Internetrix</em></p>
+<p class="author"><em>Tiffany Chen - Data Analyst, Internetrix</em></p>
+<p class="date"><em>2019-05-07</em></p>
+</div>
+<div id="welcome" class="section level1">
+<h1><span class="header-section-number">1</span> Welcome</h1>
+<p><img src="img/cover.png" width="470" height="750" alt="Cover image" align="right" style="margin: 0 1em 0 1em" /></p>
+<p>The aim of this guide is to help marketing, business and analytics experts understand how to get the biggest impact from their marketing budget.</p>
+<p>Our focus is on marketing attribution. That is, the way in which we can measure and assign credit to individual marketing channels, even when we are simultaneously advertising via many channels. Only by understanding this can we generate meaningful estimates on the return we get from each channel and therefore guide future spending decisions.</p>
+<p>When we say marketing, the main focus is on digital marketing. In this guide we use Google Analytics and the Google Marketing Platform as the tools of choice. If you use some other digital analytics platform, you can still benefit from the content, but you will need to be a little more self-sufficient in exporting and preparing your data for analysis.</p>
+<p>Finally, for more advanced and customised methods we use the R statistical programming language. These sections are aimed at data scientists and data analysts with some experience with scripted analysis. Hopefully the basic examples shown in this guide will help in getting up to speed and generating useful insights as quickly as possible.</p>
+<p>We hope you enjoy and get some benefit from this guide. If you have any feedback or comments, or would like to discuss working together, please reach out using the contact information below.</p>
+<div id="contact-internetrix" class="section level2">
+<h2><span class="header-section-number">1.1</span> Contact Internetrix</h2>
+<p><strong>Internetrix Data Science</strong></p>
+<p><strong>Web:</strong> <a href="https://www.internetrix.com.au/services/data-science/" class="uri">https://www.internetrix.com.au/services/data-science/</a><br />
+<strong>Phone:</strong> +61242535300<br />
+<strong>email:</strong> <a href="mailto:irx.info@internetrix.com.au">irx.info@internetrix.com.au</a></p>
+<p><a rel="license" href="http://creativecommons.org/licenses/by-nc-nd/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by-nc-nd/4.0/88x31.png" /></a><br />This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-nc-nd/4.0/">Creative Commons Attribution-NonCommercial-NoDerivatives 4.0 International License</a>.</p>
+
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+
+<a href="introduction.html" class="navigation navigation-next navigation-unique" aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"google": false,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"all": ["facebook", "google", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": null,
+"text": null
+},
+"history": {
+"link": null,
+"text": null
+},
+"download": ["irx-attribution-2019.pdf", "irx-attribution-2019.epub"],
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:" && /^https?:/.test(src))
+      src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

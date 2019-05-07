@@ -1,0 +1,427 @@
+<!DOCTYPE html>
+<html >
+
+<head>
+
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>7 Extracting Data from BigQuery | The Internetrix Advanced Guide to Attribution Modelling</title>
+  <meta name="description" content="This is an Internetrix guide on advanced marketing attribution modelling for eCommerce data">
+  <meta name="generator" content="bookdown  and GitBook 2.6.7">
+
+  <meta property="og:title" content="7 Extracting Data from BigQuery | The Internetrix Advanced Guide to Attribution Modelling" />
+  <meta property="og:type" content="book" />
+  
+  <meta property="og:image" content="img/cover.png" />
+  <meta property="og:description" content="This is an Internetrix guide on advanced marketing attribution modelling for eCommerce data" />
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="7 Extracting Data from BigQuery | The Internetrix Advanced Guide to Attribution Modelling" />
+  
+  <meta name="twitter:description" content="This is an Internetrix guide on advanced marketing attribution modelling for eCommerce data" />
+  <meta name="twitter:image" content="img/cover.png" />
+
+<meta name="author" content="Dean Marchiori - Head of Data Science, Internetrix">
+<meta name="author" content="Tiffany Chen - Data Analyst, Internetrix">
+
+
+<meta name="date" content="2019-05-07">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  
+  
+<link rel="prev" href="setup.html">
+<link rel="next" href="heuristic-models.html">
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+<style type="text/css">
+div.sourceCode { overflow-x: auto; }
+table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
+  margin: 0; padding: 0; vertical-align: baseline; border: none; }
+table.sourceCode { width: 100%; line-height: 100%; }
+td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
+td.sourceCode { padding-left: 5px; }
+code > span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code > span.dt { color: #902000; } /* DataType */
+code > span.dv { color: #40a070; } /* DecVal */
+code > span.bn { color: #40a070; } /* BaseN */
+code > span.fl { color: #40a070; } /* Float */
+code > span.ch { color: #4070a0; } /* Char */
+code > span.st { color: #4070a0; } /* String */
+code > span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code > span.ot { color: #007020; } /* Other */
+code > span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code > span.fu { color: #06287e; } /* Function */
+code > span.er { color: #ff0000; font-weight: bold; } /* Error */
+code > span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+code > span.cn { color: #880000; } /* Constant */
+code > span.sc { color: #4070a0; } /* SpecialChar */
+code > span.vs { color: #4070a0; } /* VerbatimString */
+code > span.ss { color: #bb6688; } /* SpecialString */
+code > span.im { } /* Import */
+code > span.va { color: #19177c; } /* Variable */
+code > span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code > span.op { color: #666666; } /* Operator */
+code > span.bu { } /* BuiltIn */
+code > span.ex { } /* Extension */
+code > span.pp { color: #bc7a00; } /* Preprocessor */
+code > span.at { color: #7d9029; } /* Attribute */
+code > span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code > span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code > span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./index.html">Home</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Welcome</a><ul>
+<li class="chapter" data-level="1.1" data-path="index.html"><a href="index.html#contact-internetrix"><i class="fa fa-check"></i><b>1.1</b> Contact Internetrix</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="introduction.html"><a href="introduction.html"><i class="fa fa-check"></i><b>2</b> Introduction</a><ul>
+<li class="chapter" data-level="2.1" data-path="introduction.html"><a href="introduction.html#what-is-attribution-modelling"><i class="fa fa-check"></i><b>2.1</b> What is attribution modelling</a></li>
+<li class="chapter" data-level="2.2" data-path="introduction.html"><a href="introduction.html#definitions"><i class="fa fa-check"></i><b>2.2</b> Definitions</a></li>
+<li class="chapter" data-level="2.3" data-path="introduction.html"><a href="introduction.html#scope-of-this-paper"><i class="fa fa-check"></i><b>2.3</b> Scope of this paper</a></li>
+<li class="chapter" data-level="2.4" data-path="introduction.html"><a href="introduction.html#where-to-go-for-further-help"><i class="fa fa-check"></i><b>2.4</b> Where to go for further help</a></li>
+</ul></li>
+<li class="part"><span><b>I Online Attribution</b></span></li>
+<li class="chapter" data-level="3" data-path="types-of-attribution.html"><a href="types-of-attribution.html"><i class="fa fa-check"></i><b>3</b> Types of Attribution</a><ul>
+<li class="chapter" data-level="3.1" data-path="types-of-attribution.html"><a href="types-of-attribution.html#group-vs.individual-attribution"><i class="fa fa-check"></i><b>3.1</b> Group vs. Individual Attribution</a></li>
+<li class="chapter" data-level="3.2" data-path="types-of-attribution.html"><a href="types-of-attribution.html#simplistic-vs.fractional-modelling"><i class="fa fa-check"></i><b>3.2</b> Simplistic vs. Fractional Modelling</a><ul>
+<li class="chapter" data-level="3.2.1" data-path="types-of-attribution.html"><a href="types-of-attribution.html#simplistic-modelling"><i class="fa fa-check"></i><b>3.2.1</b> Simplistic modelling</a></li>
+<li class="chapter" data-level="3.2.2" data-path="types-of-attribution.html"><a href="types-of-attribution.html#fractional-modelling"><i class="fa fa-check"></i><b>3.2.2</b> Fractional modelling</a></li>
+</ul></li>
+<li class="chapter" data-level="3.3" data-path="types-of-attribution.html"><a href="types-of-attribution.html#heuristic-vs.algorithmic-modelling"><i class="fa fa-check"></i><b>3.3</b> Heuristic vs. Algorithmic Modelling</a><ul>
+<li class="chapter" data-level="3.3.1" data-path="types-of-attribution.html"><a href="types-of-attribution.html#the-heuristic-model"><i class="fa fa-check"></i><b>3.3.1</b> The Heuristic model</a></li>
+<li class="chapter" data-level="3.3.2" data-path="types-of-attribution.html"><a href="types-of-attribution.html#the-algorithmic-model"><i class="fa fa-check"></i><b>3.3.2</b> The Algorithmic model</a></li>
+</ul></li>
+<li class="chapter" data-level="3.4" data-path="types-of-attribution.html"><a href="types-of-attribution.html#classification-of-methods"><i class="fa fa-check"></i><b>3.4</b> Classification of Methods</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="methods.html"><a href="methods.html"><i class="fa fa-check"></i><b>4</b> Methods</a><ul>
+<li class="chapter" data-level="4.1" data-path="methods.html"><a href="methods.html#simplisitic-methods"><i class="fa fa-check"></i><b>4.1</b> Simplisitic Methods</a><ul>
+<li class="chapter" data-level="4.1.1" data-path="methods.html"><a href="methods.html#last-touch"><i class="fa fa-check"></i><b>4.1.1</b> Last Touch</a></li>
+<li class="chapter" data-level="4.1.2" data-path="methods.html"><a href="methods.html#first-touch"><i class="fa fa-check"></i><b>4.1.2</b> First Touch</a></li>
+<li class="chapter" data-level="4.1.3" data-path="methods.html"><a href="methods.html#others"><i class="fa fa-check"></i><b>4.1.3</b> Others</a></li>
+</ul></li>
+<li class="chapter" data-level="4.2" data-path="methods.html"><a href="methods.html#fractional-heuristic-methods"><i class="fa fa-check"></i><b>4.2</b> Fractional Heuristic Methods</a><ul>
+<li class="chapter" data-level="4.2.1" data-path="methods.html"><a href="methods.html#linear"><i class="fa fa-check"></i><b>4.2.1</b> Linear</a></li>
+<li class="chapter" data-level="4.2.2" data-path="methods.html"><a href="methods.html#time-decay"><i class="fa fa-check"></i><b>4.2.2</b> Time Decay</a></li>
+<li class="chapter" data-level="4.2.3" data-path="methods.html"><a href="methods.html#position-based"><i class="fa fa-check"></i><b>4.2.3</b> Position Based</a></li>
+</ul></li>
+<li class="chapter" data-level="4.3" data-path="methods.html"><a href="methods.html#fractional-algorithmic-methods"><i class="fa fa-check"></i><b>4.3</b> Fractional Algorithmic Methods</a><ul>
+<li class="chapter" data-level="4.3.1" data-path="methods.html"><a href="methods.html#logistic-regression"><i class="fa fa-check"></i><b>4.3.1</b> Logistic Regression</a></li>
+<li class="chapter" data-level="4.3.2" data-path="methods.html"><a href="methods.html#shapley-value"><i class="fa fa-check"></i><b>4.3.2</b> Shapley Value</a></li>
+<li class="chapter" data-level="4.3.3" data-path="methods.html"><a href="methods.html#markov-methods"><i class="fa fa-check"></i><b>4.3.3</b> Markov Methods</a></li>
+<li class="chapter" data-level="4.3.4" data-path="methods.html"><a href="methods.html#survivial-analysis"><i class="fa fa-check"></i><b>4.3.4</b> Survivial Analysis</a></li>
+</ul></li>
+<li class="chapter" data-level="4.4" data-path="methods.html"><a href="methods.html#comparison-of-methods"><i class="fa fa-check"></i><b>4.4</b> Comparison of Methods</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="google-analytics-data.html"><a href="google-analytics-data.html"><i class="fa fa-check"></i><b>5</b> Google Analytics Data</a><ul>
+<li class="chapter" data-level="5.1" data-path="google-analytics-data.html"><a href="google-analytics-data.html#survey-of-basic-methods-in-google-analytics"><i class="fa fa-check"></i><b>5.1</b> Survey of Basic Methods in Google Analytics</a></li>
+<li class="chapter" data-level="5.2" data-path="google-analytics-data.html"><a href="google-analytics-data.html#about-data-driven-attribution"><i class="fa fa-check"></i><b>5.2</b> About Data Driven Attribution</a><ul>
+<li class="chapter" data-level="5.2.1" data-path="google-analytics-data.html"><a href="google-analytics-data.html#how-does-it-work"><i class="fa fa-check"></i><b>5.2.1</b> How does it work?</a></li>
+<li class="chapter" data-level="5.2.2" data-path="google-analytics-data.html"><a href="google-analytics-data.html#limitations"><i class="fa fa-check"></i><b>5.2.2</b> Limitations</a></li>
+</ul></li>
+<li class="chapter" data-level="5.3" data-path="google-analytics-data.html"><a href="google-analytics-data.html#bigquery"><i class="fa fa-check"></i><b>5.3</b> BigQuery</a></li>
+</ul></li>
+<li class="part"><span><b>II Implementation Guides</b></span></li>
+<li class="chapter" data-level="6" data-path="setup.html"><a href="setup.html"><i class="fa fa-check"></i><b>6</b> Setup</a><ul>
+<li class="chapter" data-level="6.1" data-path="setup.html"><a href="setup.html#r"><i class="fa fa-check"></i><b>6.1</b> R</a><ul>
+<li class="chapter" data-level="6.1.1" data-path="setup.html"><a href="setup.html#about-r"><i class="fa fa-check"></i><b>6.1.1</b> About R</a></li>
+<li class="chapter" data-level="6.1.2" data-path="setup.html"><a href="setup.html#install-r"><i class="fa fa-check"></i><b>6.1.2</b> Install R</a></li>
+<li class="chapter" data-level="6.1.3" data-path="setup.html"><a href="setup.html#install-rstudio"><i class="fa fa-check"></i><b>6.1.3</b> Install RStudio</a></li>
+<li class="chapter" data-level="6.1.4" data-path="setup.html"><a href="setup.html#install-required-r-packages"><i class="fa fa-check"></i><b>6.1.4</b> Install Required R Packages</a></li>
+</ul></li>
+<li class="chapter" data-level="6.2" data-path="setup.html"><a href="setup.html#bigquery-1"><i class="fa fa-check"></i><b>6.2</b> BigQuery</a><ul>
+<li class="chapter" data-level="6.2.1" data-path="setup.html"><a href="setup.html#setup-1"><i class="fa fa-check"></i><b>6.2.1</b> Setup</a></li>
+<li class="chapter" data-level="6.2.2" data-path="setup.html"><a href="setup.html#export-schema"><i class="fa fa-check"></i><b>6.2.2</b> Export Schema</a></li>
+<li class="chapter" data-level="6.2.3" data-path="setup.html"><a href="setup.html#running-queries"><i class="fa fa-check"></i><b>6.2.3</b> Running Queries</a></li>
+<li class="chapter" data-level="6.2.4" data-path="setup.html"><a href="setup.html#using-r-with-bigquery"><i class="fa fa-check"></i><b>6.2.4</b> Using R with BigQuery</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="extracting-data-from-bigquery.html"><a href="extracting-data-from-bigquery.html"><i class="fa fa-check"></i><b>7</b> Extracting Data from BigQuery</a><ul>
+<li class="chapter" data-level="7.1" data-path="extracting-data-from-bigquery.html"><a href="extracting-data-from-bigquery.html#about-the-data"><i class="fa fa-check"></i><b>7.1</b> About the data</a></li>
+<li class="chapter" data-level="7.2" data-path="extracting-data-from-bigquery.html"><a href="extracting-data-from-bigquery.html#get-full-event-log"><i class="fa fa-check"></i><b>7.2</b> Get full event log</a></li>
+<li class="chapter" data-level="7.3" data-path="extracting-data-from-bigquery.html"><a href="extracting-data-from-bigquery.html#identify-those-who-converted"><i class="fa fa-check"></i><b>7.3</b> Identify those who converted</a></li>
+<li class="chapter" data-level="7.4" data-path="extracting-data-from-bigquery.html"><a href="extracting-data-from-bigquery.html#converting-touchpoints-in-last-7-days"><i class="fa fa-check"></i><b>7.4</b> Converting touchpoints in last 7 days</a></li>
+<li class="chapter" data-level="7.5" data-path="extracting-data-from-bigquery.html"><a href="extracting-data-from-bigquery.html#non-converting-touchpoints-in-last-7-days"><i class="fa fa-check"></i><b>7.5</b> Non-converting touchpoints in last 7 days</a></li>
+<li class="chapter" data-level="7.6" data-path="extracting-data-from-bigquery.html"><a href="extracting-data-from-bigquery.html#complete-query"><i class="fa fa-check"></i><b>7.6</b> Complete Query</a></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="heuristic-models.html"><a href="heuristic-models.html"><i class="fa fa-check"></i><b>8</b> Heuristic Models</a><ul>
+<li class="chapter" data-level="8.1" data-path="heuristic-models.html"><a href="heuristic-models.html#transform-data"><i class="fa fa-check"></i><b>8.1</b> Transform Data</a></li>
+<li class="chapter" data-level="8.2" data-path="heuristic-models.html"><a href="heuristic-models.html#heuristic-models-1"><i class="fa fa-check"></i><b>8.2</b> Heuristic Models</a></li>
+</ul></li>
+<li class="chapter" data-level="9" data-path="algorithmic-methods.html"><a href="algorithmic-methods.html"><i class="fa fa-check"></i><b>9</b> Algorithmic Methods</a><ul>
+<li class="chapter" data-level="9.1" data-path="algorithmic-methods.html"><a href="algorithmic-methods.html#markov-chains"><i class="fa fa-check"></i><b>9.1</b> Markov Chains</a></li>
+<li class="chapter" data-level="9.2" data-path="algorithmic-methods.html"><a href="algorithmic-methods.html#survival-analysis"><i class="fa fa-check"></i><b>9.2</b> Survival Analysis</a></li>
+</ul></li>
+<li class="part"><span><b>III Offline Attribution</b></span></li>
+<li class="chapter" data-level="10" data-path="about-offline-attribution.html"><a href="about-offline-attribution.html"><i class="fa fa-check"></i><b>10</b> About Offline Attribution</a><ul>
+<li class="chapter" data-level="10.1" data-path="about-offline-attribution.html"><a href="about-offline-attribution.html#scenario"><i class="fa fa-check"></i><b>10.1</b> Scenario</a></li>
+<li class="chapter" data-level="10.2" data-path="about-offline-attribution.html"><a href="about-offline-attribution.html#causal-inference-modelling"><i class="fa fa-check"></i><b>10.2</b> Causal Inference Modelling</a></li>
+<li class="chapter" data-level="10.3" data-path="about-offline-attribution.html"><a href="about-offline-attribution.html#comparing-to-other-methods"><i class="fa fa-check"></i><b>10.3</b> Comparing to other methods</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i>References</a></li>
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">The Internetrix Advanced Guide to Attribution Modelling</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="extracting-data-from-bigquery" class="section level1">
+<h1><span class="header-section-number">7</span> Extracting Data from BigQuery</h1>
+<p>The first step before we implement our own attribution models in R is to extract the data from BigQuery. Here we assume you are a Google Analytics 360 customer and have set up the BiqQuery export. If you are using some other form of multi-touch conversion pathway data, you can skip this section. For this example we will be using the <code>bigquery-public-data</code> data set which contains a sample of Analytics 360 data from the Google Merchant Store (See <a href="setup.html#setup-1">Section 6.2</a> for setup info).</p>
+<div id="about-the-data" class="section level2">
+<h2><span class="header-section-number">7.1</span> About the data</h2>
+<p>When we conduct this analysis, a key consideration is how much data to use.</p>
+<p>It’s usually not feasible, or sensible to use all available clickstream data in your organisation. Here we have made some decisions around how much data we want to base our models on.</p>
+<ul>
+<li>Extract the last 30 days of sessions<br />
+</li>
+<li>Keep both converting and non-converting users<br />
+</li>
+<li>Look back 7 days of touch points from the visitor’s most recent session.<br />
+</li>
+<li>If the visitor converted, disregard any subsequent visits.</li>
+</ul>
+<p>These numbers are arbitrary and should be considered in light of your organisation. Some websites with a longer conversion funnel may want to analyse 6 months of data, using a look back window of one month for example.</p>
+</div>
+<div id="get-full-event-log" class="section level2">
+<h2><span class="header-section-number">7.2</span> Get full event log</h2>
+<p>First we want to extract a log of all sessions during a time period. Here we have selected 30 days. Note how we use the <code>*</code> suffix in the <code>FROM</code> clause so we can scan multiple dates at once.</p>
+<p>We have selected the <code>fullVisitorId</code> as the unique identifier. A time stamp of the <code>visitStartTime</code> and the <code>channelGrouping</code> which will show the Default Channel Group associated with an end user’s session for this View.</p>
+<div class="sourceCode"><pre class="sourceCode sql"><code class="sourceCode sql">   <span class="kw">SELECT</span> fullVisitorId, 
+          TIMESTAMP_SECONDS(SAFE_CAST(visitStartTime <span class="kw">AS</span> INT64))  <span class="kw">AS</span> visitStartTime,  
+          channelGrouping
+
+    <span class="kw">FROM</span> `bigquery-public-data.google_analytics_sample.ga_sessions_*`
+
+    <span class="kw">WHERE</span> _TABLE_SUFFIX <span class="kw">BETWEEN</span> <span class="st">&#39;20170101&#39;</span> <span class="kw">AND</span> <span class="st">&#39;20170131&#39;</span>
+
+    <span class="kw">ORDER</span> <span class="kw">BY</span> fullVisitorId, visitStartTime</code></pre></div>
+</div>
+<div id="identify-those-who-converted" class="section level2">
+<h2><span class="header-section-number">7.3</span> Identify those who converted</h2>
+<p>Next we identify all visitors who made a transaction during our date range, and the date of this transaction. We have specified a ‘transaction’ as our conversion goal, however there is no reason why this can’t be another goal, such as a sign up event etc.</p>
+<div class="sourceCode"><pre class="sourceCode sql"><code class="sourceCode sql">    <span class="kw">SELECT</span> fullVisitorId, 
+           <span class="fu">MIN</span>(TIMESTAMP_SECONDS(SAFE_CAST(visitStartTime <span class="kw">AS</span> INT64)))  <span class="kw">AS</span> purchasetime
+
+    <span class="kw">FROM</span> `bigquery-public-data.google_analytics_sample.ga_sessions_*`
+
+    <span class="kw">WHERE</span> _TABLE_SUFFIX <span class="kw">BETWEEN</span> <span class="st">&#39;20170101&#39;</span> <span class="kw">AND</span> <span class="st">&#39;20170131&#39;</span>
+     <span class="kw">AND</span> totals.transactions <span class="kw">IS</span> <span class="kw">NOT</span> <span class="kw">NULL</span>
+
+    <span class="kw">GROUP</span> <span class="kw">BY</span> fullVisitorId
+
+    <span class="kw">ORDER</span> <span class="kw">BY</span> fullVisitorId</code></pre></div>
+</div>
+<div id="converting-touchpoints-in-last-7-days" class="section level2">
+<h2><span class="header-section-number">7.4</span> Converting touchpoints in last 7 days</h2>
+<p>Now we can identify our converting path touch points. These are taken from the event log we defined in Step 1, however we ensure only visitors who converted appear in our results. Furthermore we restrict the results to only those touch points that occur on or before the purchase time (obviously touch points after this don’t influence the conversion outcome). Finally we implement a look-back period of 7 days, so any touch points older than this are disregarded.</p>
+<div class="sourceCode"><pre class="sourceCode sql"><code class="sourceCode sql">  <span class="kw">SELECT</span> a.*,
+         <span class="st">&#39;conversion&#39;</span> <span class="kw">AS</span> outcome
+
+  <span class="kw">FROM</span> event_log a
+    <span class="kw">INNER</span> <span class="kw">JOIN</span> conversions b <span class="kw">ON</span> a.fullVisitorId = b.fullVisitorId  
+
+  <span class="kw">WHERE</span> a.visitStartTime &lt;= b.purchasetime 
+    <span class="kw">AND</span> DATE_DIFF(<span class="dt">DATE</span>(b.purchasetime), <span class="dt">DATE</span>(a.visitStartTime), <span class="dt">DAY</span>)  &lt;= <span class="dv">7</span></code></pre></div>
+</div>
+<div id="non-converting-touchpoints-in-last-7-days" class="section level2">
+<h2><span class="header-section-number">7.5</span> Non-converting touchpoints in last 7 days</h2>
+<p>For those users who did not convert, we need to identify the most recent session start time so we can calculate where to start our 7 day look back period.</p>
+<div class="sourceCode"><pre class="sourceCode sql"><code class="sourceCode sql">
+<span class="kw">SELECT</span> fullVisitorId, 
+  <span class="fu">MAX</span>(visitStartTime) <span class="kw">AS</span> maxvisittime
+  
+  <span class="kw">FROM</span> event_log
+  
+  <span class="kw">GROUP</span> <span class="kw">BY</span> fullVisitorId</code></pre></div>
+<p>Now we can query the touch points of our non-converting visitors and apply our 7 day time window.</p>
+<div class="sourceCode"><pre class="sourceCode sql"><code class="sourceCode sql"><span class="kw">SELECT</span> a.*,
+         <span class="st">&#39;non_conversion&#39;</span> <span class="kw">AS</span> outcome
+
+  <span class="kw">FROM</span> event_log a
+    <span class="kw">INNER</span> <span class="kw">JOIN</span> maxtimes b <span class="kw">ON</span> a.fullVisitorId = b.fullVisitorId 
+
+  <span class="kw">WHERE</span> a.fullVisitorId <span class="kw">NOT</span> <span class="kw">IN</span> (<span class="kw">SELECT</span> <span class="kw">DISTINCT</span> fullVisitorID <span class="kw">FROM</span> conversions)
+   <span class="kw">AND</span>  DATE_DIFF(<span class="dt">DATE</span>(b.maxvisittime), <span class="dt">DATE</span>(a.visitStartTime), <span class="dt">DAY</span>) &lt;= <span class="dv">7</span></code></pre></div>
+</div>
+<div id="complete-query" class="section level2">
+<h2><span class="header-section-number">7.6</span> Complete Query</h2>
+<p>We can bundle this together to run as one query:</p>
+<div class="sourceCode"><pre class="sourceCode sql"><code class="sourceCode sql">#standardSQL
+
+<span class="kw">WITH</span> 
+  <span class="co">/* EVENT LOG */</span>
+  event_log <span class="kw">AS</span> (
+    <span class="kw">SELECT</span> fullVisitorId, 
+          TIMESTAMP_SECONDS(SAFE_CAST(visitStartTime <span class="kw">AS</span> INT64))  <span class="kw">AS</span> visitStartTime,  
+          channelGrouping
+
+    <span class="kw">FROM</span> `bigquery-public-data.google_analytics_sample.ga_sessions_*`
+
+    <span class="kw">WHERE</span> _TABLE_SUFFIX <span class="kw">BETWEEN</span> <span class="st">&#39;20170101&#39;</span> <span class="kw">AND</span> <span class="st">&#39;20170131&#39;</span>
+
+    <span class="kw">ORDER</span> <span class="kw">BY</span> fullVisitorId, visitStartTime
+  ),
+
+ <span class="co">/* VISITORS WHO CONVERTED */</span>
+ conversions <span class="kw">AS</span> (
+    <span class="kw">SELECT</span> fullVisitorId, 
+           <span class="fu">MIN</span>(TIMESTAMP_SECONDS(SAFE_CAST(visitStartTime <span class="kw">AS</span> INT64)))  <span class="kw">AS</span> purchasetime
+
+    <span class="kw">FROM</span> `bigquery-public-data.google_analytics_sample.ga_sessions_*`
+
+    <span class="kw">WHERE</span> _TABLE_SUFFIX <span class="kw">BETWEEN</span> <span class="st">&#39;20170101&#39;</span> <span class="kw">AND</span> <span class="st">&#39;20170131&#39;</span>
+     <span class="kw">AND</span> totals.transactions <span class="kw">IS</span> <span class="kw">NOT</span> <span class="kw">NULL</span>
+
+    <span class="kw">GROUP</span> <span class="kw">BY</span> fullVisitorId
+
+    <span class="kw">ORDER</span> <span class="kw">BY</span> fullVisitorId
+  ),
+  
+  <span class="co">/* LATEST VISIT TIME FOR ALL VISITORS */</span>
+   maxtimes <span class="kw">AS</span> (
+    <span class="kw">SELECT</span> fullVisitorId, 
+    <span class="fu">MAX</span>(visitStartTime) <span class="kw">AS</span> maxvisittime
+    
+    <span class="kw">FROM</span> event_log
+    
+    <span class="kw">GROUP</span> <span class="kw">BY</span> fullVisitorId
+  )
+
+  <span class="co">/*== MAIN QUERY THAT UNIONS CONVERTING AND NON CONVERTING PATHS WITHA GIVEN TIME WINDOW ==*/</span>
+  
+  <span class="co">/* CONVERTING PATHS */</span>
+  <span class="kw">SELECT</span> a.*,
+         <span class="st">&#39;conversion&#39;</span> <span class="kw">AS</span> outcome
+
+  <span class="kw">FROM</span> event_log a
+    <span class="kw">INNER</span> <span class="kw">JOIN</span> conversions b <span class="kw">ON</span> a.fullVisitorId = b.fullVisitorId  
+
+  <span class="kw">WHERE</span> a.visitStartTime &lt;= b.purchasetime 
+    <span class="kw">AND</span> DATE_DIFF(<span class="dt">DATE</span>(b.purchasetime), <span class="dt">DATE</span>(a.visitStartTime), <span class="dt">DAY</span>)  &lt;= <span class="dv">7</span>
+
+<span class="kw">UNION</span> <span class="kw">ALL</span>
+
+  <span class="co">/* NON CONVERTING PATHS */</span>
+  <span class="kw">SELECT</span> a.*,
+         <span class="st">&#39;non_conversion&#39;</span> <span class="kw">AS</span> outcome
+
+  <span class="kw">FROM</span> event_log a
+    <span class="kw">INNER</span> <span class="kw">JOIN</span> maxtimes b <span class="kw">ON</span> a.fullVisitorId = b.fullVisitorId 
+
+  <span class="kw">WHERE</span> a.fullVisitorId <span class="kw">NOT</span> <span class="kw">IN</span> (<span class="kw">SELECT</span> <span class="kw">DISTINCT</span> fullVisitorID <span class="kw">FROM</span> conversions)
+   <span class="kw">AND</span>  DATE_DIFF(<span class="dt">DATE</span>(b.maxvisittime), <span class="dt">DATE</span>(a.visitStartTime), <span class="dt">DAY</span>) &lt;= <span class="dv">7</span></code></pre></div>
+
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="setup.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="heuristic-models.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"google": false,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"all": ["facebook", "google", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": null,
+"text": null
+},
+"history": {
+"link": null,
+"text": null
+},
+"download": ["irx-attribution-2019.pdf", "irx-attribution-2019.epub"],
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:" && /^https?:/.test(src))
+      src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

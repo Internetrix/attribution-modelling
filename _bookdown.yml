@@ -1,0 +1,6 @@
+book_filename: "irx-attribution-2019"
+language:
+  ui:
+    chapter_name: ""
+delete_merged_file: true
+output_dir: "docs"

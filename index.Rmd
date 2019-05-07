@@ -1,0 +1,83 @@
+--- 
+title: "The Internetrix Advanced Guide to Attribution Modelling"
+subtitle: "With applications in R"
+author:  
+  - Dean Marchiori - Head of Data Science, Internetrix
+  - Tiffany Chen - Data Analyst, Internetrix
+date: "`r Sys.Date()`"
+site: bookdown::bookdown_site
+output: bookdown::gitbook
+documentclass: book
+cover-image: "img/cover.png"
+bibliography: ["book.bib", "packages.bib"]
+biblio-style: "apalike"
+link-citations: true
+description: "This is an Internetrix guide on advanced marketing attribution modelling for eCommerce data"
+nocite: '@*'
+---
+
+```{r include = FALSE}
+if(!knitr:::is_html_output())
+{
+  options("width"=56)
+  knitr::opts_chunk$set(tidy.opts=list(width.cutoff=56, indent = 2), tidy = TRUE)
+  knitr::opts_chunk$set(fig.pos = 'H')
+}
+```
+
+
+# Welcome
+
+<img src="img/cover.png" width="470" height="750" alt="Cover image" align="right" style="margin: 0 1em 0 1em" />
+
+The aim of this guide is to help marketing, business and analytics experts 
+understand how to get the biggest impact from their marketing budget.  
+
+Our focus is on marketing attribution. That is, the way in which we can measure
+and assign credit to individual marketing channels, even when we are 
+simultaneously advertising via many channels. Only by understanding this can
+we generate meaningful estimates on the return we get from each channel and
+therefore guide future spending decisions.  
+
+When we say marketing, the main focus is on digital marketing. In this guide
+we use Google Analytics and the Google Marketing Platform as the 
+tools of choice. If you use some other digital analytics platform, you can 
+still benefit from the content, but you will need to be a little more self-sufficient in 
+exporting and preparing your data for analysis.  
+
+Finally, for more advanced and customised methods we use the R statistical
+programming language. These sections are aimed at data scientists and
+data analysts with some experience with scripted analysis. Hopefully the 
+basic examples shown in this guide will help in getting up to speed and generating
+useful insights as quickly as possible.  
+
+We hope you enjoy and get some benefit from this guide. If you have any 
+feedback or comments, or would like to discuss working together, please reach
+out using the contact information below.  
+
+
+## Contact Internetrix  
+
+**Internetrix Data Science**
+
+**Web:** [https://www.internetrix.com.au/services/data-science/](https://www.internetrix.com.au/services/data-science/)   
+**Phone:** +61242535300  
+**email:** irx.info@internetrix.com.au  
+
+
+<a rel="license" href="http://creativecommons.org/licenses/by-nc-nd/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by-nc-nd/4.0/88x31.png" /></a><br />This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-nc-nd/4.0/">Creative Commons Attribution-NonCommercial-NoDerivatives 4.0 International License</a>.
+
+
+
+```{r include=FALSE}
+# automatically create a bib database for R packages
+knitr::write_bib(c(
+  'bookdown', 'knitr', 'rmarkdown', 'markovchain', 
+  'ChannelAttribution', 'tidyverse', 'bigrquery', 'survival', 'survminer',
+  'CausalImpact', "DBI", "lubridate"
+), 'packages.bib')
+```
+
+
+
+

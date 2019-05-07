@@ -1,0 +1,118 @@
+```{r include = FALSE}
+if(!knitr:::is_html_output())
+{
+  options("width"=56)
+  knitr::opts_chunk$set(tidy.opts=list(width.cutoff=56, indent = 2), tidy = TRUE)
+  knitr::opts_chunk$set(fig.pos = 'H')
+}
+```
+
+# Heuristic Models
+
+Here we will implement some non-algorithmic methods as a baseline. To do this
+we will use the [ChannelAttribution R package](https://cran.r-project.org/web/packages/ChannelAttribution)
+
+## Transform Data  
+
+The `ChannelAttribution` package requires the data structured in a certain
+way. In this case it is in the form:  
+
+path | conversion | non-conversions  
+----|-----------|---------------
+direct > social > search | 10 | 154  
+direct > direct > direct | 2 | 234  
+referral > direct | 7 | 187  
+
+Here the touch points are transformed from into a single string path, separated
+by the `>` character. For each path we aggregate the total number of conversions
+that resulted from this pathway, and also the number of non-conversions.   
+
+If you are using marketing data from a system other than BigQuery, you will
+need to prepare your data per the above.  
+
+Now we can look at the steps required to transform our data from [Chapter 7](#about-the-data).  
+
+In this case we have the results saved as a CSV, but these may also be queried
+directly in R as per [Section 6.2.4](#using-r-with-bigquery) 
+
+```{r echo=TRUE, message=FALSE, warning=FALSE}
+library(tidyverse)
+library(lubridate)
+
+paths_raw <- read_csv('bigquery/bq-results.csv')
+```
+
+Below is a snapshot of the top 20 rows. We can see from BigQuery it is in a standard
+'long' format with one row per touch point based on the time stamp.
+
+```{r echo=FALSE}
+knitr::kable(head(paths_raw, 20))
+```
+
+We are using the `tidyverse` conventions here to make the interpretation
+easier. To translate we can see we start by formatting the time stamp correctly.  
+Next we rank the sessions by this time stamp for each visitor so we know which
+order the touch points occurred. We next restructure the data by summarising
+the touch points into one path string. Finally we count the occurrence of conversions and
+non-conversions.
+
+```{r}
+paths <- paths_raw %>% 
+  mutate(visitStartTime = ymd_hms(visitStartTime)) %>% 
+  group_by(fullVisitorId, outcome) %>% 
+  arrange(visitStartTime) %>% 
+  summarise(path = paste(channelGrouping, collapse = ' > ')) %>% 
+  ungroup() %>% 
+  count(outcome, path, name = "n") %>% 
+  spread(outcome, n) %>% 
+  replace_na(list(conversion = 0, non_conversion = 0)) %>% 
+  arrange(desc(conversion))
+```
+
+```{r echo=FALSE}
+head(paths, n = 10) %>% knitr::kable()
+```
+
+## Heuristic Models  
+
+Now that the data are in the correct format we can use the `ChannelAttribution::heuristic_models()`
+function to compare three common models: First Touch, Last Touch and Linear.
+
+This function will automatically calculate the total number of conversion attributed
+to each channel using the above models.
+
+The results across these three methods are very similar. We can see 'Referral'
+is the channel that is attributed the most credit for conversions, followed by 
+'Organic Search'.
+
+The Last Touch method provides slightly more credit to 'Referral' than other methods, 
+in contrast to 'Direct', which is attributed more credit when using the First 
+Touch method.  
+
+```{r}
+library(ChannelAttribution)
+
+fit_h <- heuristic_models(Data = paths, var_path = 'path', var_conv = 'conversion')
+```
+
+```{r echo=FALSE}
+knitr::kable(fit_h)
+```
+
+```{r echo=FALSE, fig.height=6, fig.width=10}
+fit_h %>% 
+  gather(model, conversions, -channel_name) %>% 
+  ggplot(aes(x = fct_reorder(channel_name, conversions), y = conversions, fill = model)) +
+  geom_col() +
+  scale_fill_manual(values = c("#0279A9", "#FFB95C", "#0FBCE7")) +
+  facet_wrap(~model) +
+  coord_flip() +
+  labs(title = "How do the heuristic models compare?",
+       subtitle = "Comparing First Touch, Last Touch and Linear models",
+       x = "Channel",
+       y = "Attributed Conversions",
+       caption = "Google Merchant Store: 1 Month Window with 7 day lookback") +
+  theme_bw()
+
+```
+

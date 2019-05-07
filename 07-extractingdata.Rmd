@@ -1,0 +1,206 @@
+```{r include = FALSE}
+if(!knitr:::is_html_output())
+{
+  options("width"=56)
+  knitr::opts_chunk$set(tidy.opts=list(width.cutoff=56, indent = 2), tidy = TRUE)
+  knitr::opts_chunk$set(fig.pos = 'H')
+}
+```
+
+# Extracting Data from BigQuery
+
+The first step before we implement our own attribution models in R is to extract
+the data from BigQuery. Here we assume you are a Google Analytics 360 customer and have set up the
+BiqQuery export. If you are using some other form of multi-touch conversion pathway data, you
+can skip this section. For this example we will be using the `bigquery-public-data` data set which
+contains a sample of Analytics 360 data from the Google Merchant Store (See
+[Section 6.2](#setup-1) for setup info).
+
+## About the data  
+
+When we conduct this analysis, a key consideration is how much data to use. 
+
+It's usually not feasible, or sensible to use all available clickstream data
+in your organisation. Here we have made some decisions around how much data we 
+want to base our models on.
+
++ Extract the last 30 days of sessions  
++ Keep both converting and non-converting users  
++ Look back 7 days of touch points from the visitor's most recent session.  
++ If the visitor converted, disregard any subsequent visits.  
+
+These numbers are arbitrary and should be considered in light of your 
+organisation. Some websites with a longer conversion funnel may want to analyse
+6 months of data, using a look back window of one month for example. 
+
+## Get full event log   
+
+First we want to extract a log of all sessions during a time period. Here we have
+selected 30 days.  Note how we use the `*` suffix in the `FROM` clause so we
+can scan multiple dates at once.  
+
+We have selected the `fullVisitorId` as the unique identifier. A time stamp 
+of the `visitStartTime` and the `channelGrouping` which will show the Default Channel 
+Group associated with an end user's session for this View.
+
+```{sql eval=FALSE, include=TRUE}
+   SELECT fullVisitorId, 
+          TIMESTAMP_SECONDS(SAFE_CAST(visitStartTime AS INT64))  AS visitStartTime,  
+          channelGrouping
+
+    FROM `bigquery-public-data.google_analytics_sample.ga_sessions_*`
+
+    WHERE _TABLE_SUFFIX BETWEEN '20170101' AND '20170131'
+
+    ORDER BY fullVisitorId, visitStartTime
+```
+
+## Identify those who converted  
+
+Next we identify all visitors who made a transaction during our date range, and
+the date of this transaction. We have specified a 'transaction' as our conversion 
+goal, however there is no reason why this can't be another goal, such as a sign 
+up event etc.  
+
+```{sql eval=FALSE, include=TRUE}
+    SELECT fullVisitorId, 
+           MIN(TIMESTAMP_SECONDS(SAFE_CAST(visitStartTime AS INT64)))  AS purchasetime
+
+    FROM `bigquery-public-data.google_analytics_sample.ga_sessions_*`
+
+    WHERE _TABLE_SUFFIX BETWEEN '20170101' AND '20170131'
+     AND totals.transactions IS NOT NULL
+
+    GROUP BY fullVisitorId
+
+    ORDER BY fullVisitorId
+```
+
+## Converting touchpoints in last 7 days   
+
+Now we can identify our converting path touch points. These are taken from the event log
+we defined in Step 1, however we ensure only visitors who converted appear
+in our results. Furthermore we restrict the results to only those touch points
+that occur on or before the purchase time (obviously touch points after this don't influence
+the conversion outcome). Finally we implement a look-back period of 7 days, so
+any touch points older than this are disregarded.
+
+```{sql eval=FALSE, include=TRUE}
+  SELECT a.*,
+         'conversion' AS outcome
+
+  FROM event_log a
+    INNER JOIN conversions b ON a.fullVisitorId = b.fullVisitorId  
+
+  WHERE a.visitStartTime <= b.purchasetime 
+    AND DATE_DIFF(DATE(b.purchasetime), DATE(a.visitStartTime), DAY)  <= 7
+
+```
+
+## Non-converting touchpoints in last 7 days   
+
+For those users who did not convert, we need to identify the most recent 
+session start time so we can calculate where to start our 7 day look 
+back period. 
+
+```{sql eval=FALSE, include=TRUE}
+
+SELECT fullVisitorId, 
+  MAX(visitStartTime) AS maxvisittime
+  
+  FROM event_log
+  
+  GROUP BY fullVisitorId
+
+```
+
+Now we can query the touch points of our non-converting visitors and apply
+our 7 day time window.
+
+```{sql eval=FALSE, include=TRUE}
+SELECT a.*,
+         'non_conversion' AS outcome
+
+  FROM event_log a
+    INNER JOIN maxtimes b ON a.fullVisitorId = b.fullVisitorId 
+
+  WHERE a.fullVisitorId NOT IN (SELECT DISTINCT fullVisitorID FROM conversions)
+   AND  DATE_DIFF(DATE(b.maxvisittime), DATE(a.visitStartTime), DAY) <= 7
+
+
+```
+
+## Complete Query
+
+We can bundle this together to run as one query: 
+
+```{sql eval=FALSE, include=TRUE}
+#standardSQL
+
+WITH 
+  /* EVENT LOG */
+  event_log AS (
+    SELECT fullVisitorId, 
+          TIMESTAMP_SECONDS(SAFE_CAST(visitStartTime AS INT64))  AS visitStartTime,  
+          channelGrouping
+
+    FROM `bigquery-public-data.google_analytics_sample.ga_sessions_*`
+
+    WHERE _TABLE_SUFFIX BETWEEN '20170101' AND '20170131'
+
+    ORDER BY fullVisitorId, visitStartTime
+  ),
+
+ /* VISITORS WHO CONVERTED */
+ conversions AS (
+    SELECT fullVisitorId, 
+           MIN(TIMESTAMP_SECONDS(SAFE_CAST(visitStartTime AS INT64)))  AS purchasetime
+
+    FROM `bigquery-public-data.google_analytics_sample.ga_sessions_*`
+
+    WHERE _TABLE_SUFFIX BETWEEN '20170101' AND '20170131'
+     AND totals.transactions IS NOT NULL
+
+    GROUP BY fullVisitorId
+
+    ORDER BY fullVisitorId
+  ),
+  
+  /* LATEST VISIT TIME FOR ALL VISITORS */
+   maxtimes AS (
+    SELECT fullVisitorId, 
+    MAX(visitStartTime) AS maxvisittime
+    
+    FROM event_log
+    
+    GROUP BY fullVisitorId
+  )
+
+  /*== MAIN QUERY THAT UNIONS CONVERTING AND NON CONVERTING PATHS WITHA GIVEN TIME WINDOW ==*/
+  
+  /* CONVERTING PATHS */
+  SELECT a.*,
+         'conversion' AS outcome
+
+  FROM event_log a
+    INNER JOIN conversions b ON a.fullVisitorId = b.fullVisitorId  
+
+  WHERE a.visitStartTime <= b.purchasetime 
+    AND DATE_DIFF(DATE(b.purchasetime), DATE(a.visitStartTime), DAY)  <= 7
+
+UNION ALL
+
+  /* NON CONVERTING PATHS */
+  SELECT a.*,
+         'non_conversion' AS outcome
+
+  FROM event_log a
+    INNER JOIN maxtimes b ON a.fullVisitorId = b.fullVisitorId 
+
+  WHERE a.fullVisitorId NOT IN (SELECT DISTINCT fullVisitorID FROM conversions)
+   AND  DATE_DIFF(DATE(b.maxvisittime), DATE(a.visitStartTime), DAY) <= 7
+
+```
+
+
+

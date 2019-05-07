@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html >
+
+<head>
+
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>8 BigQuery | Advanced Marketing Attribution Modelling for eCommerce</title>
+  <meta name="description" content="This is an Internetrix white paper on advanced marketing attribution modelling for eCommerce data">
+  <meta name="generator" content="bookdown  and GitBook 2.6.7">
+
+  <meta property="og:title" content="8 BigQuery | Advanced Marketing Attribution Modelling for eCommerce" />
+  <meta property="og:type" content="book" />
+  
+  
+  <meta property="og:description" content="This is an Internetrix white paper on advanced marketing attribution modelling for eCommerce data" />
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="8 BigQuery | Advanced Marketing Attribution Modelling for eCommerce" />
+  
+  <meta name="twitter:description" content="This is an Internetrix white paper on advanced marketing attribution modelling for eCommerce data" />
+  
+
+<meta name="author" content="Dean Marchiori - Head of Data Science">
+<meta name="author" content="Tiffany Chen - Data Analyst">
+
+
+<meta name="date" content="2019-03-22">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  
+  
+<link rel="prev" href="setup.html">
+<link rel="next" href="simplistic-methods.html">
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+<style type="text/css">
+div.sourceCode { overflow-x: auto; }
+table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
+  margin: 0; padding: 0; vertical-align: baseline; border: none; }
+table.sourceCode { width: 100%; line-height: 100%; }
+td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
+td.sourceCode { padding-left: 5px; }
+code > span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code > span.dt { color: #902000; } /* DataType */
+code > span.dv { color: #40a070; } /* DecVal */
+code > span.bn { color: #40a070; } /* BaseN */
+code > span.fl { color: #40a070; } /* Float */
+code > span.ch { color: #4070a0; } /* Char */
+code > span.st { color: #4070a0; } /* String */
+code > span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code > span.ot { color: #007020; } /* Other */
+code > span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code > span.fu { color: #06287e; } /* Function */
+code > span.er { color: #ff0000; font-weight: bold; } /* Error */
+code > span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+code > span.cn { color: #880000; } /* Constant */
+code > span.sc { color: #4070a0; } /* SpecialChar */
+code > span.vs { color: #4070a0; } /* VerbatimString */
+code > span.ss { color: #bb6688; } /* SpecialString */
+code > span.im { } /* Import */
+code > span.va { color: #19177c; } /* Variable */
+code > span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code > span.op { color: #666666; } /* Operator */
+code > span.bu { } /* BuiltIn */
+code > span.ex { } /* Extension */
+code > span.pp { color: #bc7a00; } /* Preprocessor */
+code > span.at { color: #7d9029; } /* Attribute */
+code > span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code > span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code > span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./index.html">Home</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Welcome</a></li>
+<li class="chapter" data-level="2" data-path="introduction.html"><a href="introduction.html"><i class="fa fa-check"></i><b>2</b> Introduction</a><ul>
+<li class="chapter" data-level="2.1" data-path="introduction.html"><a href="introduction.html#what-is-attribution-modelling"><i class="fa fa-check"></i><b>2.1</b> What is attribution modelling</a></li>
+<li class="chapter" data-level="2.2" data-path="introduction.html"><a href="introduction.html#scope-of-this-paper"><i class="fa fa-check"></i><b>2.2</b> Scope of this paper</a></li>
+<li class="chapter" data-level="2.3" data-path="introduction.html"><a href="introduction.html#where-to-go-for-further-help"><i class="fa fa-check"></i><b>2.3</b> Where to go for further help</a></li>
+</ul></li>
+<li class="part"><span><b>I Online Attribution</b></span></li>
+<li class="chapter" data-level="3" data-path="types-of-attribution.html"><a href="types-of-attribution.html"><i class="fa fa-check"></i><b>3</b> Types of Attribution</a><ul>
+<li class="chapter" data-level="3.1" data-path="types-of-attribution.html"><a href="types-of-attribution.html#user-vs.individual"><i class="fa fa-check"></i><b>3.1</b> User vs. Individual</a></li>
+<li class="chapter" data-level="3.2" data-path="types-of-attribution.html"><a href="types-of-attribution.html#simplistic-vs.fractional"><i class="fa fa-check"></i><b>3.2</b> Simplistic vs. Fractional</a></li>
+<li class="chapter" data-level="3.3" data-path="types-of-attribution.html"><a href="types-of-attribution.html#heuristic-vs.algorithmic"><i class="fa fa-check"></i><b>3.3</b> Heuristic vs. Algorithmic</a></li>
+<li class="chapter" data-level="3.4" data-path="types-of-attribution.html"><a href="types-of-attribution.html#classification-of-methods"><i class="fa fa-check"></i><b>3.4</b> Classification of Methods</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="methods.html"><a href="methods.html"><i class="fa fa-check"></i><b>4</b> Methods</a><ul>
+<li class="chapter" data-level="4.1" data-path="methods.html"><a href="methods.html#simplisitc-methods"><i class="fa fa-check"></i><b>4.1</b> Simplisitc Methods</a><ul>
+<li class="chapter" data-level="4.1.1" data-path="methods.html"><a href="methods.html#last-touch"><i class="fa fa-check"></i><b>4.1.1</b> Last Touch</a></li>
+<li class="chapter" data-level="4.1.2" data-path="methods.html"><a href="methods.html#first-touch"><i class="fa fa-check"></i><b>4.1.2</b> First Touch</a></li>
+<li class="chapter" data-level="4.1.3" data-path="methods.html"><a href="methods.html#last-non-direct-touch"><i class="fa fa-check"></i><b>4.1.3</b> Last Non-Direct Touch</a></li>
+<li class="chapter" data-level="4.1.4" data-path="methods.html"><a href="methods.html#others"><i class="fa fa-check"></i><b>4.1.4</b> Others?</a></li>
+</ul></li>
+<li class="chapter" data-level="4.2" data-path="methods.html"><a href="methods.html#fractional-heuristic-methods"><i class="fa fa-check"></i><b>4.2</b> Fractional Heuristic Methods</a><ul>
+<li class="chapter" data-level="4.2.1" data-path="methods.html"><a href="methods.html#linear"><i class="fa fa-check"></i><b>4.2.1</b> Linear</a></li>
+<li class="chapter" data-level="4.2.2" data-path="methods.html"><a href="methods.html#time-decay"><i class="fa fa-check"></i><b>4.2.2</b> Time Decay</a></li>
+<li class="chapter" data-level="4.2.3" data-path="methods.html"><a href="methods.html#position-based"><i class="fa fa-check"></i><b>4.2.3</b> Position Based</a></li>
+</ul></li>
+<li class="chapter" data-level="4.3" data-path="methods.html"><a href="methods.html#fractional-algorithmic-methods"><i class="fa fa-check"></i><b>4.3</b> Fractional Algorithmic Methods</a><ul>
+<li class="chapter" data-level="4.3.1" data-path="methods.html"><a href="methods.html#logistic-regression"><i class="fa fa-check"></i><b>4.3.1</b> Logistic Regression</a></li>
+<li class="chapter" data-level="4.3.2" data-path="methods.html"><a href="methods.html#shapley-value"><i class="fa fa-check"></i><b>4.3.2</b> Shapley Value</a></li>
+<li class="chapter" data-level="4.3.3" data-path="methods.html"><a href="methods.html#markov-methods"><i class="fa fa-check"></i><b>4.3.3</b> Markov Methods</a></li>
+<li class="chapter" data-level="4.3.4" data-path="methods.html"><a href="methods.html#survivial-analysis"><i class="fa fa-check"></i><b>4.3.4</b> Survivial Analysis</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="comparison-on-methods.html"><a href="comparison-on-methods.html"><i class="fa fa-check"></i><b>5</b> Comparison on Methods</a></li>
+<li class="chapter" data-level="6" data-path="google-analytics-data.html"><a href="google-analytics-data.html"><i class="fa fa-check"></i><b>6</b> Google Analytics Data</a><ul>
+<li class="chapter" data-level="6.1" data-path="google-analytics-data.html"><a href="google-analytics-data.html#survey-of-basic-methods"><i class="fa fa-check"></i><b>6.1</b> Survey of Basic Methods</a></li>
+<li class="chapter" data-level="6.2" data-path="google-analytics-data.html"><a href="google-analytics-data.html#about-data-driven-attribution"><i class="fa fa-check"></i><b>6.2</b> About Data Driven Attribution</a><ul>
+<li class="chapter" data-level="6.2.1" data-path="google-analytics-data.html"><a href="google-analytics-data.html#how-does-it-work"><i class="fa fa-check"></i><b>6.2.1</b> How does it work?</a></li>
+<li class="chapter" data-level="6.2.2" data-path="google-analytics-data.html"><a href="google-analytics-data.html#limitations"><i class="fa fa-check"></i><b>6.2.2</b> Limitations</a></li>
+</ul></li>
+<li class="chapter" data-level="6.3" data-path="google-analytics-data.html"><a href="google-analytics-data.html#big-query"><i class="fa fa-check"></i><b>6.3</b> Big Query</a></li>
+</ul></li>
+<li class="part"><span><b>II Implementation Guides</b></span></li>
+<li class="chapter" data-level="7" data-path="setup.html"><a href="setup.html"><i class="fa fa-check"></i><b>7</b> Setup</a><ul>
+<li class="chapter" data-level="7.1" data-path="setup.html"><a href="setup.html#using-r-for-statistical-analysis"><i class="fa fa-check"></i><b>7.1</b> Using R for Statistical Analysis</a><ul>
+<li class="chapter" data-level="7.1.1" data-path="setup.html"><a href="setup.html#about-r"><i class="fa fa-check"></i><b>7.1.1</b> About R</a></li>
+<li class="chapter" data-level="7.1.2" data-path="setup.html"><a href="setup.html#install-r"><i class="fa fa-check"></i><b>7.1.2</b> Install R</a></li>
+<li class="chapter" data-level="7.1.3" data-path="setup.html"><a href="setup.html#install-rstudio"><i class="fa fa-check"></i><b>7.1.3</b> Install RStudio</a></li>
+<li class="chapter" data-level="7.1.4" data-path="setup.html"><a href="setup.html#install-required-r-packages"><i class="fa fa-check"></i><b>7.1.4</b> Install Required R Packages</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="bigquery.html"><a href="bigquery.html"><i class="fa fa-check"></i><b>8</b> BigQuery</a><ul>
+<li class="chapter" data-level="8.1" data-path="bigquery.html"><a href="bigquery.html#setup-1"><i class="fa fa-check"></i><b>8.1</b> Setup</a></li>
+<li class="chapter" data-level="8.2" data-path="bigquery.html"><a href="bigquery.html#export-schema"><i class="fa fa-check"></i><b>8.2</b> Export Schema</a></li>
+<li class="chapter" data-level="8.3" data-path="bigquery.html"><a href="bigquery.html#running-queries"><i class="fa fa-check"></i><b>8.3</b> Running Queries</a><ul>
+<li class="chapter" data-level="8.3.1" data-path="bigquery.html"><a href="bigquery.html#hello-world"><i class="fa fa-check"></i><b>8.3.1</b> Hello World</a></li>
+<li class="chapter" data-level="8.3.2" data-path="bigquery.html"><a href="bigquery.html#using-table-ranges"><i class="fa fa-check"></i><b>8.3.2</b> Using Table Ranges</a></li>
+<li class="chapter" data-level="8.3.3" data-path="bigquery.html"><a href="bigquery.html#hit-level-data"><i class="fa fa-check"></i><b>8.3.3</b> Hit Level Data</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="9" data-path="simplistic-methods.html"><a href="simplistic-methods.html"><i class="fa fa-check"></i><b>9</b> Simplistic Methods</a><ul>
+<li class="chapter" data-level="9.1" data-path="simplistic-methods.html"><a href="simplistic-methods.html#first-touch-1"><i class="fa fa-check"></i><b>9.1</b> First Touch</a></li>
+</ul></li>
+<li class="chapter" data-level="10" data-path="algorithmic-methods.html"><a href="algorithmic-methods.html"><i class="fa fa-check"></i><b>10</b> Algorithmic Methods</a><ul>
+<li class="chapter" data-level="10.1" data-path="algorithmic-methods.html"><a href="algorithmic-methods.html#shapley-value-1"><i class="fa fa-check"></i><b>10.1</b> Shapley Value</a></li>
+<li class="chapter" data-level="10.2" data-path="algorithmic-methods.html"><a href="algorithmic-methods.html#markov-chains"><i class="fa fa-check"></i><b>10.2</b> Markov Chains</a></li>
+<li class="chapter" data-level="10.3" data-path="algorithmic-methods.html"><a href="algorithmic-methods.html#survival-analysis"><i class="fa fa-check"></i><b>10.3</b> Survival Analysis</a></li>
+</ul></li>
+<li class="part"><span><b>III Offline Attribution</b></span></li>
+<li class="chapter" data-level="11" data-path="about-offline-attribution.html"><a href="about-offline-attribution.html"><i class="fa fa-check"></i><b>11</b> About Offline Attribution</a><ul>
+<li class="chapter" data-level="11.1" data-path="about-offline-attribution.html"><a href="about-offline-attribution.html#causal-impact-analysis"><i class="fa fa-check"></i><b>11.1</b> Causal Impact Analysis</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i>References</a></li>
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Advanced Marketing Attribution Modelling for eCommerce</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="bigquery" class="section level1">
+<h1><span class="header-section-number">8</span> BigQuery</h1>
+<p>The first step to more advanced modelling is getting and cleaning the data. Here we will go through a basic setup and familiarisation guide to getting your Analytics data from BigQuery. It is expected that you have some experience using SQL and knowledge of basic database operations.</p>
+<div id="setup-1" class="section level2">
+<h2><span class="header-section-number">8.1</span> Setup</h2>
+<p>If you are an Analytics 360 customer, you can setup BigQuery for use with Google Analytics data. Refer to the <a href="https://support.google.com/analytics/answer/3416092?hl=en&amp;ref_topic=3416089">Google Help Pages</a> for detailed instructions.</p>
+<p>If you don’t yet have Analytics 360, you can still benefit from these practical code examples by using the free Google Analytics Sample Dataset. This is a complete Google Analytics 360 dataset from the Google Merchant Store, a real eCommerce platform.</p>
+<p>To access the dataset follow the instructions provided by <a href="https://support.google.com/analytics/answer/7586738?hl=en&amp;ref_topic=3416089">Google</a>:</p>
+<ol style="list-style-type: decimal">
+<li><p>Go to <a href="http://bigquery.cloud.google.com" class="uri">http://bigquery.cloud.google.com</a>.</p></li>
+<li><p>If you’re new to BigQuery, or you don’t have a project set up yet, you’ll need to create a project.</p></li>
+<li><p>Select this <a href="https://bigquery.cloud.google.com/table/bigquery-public-data:google_analytics_sample.ga_sessions_20170801?pli=1">link</a> to go directly to the dataset.</p></li>
+<li><p>Click <strong>Query Table</strong> to run a query.</p></li>
+</ol>
+<p>In the future you can access the dataset within BigQuery by selecting the <code>bigquery-public-data</code> project from the left-hand navigation panel, then select the <code>ga_sessions</code> table under the <code>google_analytics_sample</code> dataset.</p>
+<p>Please be mindful that using BigQuery can incur a cost. Please refer to Google’s billing and qutoa information before use.</p>
+</div>
+<div id="export-schema" class="section level2">
+<h2><span class="header-section-number">8.2</span> Export Schema</h2>
+<p>The way Google Analytics structures its data export into BigQuery is known as the export schema. This schema is able to take advantage of data structures that may be counterintuitive for users who are familiar with normalised relational databases. BigQuery supports de-normalised tables, where instead of joining lots of flat, normalised tables, you can have one table with nested records.</p>
+<div class="figure">
+<img src="img/bqexport.png" />
+
+</div>
+<p>In the bigquery dataset, there is one table per day, defined at the session level that contains all Analytics related data nested within, sich as hits and events. Below we will show some basic queries on this data.</p>
+<p>For for information you can refer to the <a href="https://support.google.com/analytics/answer/3437719?hl=en&amp;ref_topic=3416089#">BigQuery Export Schema</a></p>
+</div>
+<div id="running-queries" class="section level2">
+<h2><span class="header-section-number">8.3</span> Running Queries</h2>
+<div id="hello-world" class="section level3">
+<h3><span class="header-section-number">8.3.1</span> Hello World</h3>
+<p>This is a basic query to run that simply sums the pageviews over a given day. You will note the use of <code>#standardSQL</code> in the header. This lets bigquery know you are using the ‘standard’ SQL flavour over it’s older ‘legacy’ flavour.</p>
+<div class="sourceCode"><pre class="sourceCode sql"><code class="sourceCode sql"><span class="co">/* Hello World Example */</span>
+#standardSQL
+<span class="kw">SELECT</span> <span class="fu">SUM</span>(totals.pageviews) <span class="kw">as</span> TotalPageviews
+    
+<span class="kw">FROM</span> `bigquery-public-data.google_analytics_sample.ga_sessions_20170101`</code></pre></div>
+<table>
+<thead>
+<tr class="header">
+<th>Row</th>
+<th>TotalPageviews</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>1</td>
+<td>5362</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div id="using-table-ranges" class="section level3">
+<h3><span class="header-section-number">8.3.2</span> Using Table Ranges</h3>
+<p>As the GA Export Schema provides one table per day, to scan across date ranges we need to specify a table range to query.</p>
+<div class="sourceCode"><pre class="sourceCode sql"><code class="sourceCode sql"><span class="co">/* Using Table Ranges */</span>
+#standardSQL
+<span class="kw">SELECT</span>  <span class="dt">date</span>, 
+        <span class="fu">SUM</span>(totals.pageviews) <span class="kw">as</span> TotalPageviews
+
+<span class="kw">FROM</span>  `bigquery-public-data.google_analytics_sample.ga_sessions_*`
+
+<span class="kw">WHERE</span> _TABLE_SUFFIX <span class="kw">BETWEEN</span> <span class="st">&#39;20170725&#39;</span> <span class="kw">AND</span> <span class="st">&#39;20170801&#39;</span>
+
+<span class="kw">GROUP</span> <span class="kw">BY</span> <span class="dt">date</span>
+
+<span class="kw">ORDER</span> <span class="kw">BY</span> <span class="dt">date</span></code></pre></div>
+</div>
+<div id="hit-level-data" class="section level3">
+<h3><span class="header-section-number">8.3.3</span> Hit Level Data</h3>
+<p>Accessing <code>hit</code> level data, that is, indivudal hits within each user’s session requires <code>unnesting</code> hits data and joining it to the <code>ga_sessions_</code> table</p>
+<div class="sourceCode"><pre class="sourceCode sql"><code class="sourceCode sql"><span class="co">/* Now at the hit level */</span>
+#standardSQL
+<span class="kw">SELECT</span>  fullVisitorId,  
+        visitNumber, 
+        <span class="dt">date</span>, 
+        totals.hits, 
+        hits.hitNumber, 
+        hits.type, 
+        hits.time, 
+        hits.page.pagePath
+        
+<span class="kw">FROM</span> `bigquery-public-data.google_analytics_sample.ga_sessions_20170101`,
+  UNNEST(hits) <span class="kw">as</span> hits
+  
+<span class="kw">WHERE</span> fullVisitorId = <span class="st">&#39;6170732910727440668&#39;</span> <span class="co">/*Random Visitor Selected*/</span></code></pre></div>
+
+</div>
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="setup.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="simplistic-methods.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"google": false,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"all": ["facebook", "google", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": null,
+"text": null
+},
+"history": {
+"link": null,
+"text": null
+},
+"download": ["irx-attribution-2019.pdf", "irx-attribution-2019.epub"],
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:" && /^https?:/.test(src))
+      src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

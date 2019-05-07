@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+<html >
+
+<head>
+
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>10 About Offline Attribution | The Internetrix Advanced Guide to Attribution Modelling</title>
+  <meta name="description" content="This is an Internetrix guide on advanced marketing attribution modelling for eCommerce data">
+  <meta name="generator" content="bookdown  and GitBook 2.6.7">
+
+  <meta property="og:title" content="10 About Offline Attribution | The Internetrix Advanced Guide to Attribution Modelling" />
+  <meta property="og:type" content="book" />
+  
+  <meta property="og:image" content="img/cover.png" />
+  <meta property="og:description" content="This is an Internetrix guide on advanced marketing attribution modelling for eCommerce data" />
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="10 About Offline Attribution | The Internetrix Advanced Guide to Attribution Modelling" />
+  
+  <meta name="twitter:description" content="This is an Internetrix guide on advanced marketing attribution modelling for eCommerce data" />
+  <meta name="twitter:image" content="img/cover.png" />
+
+<meta name="author" content="Dean Marchiori - Head of Data Science, Internetrix">
+<meta name="author" content="Tiffany Chen - Data Analyst, Internetrix">
+
+
+<meta name="date" content="2019-05-07">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  
+  
+<link rel="prev" href="algorithmic-methods.html">
+<link rel="next" href="references.html">
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+<style type="text/css">
+div.sourceCode { overflow-x: auto; }
+table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
+  margin: 0; padding: 0; vertical-align: baseline; border: none; }
+table.sourceCode { width: 100%; line-height: 100%; }
+td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
+td.sourceCode { padding-left: 5px; }
+code > span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code > span.dt { color: #902000; } /* DataType */
+code > span.dv { color: #40a070; } /* DecVal */
+code > span.bn { color: #40a070; } /* BaseN */
+code > span.fl { color: #40a070; } /* Float */
+code > span.ch { color: #4070a0; } /* Char */
+code > span.st { color: #4070a0; } /* String */
+code > span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code > span.ot { color: #007020; } /* Other */
+code > span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code > span.fu { color: #06287e; } /* Function */
+code > span.er { color: #ff0000; font-weight: bold; } /* Error */
+code > span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+code > span.cn { color: #880000; } /* Constant */
+code > span.sc { color: #4070a0; } /* SpecialChar */
+code > span.vs { color: #4070a0; } /* VerbatimString */
+code > span.ss { color: #bb6688; } /* SpecialString */
+code > span.im { } /* Import */
+code > span.va { color: #19177c; } /* Variable */
+code > span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code > span.op { color: #666666; } /* Operator */
+code > span.bu { } /* BuiltIn */
+code > span.ex { } /* Extension */
+code > span.pp { color: #bc7a00; } /* Preprocessor */
+code > span.at { color: #7d9029; } /* Attribute */
+code > span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code > span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code > span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./index.html">Home</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Welcome</a><ul>
+<li class="chapter" data-level="1.1" data-path="index.html"><a href="index.html#contact-internetrix"><i class="fa fa-check"></i><b>1.1</b> Contact Internetrix</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="introduction.html"><a href="introduction.html"><i class="fa fa-check"></i><b>2</b> Introduction</a><ul>
+<li class="chapter" data-level="2.1" data-path="introduction.html"><a href="introduction.html#what-is-attribution-modelling"><i class="fa fa-check"></i><b>2.1</b> What is attribution modelling</a></li>
+<li class="chapter" data-level="2.2" data-path="introduction.html"><a href="introduction.html#definitions"><i class="fa fa-check"></i><b>2.2</b> Definitions</a></li>
+<li class="chapter" data-level="2.3" data-path="introduction.html"><a href="introduction.html#scope-of-this-paper"><i class="fa fa-check"></i><b>2.3</b> Scope of this paper</a></li>
+<li class="chapter" data-level="2.4" data-path="introduction.html"><a href="introduction.html#where-to-go-for-further-help"><i class="fa fa-check"></i><b>2.4</b> Where to go for further help</a></li>
+</ul></li>
+<li class="part"><span><b>I Online Attribution</b></span></li>
+<li class="chapter" data-level="3" data-path="types-of-attribution.html"><a href="types-of-attribution.html"><i class="fa fa-check"></i><b>3</b> Types of Attribution</a><ul>
+<li class="chapter" data-level="3.1" data-path="types-of-attribution.html"><a href="types-of-attribution.html#group-vs.individual-attribution"><i class="fa fa-check"></i><b>3.1</b> Group vs. Individual Attribution</a></li>
+<li class="chapter" data-level="3.2" data-path="types-of-attribution.html"><a href="types-of-attribution.html#simplistic-vs.fractional-modelling"><i class="fa fa-check"></i><b>3.2</b> Simplistic vs. Fractional Modelling</a><ul>
+<li class="chapter" data-level="3.2.1" data-path="types-of-attribution.html"><a href="types-of-attribution.html#simplistic-modelling"><i class="fa fa-check"></i><b>3.2.1</b> Simplistic modelling</a></li>
+<li class="chapter" data-level="3.2.2" data-path="types-of-attribution.html"><a href="types-of-attribution.html#fractional-modelling"><i class="fa fa-check"></i><b>3.2.2</b> Fractional modelling</a></li>
+</ul></li>
+<li class="chapter" data-level="3.3" data-path="types-of-attribution.html"><a href="types-of-attribution.html#heuristic-vs.algorithmic-modelling"><i class="fa fa-check"></i><b>3.3</b> Heuristic vs. Algorithmic Modelling</a><ul>
+<li class="chapter" data-level="3.3.1" data-path="types-of-attribution.html"><a href="types-of-attribution.html#the-heuristic-model"><i class="fa fa-check"></i><b>3.3.1</b> The Heuristic model</a></li>
+<li class="chapter" data-level="3.3.2" data-path="types-of-attribution.html"><a href="types-of-attribution.html#the-algorithmic-model"><i class="fa fa-check"></i><b>3.3.2</b> The Algorithmic model</a></li>
+</ul></li>
+<li class="chapter" data-level="3.4" data-path="types-of-attribution.html"><a href="types-of-attribution.html#classification-of-methods"><i class="fa fa-check"></i><b>3.4</b> Classification of Methods</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="methods.html"><a href="methods.html"><i class="fa fa-check"></i><b>4</b> Methods</a><ul>
+<li class="chapter" data-level="4.1" data-path="methods.html"><a href="methods.html#simplisitic-methods"><i class="fa fa-check"></i><b>4.1</b> Simplisitic Methods</a><ul>
+<li class="chapter" data-level="4.1.1" data-path="methods.html"><a href="methods.html#last-touch"><i class="fa fa-check"></i><b>4.1.1</b> Last Touch</a></li>
+<li class="chapter" data-level="4.1.2" data-path="methods.html"><a href="methods.html#first-touch"><i class="fa fa-check"></i><b>4.1.2</b> First Touch</a></li>
+<li class="chapter" data-level="4.1.3" data-path="methods.html"><a href="methods.html#others"><i class="fa fa-check"></i><b>4.1.3</b> Others</a></li>
+</ul></li>
+<li class="chapter" data-level="4.2" data-path="methods.html"><a href="methods.html#fractional-heuristic-methods"><i class="fa fa-check"></i><b>4.2</b> Fractional Heuristic Methods</a><ul>
+<li class="chapter" data-level="4.2.1" data-path="methods.html"><a href="methods.html#linear"><i class="fa fa-check"></i><b>4.2.1</b> Linear</a></li>
+<li class="chapter" data-level="4.2.2" data-path="methods.html"><a href="methods.html#time-decay"><i class="fa fa-check"></i><b>4.2.2</b> Time Decay</a></li>
+<li class="chapter" data-level="4.2.3" data-path="methods.html"><a href="methods.html#position-based"><i class="fa fa-check"></i><b>4.2.3</b> Position Based</a></li>
+</ul></li>
+<li class="chapter" data-level="4.3" data-path="methods.html"><a href="methods.html#fractional-algorithmic-methods"><i class="fa fa-check"></i><b>4.3</b> Fractional Algorithmic Methods</a><ul>
+<li class="chapter" data-level="4.3.1" data-path="methods.html"><a href="methods.html#logistic-regression"><i class="fa fa-check"></i><b>4.3.1</b> Logistic Regression</a></li>
+<li class="chapter" data-level="4.3.2" data-path="methods.html"><a href="methods.html#shapley-value"><i class="fa fa-check"></i><b>4.3.2</b> Shapley Value</a></li>
+<li class="chapter" data-level="4.3.3" data-path="methods.html"><a href="methods.html#markov-methods"><i class="fa fa-check"></i><b>4.3.3</b> Markov Methods</a></li>
+<li class="chapter" data-level="4.3.4" data-path="methods.html"><a href="methods.html#survivial-analysis"><i class="fa fa-check"></i><b>4.3.4</b> Survivial Analysis</a></li>
+</ul></li>
+<li class="chapter" data-level="4.4" data-path="methods.html"><a href="methods.html#comparison-of-methods"><i class="fa fa-check"></i><b>4.4</b> Comparison of Methods</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="google-analytics-data.html"><a href="google-analytics-data.html"><i class="fa fa-check"></i><b>5</b> Google Analytics Data</a><ul>
+<li class="chapter" data-level="5.1" data-path="google-analytics-data.html"><a href="google-analytics-data.html#survey-of-basic-methods-in-google-analytics"><i class="fa fa-check"></i><b>5.1</b> Survey of Basic Methods in Google Analytics</a></li>
+<li class="chapter" data-level="5.2" data-path="google-analytics-data.html"><a href="google-analytics-data.html#about-data-driven-attribution"><i class="fa fa-check"></i><b>5.2</b> About Data Driven Attribution</a><ul>
+<li class="chapter" data-level="5.2.1" data-path="google-analytics-data.html"><a href="google-analytics-data.html#how-does-it-work"><i class="fa fa-check"></i><b>5.2.1</b> How does it work?</a></li>
+<li class="chapter" data-level="5.2.2" data-path="google-analytics-data.html"><a href="google-analytics-data.html#limitations"><i class="fa fa-check"></i><b>5.2.2</b> Limitations</a></li>
+</ul></li>
+<li class="chapter" data-level="5.3" data-path="google-analytics-data.html"><a href="google-analytics-data.html#bigquery"><i class="fa fa-check"></i><b>5.3</b> BigQuery</a></li>
+</ul></li>
+<li class="part"><span><b>II Implementation Guides</b></span></li>
+<li class="chapter" data-level="6" data-path="setup.html"><a href="setup.html"><i class="fa fa-check"></i><b>6</b> Setup</a><ul>
+<li class="chapter" data-level="6.1" data-path="setup.html"><a href="setup.html#r"><i class="fa fa-check"></i><b>6.1</b> R</a><ul>
+<li class="chapter" data-level="6.1.1" data-path="setup.html"><a href="setup.html#about-r"><i class="fa fa-check"></i><b>6.1.1</b> About R</a></li>
+<li class="chapter" data-level="6.1.2" data-path="setup.html"><a href="setup.html#install-r"><i class="fa fa-check"></i><b>6.1.2</b> Install R</a></li>
+<li class="chapter" data-level="6.1.3" data-path="setup.html"><a href="setup.html#install-rstudio"><i class="fa fa-check"></i><b>6.1.3</b> Install RStudio</a></li>
+<li class="chapter" data-level="6.1.4" data-path="setup.html"><a href="setup.html#install-required-r-packages"><i class="fa fa-check"></i><b>6.1.4</b> Install Required R Packages</a></li>
+</ul></li>
+<li class="chapter" data-level="6.2" data-path="setup.html"><a href="setup.html#bigquery-1"><i class="fa fa-check"></i><b>6.2</b> BigQuery</a><ul>
+<li class="chapter" data-level="6.2.1" data-path="setup.html"><a href="setup.html#setup-1"><i class="fa fa-check"></i><b>6.2.1</b> Setup</a></li>
+<li class="chapter" data-level="6.2.2" data-path="setup.html"><a href="setup.html#export-schema"><i class="fa fa-check"></i><b>6.2.2</b> Export Schema</a></li>
+<li class="chapter" data-level="6.2.3" data-path="setup.html"><a href="setup.html#running-queries"><i class="fa fa-check"></i><b>6.2.3</b> Running Queries</a></li>
+<li class="chapter" data-level="6.2.4" data-path="setup.html"><a href="setup.html#using-r-with-bigquery"><i class="fa fa-check"></i><b>6.2.4</b> Using R with BigQuery</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="extracting-data-from-bigquery.html"><a href="extracting-data-from-bigquery.html"><i class="fa fa-check"></i><b>7</b> Extracting Data from BigQuery</a><ul>
+<li class="chapter" data-level="7.1" data-path="extracting-data-from-bigquery.html"><a href="extracting-data-from-bigquery.html#about-the-data"><i class="fa fa-check"></i><b>7.1</b> About the data</a></li>
+<li class="chapter" data-level="7.2" data-path="extracting-data-from-bigquery.html"><a href="extracting-data-from-bigquery.html#get-full-event-log"><i class="fa fa-check"></i><b>7.2</b> Get full event log</a></li>
+<li class="chapter" data-level="7.3" data-path="extracting-data-from-bigquery.html"><a href="extracting-data-from-bigquery.html#identify-those-who-converted"><i class="fa fa-check"></i><b>7.3</b> Identify those who converted</a></li>
+<li class="chapter" data-level="7.4" data-path="extracting-data-from-bigquery.html"><a href="extracting-data-from-bigquery.html#converting-touchpoints-in-last-7-days"><i class="fa fa-check"></i><b>7.4</b> Converting touchpoints in last 7 days</a></li>
+<li class="chapter" data-level="7.5" data-path="extracting-data-from-bigquery.html"><a href="extracting-data-from-bigquery.html#non-converting-touchpoints-in-last-7-days"><i class="fa fa-check"></i><b>7.5</b> Non-converting touchpoints in last 7 days</a></li>
+<li class="chapter" data-level="7.6" data-path="extracting-data-from-bigquery.html"><a href="extracting-data-from-bigquery.html#complete-query"><i class="fa fa-check"></i><b>7.6</b> Complete Query</a></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="heuristic-models.html"><a href="heuristic-models.html"><i class="fa fa-check"></i><b>8</b> Heuristic Models</a><ul>
+<li class="chapter" data-level="8.1" data-path="heuristic-models.html"><a href="heuristic-models.html#transform-data"><i class="fa fa-check"></i><b>8.1</b> Transform Data</a></li>
+<li class="chapter" data-level="8.2" data-path="heuristic-models.html"><a href="heuristic-models.html#heuristic-models-1"><i class="fa fa-check"></i><b>8.2</b> Heuristic Models</a></li>
+</ul></li>
+<li class="chapter" data-level="9" data-path="algorithmic-methods.html"><a href="algorithmic-methods.html"><i class="fa fa-check"></i><b>9</b> Algorithmic Methods</a><ul>
+<li class="chapter" data-level="9.1" data-path="algorithmic-methods.html"><a href="algorithmic-methods.html#markov-chains"><i class="fa fa-check"></i><b>9.1</b> Markov Chains</a></li>
+<li class="chapter" data-level="9.2" data-path="algorithmic-methods.html"><a href="algorithmic-methods.html#survival-analysis"><i class="fa fa-check"></i><b>9.2</b> Survival Analysis</a></li>
+</ul></li>
+<li class="part"><span><b>III Offline Attribution</b></span></li>
+<li class="chapter" data-level="10" data-path="about-offline-attribution.html"><a href="about-offline-attribution.html"><i class="fa fa-check"></i><b>10</b> About Offline Attribution</a><ul>
+<li class="chapter" data-level="10.1" data-path="about-offline-attribution.html"><a href="about-offline-attribution.html#scenario"><i class="fa fa-check"></i><b>10.1</b> Scenario</a></li>
+<li class="chapter" data-level="10.2" data-path="about-offline-attribution.html"><a href="about-offline-attribution.html#causal-inference-modelling"><i class="fa fa-check"></i><b>10.2</b> Causal Inference Modelling</a></li>
+<li class="chapter" data-level="10.3" data-path="about-offline-attribution.html"><a href="about-offline-attribution.html#comparing-to-other-methods"><i class="fa fa-check"></i><b>10.3</b> Comparing to other methods</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i>References</a></li>
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">The Internetrix Advanced Guide to Attribution Modelling</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="about-offline-attribution" class="section level1">
+<h1><span class="header-section-number">10</span> About Offline Attribution</h1>
+<p>So far we have looked exclusively at digital marketing. However offline media channels also play an important part for many businesses. Generally speaking, the offline media channels include TV, broadcast, newspaper, coupons and outdoor advertising etc. Compared to online attribution, it is more difficult to measure the impact of offline marketing interventions.</p>
+<p>When a randomised controlled experiment is not possible, an inferential method can assist. Below we demonstrate one such method for causal inference.</p>
+<p>Developed by Google, the <code>CausalImpact</code> R package implements methods for causal inference using Bayesian structural time-series models <span class="citation">(Brodersen et al. <a href="#ref-causalimpact">2015</a>)</span>.</p>
+<p>Lets see how this works.</p>
+<div id="scenario" class="section level2">
+<h2><span class="header-section-number">10.1</span> Scenario</h2>
+<p><em>You run a business that sells widgets. Throughout the year your product demand and website traffic goes up and down based on a variety of seasonal factors.<br />
+You decide to run a TV commercial to promote your product coming into a busy time of year. This advertisement kicks off on a specified launch date and runs in just one of your markets (not all regions).</em></p>
+<p>How can we measure the impact of this TV advertisement on website traffic?</p>
+<p>The intuitive answer is measure the change in sessions before and after the launch date of the commercial. If we want to get more sophisticated we might try to compare the change in our advertising region vs. all others.</p>
+<p>However, a key problem here is recognising what would have happened if we <strong>didn’t</strong> run our TV commercial. If we timed our campaign to coincide with a busy time of year, how much of our uplift is due to the advertising versus just organic uplift? Are we giving the advertising channel too much credit and inflating our ROI estimates?</p>
+</div>
+<div id="causal-inference-modelling" class="section level2">
+<h2><span class="header-section-number">10.2</span> Causal Inference Modelling</h2>
+<p>The solution uses a three step process:</p>
+<ol style="list-style-type: decimal">
+<li>Identify a <em>control group</em> which in that case could be website sessions from another unaffected region.</li>
+<li>Using historical data from our advertising region, construct a model that predicts what would have happened in our advertising region during the campaign period if no action was taken. This is called the <em>counterfactual</em>.</li>
+<li>Compare this counterfactural prediction with the actual number of website sessions to calculate the actual uplift attributable to our TV commercial.</li>
+</ol>
+<p>It is important that the control group selected is not impacted by the campaign in any way, otherwise the results may be misleading.</p>
+<p>Lets first load the packages required:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(CausalImpact)
+<span class="kw">library</span>(tidyverse)</code></pre></div>
+<p>For this example we will simulate some time series data.</p>
+<p>The red dashed line is the web traffic for our control region. The solid black line is the web traffic for our region where the TV commercial is airing.</p>
+<p>We will select our TV campaign period to be from day 70 - 100 with an uplift of 10 sessions per day.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">set.seed</span>(<span class="dv">2018</span>)
+x1 &lt;-<span class="st"> </span><span class="dv">100</span> <span class="op">+</span><span class="st"> </span><span class="kw">arima.sim</span>(<span class="dt">model =</span> <span class="kw">list</span>(<span class="dt">order =</span> <span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">1</span>,<span class="dv">0</span>), <span class="dt">ar =</span> <span class="fl">0.7</span>), <span class="dt">n =</span> <span class="dv">99</span>)
+y &lt;-<span class="st"> </span><span class="fl">1.2</span> <span class="op">*</span><span class="st"> </span>x1 <span class="op">+</span><span class="st"> </span><span class="kw">rnorm</span>(<span class="dv">100</span>)
+y[<span class="dv">70</span><span class="op">:</span><span class="dv">100</span>] &lt;-<span class="st"> </span>y[<span class="dv">70</span><span class="op">:</span><span class="dv">100</span>] <span class="op">+</span><span class="st"> </span><span class="dv">10</span>
+data &lt;-<span class="st"> </span><span class="kw">cbind</span>(y, x1)
+
+<span class="kw">matplot</span>(data, <span class="dt">type =</span> <span class="st">&quot;l&quot;</span>)</code></pre></div>
+<p><img src="irx-attribution-2019_files/figure-html/unnamed-chunk-69-1.png" width="672" /></p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">pre.period &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">70</span>)
+post.period &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">71</span>, <span class="dv">100</span>)</code></pre></div>
+<p>We can now fit the causal inference model using the <code>CausalImpact()</code> function.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">impact &lt;-<span class="st"> </span><span class="kw">CausalImpact</span>(data, pre.period, post.period)</code></pre></div>
+<pre><code>## Posterior inference {CausalImpact}
+## 
+##                          Average        Cumulative   
+## Actual                   135            4062         
+## Prediction (s.d.)        125 (0.89)     3765 (26.64) 
+## 95% CI                   [124, 127]     [3712, 3817] 
+##                                                      
+## Absolute effect (s.d.)   9.9 (0.89)     297.2 (26.64)
+## 95% CI                   [8.2, 12]      [245.0, 350] 
+##                                                      
+## Relative effect (s.d.)   7.9% (0.71%)   7.9% (0.71%) 
+## 95% CI                   [6.5%, 9.3%]   [6.5%, 9.3%] 
+## 
+## Posterior tail-area probability p:   0.001
+## Posterior prob. of a causal effect:  99.8997%
+## 
+## For more details, type: summary(impact, &quot;report&quot;)</code></pre>
+<p>We can also view the results graphically.</p>
+<p>The ‘original’ facet shows the actual website visits in the black solid line and predicted values without marketing intervention in the blue dashed line. The period of intervention is shown as vertical dashed lines. The confidence intervals is shaded in blue.</p>
+<p>The second, ‘pointwise’ graph basically shows the difference between the actual values and the predicted values.</p>
+<p>The third, ‘cumulative’ graph shows the summed effect of the marketing intervention after accumulating the differences caused by the marketing activity since the start date of the intervention.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">plot</span>(impact)</code></pre></div>
+<p><img src="irx-attribution-2019_files/figure-html/unnamed-chunk-72-1.png" width="672" /></p>
+<p>We can see that the modelled counterfactual increases in the campaign period, so too does the actual website sessions. Rather than rely on prior period comparisons we are able to extract the pointwise and cumulative uplift in a more reasoned way.</p>
+<p>We can also generate a written analysis report. We can see the estimate effect size is 9.91 extra sessions per day, very close to the +10 we injected in our made-up example.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">summary</span>(impact, <span class="st">&quot;report&quot;</span>)</code></pre></div>
+<pre><code>## Analysis report {CausalImpact}
+## 
+## 
+## During the post-intervention period, the response variable had an average value of approx. 135.40. By contrast, in the absence of an intervention, we would have expected an average response of 125.49. The 95% interval of this counterfactual prediction is [123.73, 127.23]. Subtracting this prediction from the observed response yields an estimate of the causal effect the intervention had on the response variable. This effect is 9.91 with a 95% interval of [8.17, 11.66]. For a discussion of the significance of this effect, see below.
+## 
+## Summing up the individual data points during the post-intervention period (which can only sometimes be meaningfully interpreted), the response variable had an overall value of 4.06K. By contrast, had the intervention not taken place, we would have expected a sum of 3.76K. The 95% interval of this prediction is [3.71K, 3.82K].
+## 
+## The above results are given in terms of absolute numbers. In relative terms, the response variable showed an increase of +8%. The 95% interval of this percentage is [+7%, +9%].
+## 
+## This means that the positive effect observed during the intervention period is statistically significant and unlikely to be due to random fluctuations. It should be noted, however, that the question of whether this increase also bears substantive significance can only be answered by comparing the absolute effect (9.91) to the original goal of the underlying intervention.
+## 
+## The probability of obtaining this effect by chance is very small (Bayesian one-sided tail-area probability p = 0.001). This means the causal effect can be considered statistically significant.</code></pre>
+</div>
+<div id="comparing-to-other-methods" class="section level2">
+<h2><span class="header-section-number">10.3</span> Comparing to other methods</h2>
+<p>If we rely on a simple, more naive method in this case, we can overestimate the impact of our TV commercial.</p>
+<p>By comparing the average daily web sessions before vs. after the campaign started we see an uplift near +25 visits per day. We know this is an over-estimation as we only injected an uplift of +10 when we created the synthetic data.</p>
+<p><img src="irx-attribution-2019_files/figure-html/unnamed-chunk-74-1.png" width="672" /></p>
+
+</div>
+</div>
+<h3>References</h3>
+<div id="refs" class="references">
+<div id="ref-causalimpact">
+<p>Brodersen, Kay H., Fabian Gallusser, Jim Koehler, Nicolas Remy, and Steven L. Scott. 2015. “Inferring Causal Impact Using Bayesian Structural Time-Series Models.” <em>Annals of Applied Statistics</em> 9: 247–74.</p>
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="algorithmic-methods.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="references.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"google": false,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"all": ["facebook", "google", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": null,
+"text": null
+},
+"history": {
+"link": null,
+"text": null
+},
+"download": ["irx-attribution-2019.pdf", "irx-attribution-2019.epub"],
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:" && /^https?:/.test(src))
+      src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

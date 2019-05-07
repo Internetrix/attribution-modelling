@@ -1,0 +1,508 @@
+<!DOCTYPE html>
+<html >
+
+<head>
+
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>6 Setup | The Internetrix Advanced Guide to Attribution Modelling</title>
+  <meta name="description" content="This is an Internetrix guide on advanced marketing attribution modelling for eCommerce data">
+  <meta name="generator" content="bookdown  and GitBook 2.6.7">
+
+  <meta property="og:title" content="6 Setup | The Internetrix Advanced Guide to Attribution Modelling" />
+  <meta property="og:type" content="book" />
+  
+  <meta property="og:image" content="img/cover.png" />
+  <meta property="og:description" content="This is an Internetrix guide on advanced marketing attribution modelling for eCommerce data" />
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="6 Setup | The Internetrix Advanced Guide to Attribution Modelling" />
+  
+  <meta name="twitter:description" content="This is an Internetrix guide on advanced marketing attribution modelling for eCommerce data" />
+  <meta name="twitter:image" content="img/cover.png" />
+
+<meta name="author" content="Dean Marchiori - Head of Data Science, Internetrix">
+<meta name="author" content="Tiffany Chen - Data Analyst, Internetrix">
+
+
+<meta name="date" content="2019-05-07">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  
+  
+<link rel="prev" href="google-analytics-data.html">
+<link rel="next" href="extracting-data-from-bigquery.html">
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+<style type="text/css">
+div.sourceCode { overflow-x: auto; }
+table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
+  margin: 0; padding: 0; vertical-align: baseline; border: none; }
+table.sourceCode { width: 100%; line-height: 100%; }
+td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
+td.sourceCode { padding-left: 5px; }
+code > span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code > span.dt { color: #902000; } /* DataType */
+code > span.dv { color: #40a070; } /* DecVal */
+code > span.bn { color: #40a070; } /* BaseN */
+code > span.fl { color: #40a070; } /* Float */
+code > span.ch { color: #4070a0; } /* Char */
+code > span.st { color: #4070a0; } /* String */
+code > span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code > span.ot { color: #007020; } /* Other */
+code > span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code > span.fu { color: #06287e; } /* Function */
+code > span.er { color: #ff0000; font-weight: bold; } /* Error */
+code > span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+code > span.cn { color: #880000; } /* Constant */
+code > span.sc { color: #4070a0; } /* SpecialChar */
+code > span.vs { color: #4070a0; } /* VerbatimString */
+code > span.ss { color: #bb6688; } /* SpecialString */
+code > span.im { } /* Import */
+code > span.va { color: #19177c; } /* Variable */
+code > span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code > span.op { color: #666666; } /* Operator */
+code > span.bu { } /* BuiltIn */
+code > span.ex { } /* Extension */
+code > span.pp { color: #bc7a00; } /* Preprocessor */
+code > span.at { color: #7d9029; } /* Attribute */
+code > span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code > span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code > span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./index.html">Home</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Welcome</a><ul>
+<li class="chapter" data-level="1.1" data-path="index.html"><a href="index.html#contact-internetrix"><i class="fa fa-check"></i><b>1.1</b> Contact Internetrix</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="introduction.html"><a href="introduction.html"><i class="fa fa-check"></i><b>2</b> Introduction</a><ul>
+<li class="chapter" data-level="2.1" data-path="introduction.html"><a href="introduction.html#what-is-attribution-modelling"><i class="fa fa-check"></i><b>2.1</b> What is attribution modelling</a></li>
+<li class="chapter" data-level="2.2" data-path="introduction.html"><a href="introduction.html#definitions"><i class="fa fa-check"></i><b>2.2</b> Definitions</a></li>
+<li class="chapter" data-level="2.3" data-path="introduction.html"><a href="introduction.html#scope-of-this-paper"><i class="fa fa-check"></i><b>2.3</b> Scope of this paper</a></li>
+<li class="chapter" data-level="2.4" data-path="introduction.html"><a href="introduction.html#where-to-go-for-further-help"><i class="fa fa-check"></i><b>2.4</b> Where to go for further help</a></li>
+</ul></li>
+<li class="part"><span><b>I Online Attribution</b></span></li>
+<li class="chapter" data-level="3" data-path="types-of-attribution.html"><a href="types-of-attribution.html"><i class="fa fa-check"></i><b>3</b> Types of Attribution</a><ul>
+<li class="chapter" data-level="3.1" data-path="types-of-attribution.html"><a href="types-of-attribution.html#group-vs.individual-attribution"><i class="fa fa-check"></i><b>3.1</b> Group vs. Individual Attribution</a></li>
+<li class="chapter" data-level="3.2" data-path="types-of-attribution.html"><a href="types-of-attribution.html#simplistic-vs.fractional-modelling"><i class="fa fa-check"></i><b>3.2</b> Simplistic vs. Fractional Modelling</a><ul>
+<li class="chapter" data-level="3.2.1" data-path="types-of-attribution.html"><a href="types-of-attribution.html#simplistic-modelling"><i class="fa fa-check"></i><b>3.2.1</b> Simplistic modelling</a></li>
+<li class="chapter" data-level="3.2.2" data-path="types-of-attribution.html"><a href="types-of-attribution.html#fractional-modelling"><i class="fa fa-check"></i><b>3.2.2</b> Fractional modelling</a></li>
+</ul></li>
+<li class="chapter" data-level="3.3" data-path="types-of-attribution.html"><a href="types-of-attribution.html#heuristic-vs.algorithmic-modelling"><i class="fa fa-check"></i><b>3.3</b> Heuristic vs. Algorithmic Modelling</a><ul>
+<li class="chapter" data-level="3.3.1" data-path="types-of-attribution.html"><a href="types-of-attribution.html#the-heuristic-model"><i class="fa fa-check"></i><b>3.3.1</b> The Heuristic model</a></li>
+<li class="chapter" data-level="3.3.2" data-path="types-of-attribution.html"><a href="types-of-attribution.html#the-algorithmic-model"><i class="fa fa-check"></i><b>3.3.2</b> The Algorithmic model</a></li>
+</ul></li>
+<li class="chapter" data-level="3.4" data-path="types-of-attribution.html"><a href="types-of-attribution.html#classification-of-methods"><i class="fa fa-check"></i><b>3.4</b> Classification of Methods</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="methods.html"><a href="methods.html"><i class="fa fa-check"></i><b>4</b> Methods</a><ul>
+<li class="chapter" data-level="4.1" data-path="methods.html"><a href="methods.html#simplisitic-methods"><i class="fa fa-check"></i><b>4.1</b> Simplisitic Methods</a><ul>
+<li class="chapter" data-level="4.1.1" data-path="methods.html"><a href="methods.html#last-touch"><i class="fa fa-check"></i><b>4.1.1</b> Last Touch</a></li>
+<li class="chapter" data-level="4.1.2" data-path="methods.html"><a href="methods.html#first-touch"><i class="fa fa-check"></i><b>4.1.2</b> First Touch</a></li>
+<li class="chapter" data-level="4.1.3" data-path="methods.html"><a href="methods.html#others"><i class="fa fa-check"></i><b>4.1.3</b> Others</a></li>
+</ul></li>
+<li class="chapter" data-level="4.2" data-path="methods.html"><a href="methods.html#fractional-heuristic-methods"><i class="fa fa-check"></i><b>4.2</b> Fractional Heuristic Methods</a><ul>
+<li class="chapter" data-level="4.2.1" data-path="methods.html"><a href="methods.html#linear"><i class="fa fa-check"></i><b>4.2.1</b> Linear</a></li>
+<li class="chapter" data-level="4.2.2" data-path="methods.html"><a href="methods.html#time-decay"><i class="fa fa-check"></i><b>4.2.2</b> Time Decay</a></li>
+<li class="chapter" data-level="4.2.3" data-path="methods.html"><a href="methods.html#position-based"><i class="fa fa-check"></i><b>4.2.3</b> Position Based</a></li>
+</ul></li>
+<li class="chapter" data-level="4.3" data-path="methods.html"><a href="methods.html#fractional-algorithmic-methods"><i class="fa fa-check"></i><b>4.3</b> Fractional Algorithmic Methods</a><ul>
+<li class="chapter" data-level="4.3.1" data-path="methods.html"><a href="methods.html#logistic-regression"><i class="fa fa-check"></i><b>4.3.1</b> Logistic Regression</a></li>
+<li class="chapter" data-level="4.3.2" data-path="methods.html"><a href="methods.html#shapley-value"><i class="fa fa-check"></i><b>4.3.2</b> Shapley Value</a></li>
+<li class="chapter" data-level="4.3.3" data-path="methods.html"><a href="methods.html#markov-methods"><i class="fa fa-check"></i><b>4.3.3</b> Markov Methods</a></li>
+<li class="chapter" data-level="4.3.4" data-path="methods.html"><a href="methods.html#survivial-analysis"><i class="fa fa-check"></i><b>4.3.4</b> Survivial Analysis</a></li>
+</ul></li>
+<li class="chapter" data-level="4.4" data-path="methods.html"><a href="methods.html#comparison-of-methods"><i class="fa fa-check"></i><b>4.4</b> Comparison of Methods</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="google-analytics-data.html"><a href="google-analytics-data.html"><i class="fa fa-check"></i><b>5</b> Google Analytics Data</a><ul>
+<li class="chapter" data-level="5.1" data-path="google-analytics-data.html"><a href="google-analytics-data.html#survey-of-basic-methods-in-google-analytics"><i class="fa fa-check"></i><b>5.1</b> Survey of Basic Methods in Google Analytics</a></li>
+<li class="chapter" data-level="5.2" data-path="google-analytics-data.html"><a href="google-analytics-data.html#about-data-driven-attribution"><i class="fa fa-check"></i><b>5.2</b> About Data Driven Attribution</a><ul>
+<li class="chapter" data-level="5.2.1" data-path="google-analytics-data.html"><a href="google-analytics-data.html#how-does-it-work"><i class="fa fa-check"></i><b>5.2.1</b> How does it work?</a></li>
+<li class="chapter" data-level="5.2.2" data-path="google-analytics-data.html"><a href="google-analytics-data.html#limitations"><i class="fa fa-check"></i><b>5.2.2</b> Limitations</a></li>
+</ul></li>
+<li class="chapter" data-level="5.3" data-path="google-analytics-data.html"><a href="google-analytics-data.html#bigquery"><i class="fa fa-check"></i><b>5.3</b> BigQuery</a></li>
+</ul></li>
+<li class="part"><span><b>II Implementation Guides</b></span></li>
+<li class="chapter" data-level="6" data-path="setup.html"><a href="setup.html"><i class="fa fa-check"></i><b>6</b> Setup</a><ul>
+<li class="chapter" data-level="6.1" data-path="setup.html"><a href="setup.html#r"><i class="fa fa-check"></i><b>6.1</b> R</a><ul>
+<li class="chapter" data-level="6.1.1" data-path="setup.html"><a href="setup.html#about-r"><i class="fa fa-check"></i><b>6.1.1</b> About R</a></li>
+<li class="chapter" data-level="6.1.2" data-path="setup.html"><a href="setup.html#install-r"><i class="fa fa-check"></i><b>6.1.2</b> Install R</a></li>
+<li class="chapter" data-level="6.1.3" data-path="setup.html"><a href="setup.html#install-rstudio"><i class="fa fa-check"></i><b>6.1.3</b> Install RStudio</a></li>
+<li class="chapter" data-level="6.1.4" data-path="setup.html"><a href="setup.html#install-required-r-packages"><i class="fa fa-check"></i><b>6.1.4</b> Install Required R Packages</a></li>
+</ul></li>
+<li class="chapter" data-level="6.2" data-path="setup.html"><a href="setup.html#bigquery-1"><i class="fa fa-check"></i><b>6.2</b> BigQuery</a><ul>
+<li class="chapter" data-level="6.2.1" data-path="setup.html"><a href="setup.html#setup-1"><i class="fa fa-check"></i><b>6.2.1</b> Setup</a></li>
+<li class="chapter" data-level="6.2.2" data-path="setup.html"><a href="setup.html#export-schema"><i class="fa fa-check"></i><b>6.2.2</b> Export Schema</a></li>
+<li class="chapter" data-level="6.2.3" data-path="setup.html"><a href="setup.html#running-queries"><i class="fa fa-check"></i><b>6.2.3</b> Running Queries</a></li>
+<li class="chapter" data-level="6.2.4" data-path="setup.html"><a href="setup.html#using-r-with-bigquery"><i class="fa fa-check"></i><b>6.2.4</b> Using R with BigQuery</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="extracting-data-from-bigquery.html"><a href="extracting-data-from-bigquery.html"><i class="fa fa-check"></i><b>7</b> Extracting Data from BigQuery</a><ul>
+<li class="chapter" data-level="7.1" data-path="extracting-data-from-bigquery.html"><a href="extracting-data-from-bigquery.html#about-the-data"><i class="fa fa-check"></i><b>7.1</b> About the data</a></li>
+<li class="chapter" data-level="7.2" data-path="extracting-data-from-bigquery.html"><a href="extracting-data-from-bigquery.html#get-full-event-log"><i class="fa fa-check"></i><b>7.2</b> Get full event log</a></li>
+<li class="chapter" data-level="7.3" data-path="extracting-data-from-bigquery.html"><a href="extracting-data-from-bigquery.html#identify-those-who-converted"><i class="fa fa-check"></i><b>7.3</b> Identify those who converted</a></li>
+<li class="chapter" data-level="7.4" data-path="extracting-data-from-bigquery.html"><a href="extracting-data-from-bigquery.html#converting-touchpoints-in-last-7-days"><i class="fa fa-check"></i><b>7.4</b> Converting touchpoints in last 7 days</a></li>
+<li class="chapter" data-level="7.5" data-path="extracting-data-from-bigquery.html"><a href="extracting-data-from-bigquery.html#non-converting-touchpoints-in-last-7-days"><i class="fa fa-check"></i><b>7.5</b> Non-converting touchpoints in last 7 days</a></li>
+<li class="chapter" data-level="7.6" data-path="extracting-data-from-bigquery.html"><a href="extracting-data-from-bigquery.html#complete-query"><i class="fa fa-check"></i><b>7.6</b> Complete Query</a></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="heuristic-models.html"><a href="heuristic-models.html"><i class="fa fa-check"></i><b>8</b> Heuristic Models</a><ul>
+<li class="chapter" data-level="8.1" data-path="heuristic-models.html"><a href="heuristic-models.html#transform-data"><i class="fa fa-check"></i><b>8.1</b> Transform Data</a></li>
+<li class="chapter" data-level="8.2" data-path="heuristic-models.html"><a href="heuristic-models.html#heuristic-models-1"><i class="fa fa-check"></i><b>8.2</b> Heuristic Models</a></li>
+</ul></li>
+<li class="chapter" data-level="9" data-path="algorithmic-methods.html"><a href="algorithmic-methods.html"><i class="fa fa-check"></i><b>9</b> Algorithmic Methods</a><ul>
+<li class="chapter" data-level="9.1" data-path="algorithmic-methods.html"><a href="algorithmic-methods.html#markov-chains"><i class="fa fa-check"></i><b>9.1</b> Markov Chains</a></li>
+<li class="chapter" data-level="9.2" data-path="algorithmic-methods.html"><a href="algorithmic-methods.html#survival-analysis"><i class="fa fa-check"></i><b>9.2</b> Survival Analysis</a></li>
+</ul></li>
+<li class="part"><span><b>III Offline Attribution</b></span></li>
+<li class="chapter" data-level="10" data-path="about-offline-attribution.html"><a href="about-offline-attribution.html"><i class="fa fa-check"></i><b>10</b> About Offline Attribution</a><ul>
+<li class="chapter" data-level="10.1" data-path="about-offline-attribution.html"><a href="about-offline-attribution.html#scenario"><i class="fa fa-check"></i><b>10.1</b> Scenario</a></li>
+<li class="chapter" data-level="10.2" data-path="about-offline-attribution.html"><a href="about-offline-attribution.html#causal-inference-modelling"><i class="fa fa-check"></i><b>10.2</b> Causal Inference Modelling</a></li>
+<li class="chapter" data-level="10.3" data-path="about-offline-attribution.html"><a href="about-offline-attribution.html#comparing-to-other-methods"><i class="fa fa-check"></i><b>10.3</b> Comparing to other methods</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i>References</a></li>
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">The Internetrix Advanced Guide to Attribution Modelling</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="setup" class="section level1">
+<h1><span class="header-section-number">6</span> Setup</h1>
+<p>Before we start with the practical guides, it is important to ensure we correctly install and setup the required dependencies.</p>
+<div id="r" class="section level2">
+<h2><span class="header-section-number">6.1</span> R</h2>
+<div id="about-r" class="section level3">
+<h3><span class="header-section-number">6.1.1</span> About R</h3>
+<p>The R programming language <span class="citation">(R Core Team <a href="#ref-R-base">2018</a>)</span> is a popular and open-source tool for data analysis and statistical computing.</p>
+<p>We will use R throughout this paper for the practical examples.</p>
+<p><img src="img/R.png" width="96" /></p>
+</div>
+<div id="install-r" class="section level3">
+<h3><span class="header-section-number">6.1.2</span> Install R</h3>
+<p>To install R, head over to <a href="https://www.r-project.org/" class="uri">https://www.r-project.org/</a> and follow the instructions.</p>
+<p>It will prompt you to choose a CRAN Mirror. This is an archive server that contains the latest R version.</p>
+<p>There are instructions to install R on Linux, Mac and Windows.</p>
+<p>This will install the base R software, which on its own is just a command line-like interface.</p>
+<p><img src="img/R_cmd.png" width="578" /></p>
+</div>
+<div id="install-rstudio" class="section level3">
+<h3><span class="header-section-number">6.1.3</span> Install RStudio</h3>
+<p>To get the most out of R we recommend installing the RStudio <span class="citation">(“RStudio” <a href="#ref-noauthor_rstudio_2019">2019</a>)</span> integrated development environment. It is an environment that provides a console with a range of features to enrich the use of R.</p>
+<p>To download, visit <a href="https://www.rstudio.com/products/rstudio/" class="uri">https://www.rstudio.com/products/rstudio/</a> and follow the instructions for your system.</p>
+<p>The end results should look similar to this:</p>
+<p><img src="img/rstudio.png" width="577" /></p>
+</div>
+<div id="install-required-r-packages" class="section level3">
+<h3><span class="header-section-number">6.1.4</span> Install Required R Packages</h3>
+<p>R has a ecosystem of open source packages that work like add-ins. These packages typically contain specialised functionality that may be required when performing analysis. You can install R packages from the R console and they will be downloaded onto your system and available whenever you use R.</p>
+<p>The main R packages we will use in this paper are:</p>
+<ul>
+<li><p><a href="https://www.tidyverse.org/">tidyverse</a> - The tidyverse is an opinionated collection of R packages designed for data science. All packages share an underlying design philosophy, grammar, and data structures. <span class="citation">(Wickham <a href="#ref-R-tidyverse">2017</a>)</span></p></li>
+<li><p><a href="https://bigrquery.r-dbi.org/">bigrquery</a> - The bigrquery package makes it easy to work with data stored in Google BigQuery by allowing you to query BigQuery tables and retrieve metadata about your projects, data sets, tables, and jobs. <span class="citation">(Wickham <a href="#ref-R-bigrquery">2019</a>)</span></p></li>
+<li><p><a href="https://cran.r-project.org/web/packages/ChannelAttribution">ChannelAttribution</a> - Implements a Markov Model for the Online Multi-Channel Attribution Problem. <span class="citation">(Altomare and Loris <a href="#ref-R-ChannelAttribution">2018</a>)</span></p></li>
+<li><p><a href="https://cran.r-project.org/web/packages/survival/">survival</a> - Contains the core survival analysis routines, including definition of Surv objects, Kaplan-Meier and Aalen-Johansen (multi-state) curves, Cox models, and parametric accelerated failure time models. <span class="citation">(Therneau <a href="#ref-R-survival">2019</a>)</span></p></li>
+<li><p><a href="https://cran.r-project.org/web/packages/CausalImpact/">CausalImpact</a> - Implements a Bayesian approach to causal impact estimation in time series, as described in <span class="citation">Brodersen et al. (<a href="#ref-causalimpact">2015</a>)</span></p></li>
+</ul>
+<p>To install these packages, and some other supporting packages used in this paper, you can run the command below</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">install.packages</span>(<span class="kw">c</span>(<span class="st">&quot;tidyverse&quot;</span>, <span class="st">&quot;bigrquery&quot;</span>, <span class="st">&quot;ChannelAttribtion&quot;</span>, <span class="st">&quot;survival&quot;</span>,
+                   <span class="st">&quot;lubridate&quot;</span>, <span class="st">&quot;survminer&quot;</span>, <span class="st">&quot;DBI&quot;</span>, <span class="st">&quot;CausalImpact&quot;</span>))</code></pre></div>
+</div>
+</div>
+<div id="bigquery-1" class="section level2">
+<h2><span class="header-section-number">6.2</span> BigQuery</h2>
+<p>The first step to more advanced modelling is extracting and cleaning the data. Here we will go through a basic setup and familiarisation guide to get your Analytics data from BigQuery. It is expected that you have some experience using SQL and knowledge of basic database operations.</p>
+<div id="setup-1" class="section level3">
+<h3><span class="header-section-number">6.2.1</span> Setup</h3>
+<p>If you are an Analytics 360 customer, you can setup BigQuery for use with Google Analytics data. Refer to the <a href="https://support.google.com/analytics/answer/3416092?hl=en&amp;ref_topic=3416089">Google Help Pages</a> for detailed instructions.</p>
+<p>If you don’t yet have Analytics 360, you can still benefit from these practical code examples by using the free <a href="https://support.google.com/analytics/answer/7586738?hl=en&amp;ref_topic=3416089">Google Analytics Sample Dataset</a>. This is a complete Google Analytics 360 data set from the Google Merchant Store, a real eCommerce platform.</p>
+<p>To access the data set follow the instructions provided by <a href="https://support.google.com/analytics/answer/7586738?hl=en&amp;ref_topic=3416089">Google</a>:</p>
+<ol style="list-style-type: decimal">
+<li><p>Go to <a href="http://bigquery.cloud.google.com" class="uri">http://bigquery.cloud.google.com</a>.</p></li>
+<li><p>If you’re new to BigQuery, or you don’t have a project set up yet, you’ll need to create a project.</p></li>
+<li><p>Select this <a href="https://bigquery.cloud.google.com/table/bigquery-public-data:google_analytics_sample.ga_sessions_20170801?pli=1">link</a> to go directly to the data set.</p></li>
+<li><p>Click <strong>Query Table</strong> to run a query.</p></li>
+</ol>
+<p>In the future you can access the data set within BigQuery by selecting the <code>bigquery-public-data</code> project from the left-hand navigation panel, then select the <code>ga_sessions</code> table under the <code>google_analytics_sample</code> data set.</p>
+<p>Please be mindful that using BigQuery can incur a cost. Please refer to Google’s billing and quota information before use.</p>
+</div>
+<div id="export-schema" class="section level3">
+<h3><span class="header-section-number">6.2.2</span> Export Schema</h3>
+<p>The way Google Analytics structures its data export into BigQuery is known as the export schema. This schema is able to take advantage of data structures that may be counter-intuitive for users who are familiar with normalised relational databases. BigQuery supports de-normalised tables, where instead of joining lots of flat, normalised tables, you can have one table with nested records.</p>
+<p><img src="img/bqexport.png" width="420" /></p>
+<p>In the bigquery data set, there is one table per day, defined at the session level that contains all Analytics related data nested within, such as hits and events. Below we will demonstrate some basic queries on this data.</p>
+<p>For more information you can refer to the <a href="https://support.google.com/analytics/answer/3437719?hl=en&amp;ref_topic=3416089#">BigQuery Export Schema</a></p>
+</div>
+<div id="running-queries" class="section level3">
+<h3><span class="header-section-number">6.2.3</span> Running Queries</h3>
+<div id="hello-world" class="section level4">
+<h4><span class="header-section-number">6.2.3.1</span> Hello World</h4>
+<p>This is a basic query to run that simply sums the page views over a given day. You will note the use of <code>#standardSQL</code> in the header. This lets bigquery know you are using the ‘standard’ SQL flavour over it’s older ‘legacy’ flavour.</p>
+<div class="sourceCode"><pre class="sourceCode sql"><code class="sourceCode sql"><span class="co">/* Hello World Example */</span>
+#standardSQL
+<span class="kw">SELECT</span> <span class="fu">SUM</span>(totals.pageviews) <span class="kw">as</span> TotalPageviews
+    
+<span class="kw">FROM</span> `bigquery-public-data.google_analytics_sample.ga_sessions_20170101`</code></pre></div>
+<table>
+<thead>
+<tr class="header">
+<th>Row</th>
+<th>TotalPageviews</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>1</td>
+<td>5362</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div id="using-table-ranges" class="section level4">
+<h4><span class="header-section-number">6.2.3.2</span> Using Table Ranges</h4>
+<p>As the GA Export Schema provides one table per day, to scan across date ranges we need to specify a table range to query.</p>
+<p>Notice the <code>*</code> in the FROM clause and the inclusion of <code>_TABLE_SUFFIX</code>.</p>
+<div class="sourceCode"><pre class="sourceCode sql"><code class="sourceCode sql"><span class="co">/* Using Table Ranges */</span>
+#standardSQL
+<span class="kw">SELECT</span>  <span class="dt">date</span>, 
+        <span class="fu">SUM</span>(totals.pageviews) <span class="kw">as</span> TotalPageviews
+
+<span class="kw">FROM</span>  `bigquery-public-data.google_analytics_sample.ga_sessions_*`
+
+<span class="kw">WHERE</span> _TABLE_SUFFIX <span class="kw">BETWEEN</span> <span class="st">&#39;20170725&#39;</span> <span class="kw">AND</span> <span class="st">&#39;20170801&#39;</span>
+
+<span class="kw">GROUP</span> <span class="kw">BY</span> <span class="dt">date</span>
+
+<span class="kw">ORDER</span> <span class="kw">BY</span> <span class="dt">date</span></code></pre></div>
+</div>
+<div id="hit-level-data" class="section level4">
+<h4><span class="header-section-number">6.2.3.3</span> Hit Level Data</h4>
+<p>Accessing ‘hit’ level data, that is, individual hits within each user’s session requires ‘un-nesting’ the hits data and joining it to the <code>ga_sessions_</code> table</p>
+<div class="sourceCode"><pre class="sourceCode sql"><code class="sourceCode sql"><span class="co">/* Now at the hit level */</span>
+#standardSQL
+<span class="kw">SELECT</span>  fullVisitorId,  
+        visitNumber, 
+        <span class="dt">date</span>, 
+        totals.hits, 
+        hits.hitNumber, 
+        hits.type, 
+        hits.time, 
+        hits.page.pagePath
+        
+<span class="kw">FROM</span> `bigquery-public-data.google_analytics_sample.ga_sessions_20170101`,
+  UNNEST(hits) <span class="kw">as</span> hits
+  
+<span class="kw">WHERE</span> fullVisitorId = <span class="st">&#39;6170732910727440668&#39;</span> <span class="co">/*Random Visitor Selected*/</span></code></pre></div>
+<p>Now that we are equipped with the basics we can further our understanding in future chapters to extract the data we need for modelling.</p>
+</div>
+</div>
+<div id="using-r-with-bigquery" class="section level3">
+<h3><span class="header-section-number">6.2.4</span> Using R with BigQuery</h3>
+<p>We can also interact with the BigQuery API using the <code>bigrquery</code> package in R.</p>
+<p>To set up we load this package, along with the <code>DBI</code> package which helps with database interfacing.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(bigrquery)
+<span class="kw">library</span>(DBI)</code></pre></div>
+<p>Next we establish a connection to BigQuery. Here you would replace <code>bq_test_project()</code> with the project id you have established in Google Cloud Console.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">con &lt;-<span class="st"> </span><span class="kw">dbConnect</span>(
+  bigrquery<span class="op">::</span><span class="kw">bigquery</span>(),
+  <span class="dt">project =</span> <span class="st">&quot;bigquery-public-data&quot;</span>,
+  <span class="dt">dataset =</span> <span class="st">&quot;google_analytics_sample&quot;</span>,
+  <span class="dt">billing =</span> <span class="kw">bq_test_project</span>()
+)</code></pre></div>
+<p>We can save any SQL queries and forward these for execution as text strings.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">sql &lt;-<span class="st"> &quot;</span>
+<span class="st">  /* Using Table Ranges */</span>
+<span class="st">  #standardSQL</span>
+<span class="st">  SELECT  date, </span>
+<span class="st">        SUM(totals.pageviews) as TotalPageviews</span>
+<span class="st">  </span>
+<span class="st">  FROM  `bigquery-public-data.google_analytics_sample.ga_sessions_*`</span>
+<span class="st">  </span>
+<span class="st">  WHERE _TABLE_SUFFIX BETWEEN &#39;20170725&#39; AND &#39;20170801&#39;</span>
+<span class="st">  </span>
+<span class="st">  GROUP BY date</span>
+<span class="st">  </span>
+<span class="st">  ORDER BY date</span>
+<span class="st">  &quot;</span></code></pre></div>
+<p>Here the query is executed and saved as a temp table. The <code>bq_table_download</code> function returns the results to the console.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">query &lt;-<span class="st"> </span><span class="kw">bq_project_query</span>(<span class="dt">x =</span> <span class="kw">bq_test_project</span>(), sql)
+<span class="kw">bq_table_download</span>(query)</code></pre></div>
+<table>
+<thead>
+<tr class="header">
+<th align="left">date</th>
+<th align="right">TotalPageviews</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">20170725</td>
+<td align="right">10728</td>
+</tr>
+<tr class="even">
+<td align="left">20170726</td>
+<td align="right">11200</td>
+</tr>
+<tr class="odd">
+<td align="left">20170727</td>
+<td align="right">10175</td>
+</tr>
+<tr class="even">
+<td align="left">20170728</td>
+<td align="right">9359</td>
+</tr>
+<tr class="odd">
+<td align="left">20170729</td>
+<td align="right">6293</td>
+</tr>
+<tr class="even">
+<td align="left">20170730</td>
+<td align="right">7258</td>
+</tr>
+<tr class="odd">
+<td align="left">20170731</td>
+<td align="right">11115</td>
+</tr>
+<tr class="even">
+<td align="left">20170801</td>
+<td align="right">10939</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+</div>
+</div>
+<h3>References</h3>
+<div id="refs" class="references">
+<div id="ref-R-base">
+<p>R Core Team. 2018. <em>R: A Language and Environment for Statistical Computing</em>. Vienna, Austria: R Foundation for Statistical Computing. <a href="https://www.R-project.org/" class="uri">https://www.R-project.org/</a>.</p>
+</div>
+<div id="ref-noauthor_rstudio_2019">
+<p>“RStudio.” 2019. <em>RStudio</em>. <a href="https://www.rstudio.com/products/rstudio/" class="uri">https://www.rstudio.com/products/rstudio/</a>.</p>
+</div>
+<div id="ref-R-tidyverse">
+<p>Wickham, Hadley. 2017. <em>Tidyverse: Easily Install and Load the ’Tidyverse’</em>. <a href="https://CRAN.R-project.org/package=tidyverse" class="uri">https://CRAN.R-project.org/package=tidyverse</a>.</p>
+</div>
+<div id="ref-R-bigrquery">
+<p>Wickham, Hadley. 2019. <em>Bigrquery: An Interface to Google’s ’Bigquery’ ’Api’</em>. <a href="https://CRAN.R-project.org/package=bigrquery" class="uri">https://CRAN.R-project.org/package=bigrquery</a>.</p>
+</div>
+<div id="ref-R-ChannelAttribution">
+<p>Altomare, Davide, and David Loris. 2018. <em>ChannelAttribution: Markov Model for the Online Multi-Channel Attribution Problem</em>. <a href="https://CRAN.R-project.org/package=ChannelAttribution" class="uri">https://CRAN.R-project.org/package=ChannelAttribution</a>.</p>
+</div>
+<div id="ref-R-survival">
+<p>Therneau, Terry M. 2019. <em>Survival: Survival Analysis</em>. <a href="https://CRAN.R-project.org/package=survival" class="uri">https://CRAN.R-project.org/package=survival</a>.</p>
+</div>
+<div id="ref-causalimpact">
+<p>Brodersen, Kay H., Fabian Gallusser, Jim Koehler, Nicolas Remy, and Steven L. Scott. 2015. “Inferring Causal Impact Using Bayesian Structural Time-Series Models.” <em>Annals of Applied Statistics</em> 9: 247–74.</p>
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="google-analytics-data.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="extracting-data-from-bigquery.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"google": false,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"all": ["facebook", "google", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": null,
+"text": null
+},
+"history": {
+"link": null,
+"text": null
+},
+"download": ["irx-attribution-2019.pdf", "irx-attribution-2019.epub"],
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:" && /^https?:/.test(src))
+      src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>
