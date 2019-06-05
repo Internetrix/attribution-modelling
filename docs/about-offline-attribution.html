@@ -1,18 +1,17 @@
 <!DOCTYPE html>
-<html >
-
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
 <head>
 
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>10 About Offline Attribution | The Internetrix Advanced Guide to Attribution Modelling</title>
-  <meta name="description" content="This is an Internetrix guide on advanced marketing attribution modelling for eCommerce data">
-  <meta name="generator" content="bookdown  and GitBook 2.6.7">
+  <meta name="description" content="This is an Internetrix guide on advanced marketing attribution modelling for eCommerce data" />
+  <meta name="generator" content="bookdown 0.11 and GitBook 2.6.7" />
 
   <meta property="og:title" content="10 About Offline Attribution | The Internetrix Advanced Guide to Attribution Modelling" />
   <meta property="og:type" content="book" />
   
-  <meta property="og:image" content="img/cover.png" />
+  <meta property="og:image" content="img/attributionmodellingcover.png" />
   <meta property="og:description" content="This is an Internetrix guide on advanced marketing attribution modelling for eCommerce data" />
   
 
@@ -20,17 +19,17 @@
   <meta name="twitter:title" content="10 About Offline Attribution | The Internetrix Advanced Guide to Attribution Modelling" />
   
   <meta name="twitter:description" content="This is an Internetrix guide on advanced marketing attribution modelling for eCommerce data" />
-  <meta name="twitter:image" content="img/cover.png" />
+  <meta name="twitter:image" content="img/attributionmodellingcover.png" />
 
-<meta name="author" content="Dean Marchiori - Head of Data Science, Internetrix">
-<meta name="author" content="Tiffany Chen - Data Analyst, Internetrix">
+<meta name="author" content="Dean Marchiori - Head of Data Science, Internetrix" />
+<meta name="author" content="Tiffany Chen - Data Analyst, Internetrix" />
 
 
-<meta name="date" content="2019-05-07">
+<meta name="date" content="2019-06-05" />
 
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="apple-mobile-web-app-capable" content="yes">
-  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
 <link rel="prev" href="algorithmic-methods.html">
@@ -52,41 +51,67 @@
 
 
 <style type="text/css">
-div.sourceCode { overflow-x: auto; }
-table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
-  margin: 0; padding: 0; vertical-align: baseline; border: none; }
-table.sourceCode { width: 100%; line-height: 100%; }
-td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
-td.sourceCode { padding-left: 5px; }
-code > span.kw { color: #007020; font-weight: bold; } /* Keyword */
-code > span.dt { color: #902000; } /* DataType */
-code > span.dv { color: #40a070; } /* DecVal */
-code > span.bn { color: #40a070; } /* BaseN */
-code > span.fl { color: #40a070; } /* Float */
-code > span.ch { color: #4070a0; } /* Char */
-code > span.st { color: #4070a0; } /* String */
-code > span.co { color: #60a0b0; font-style: italic; } /* Comment */
-code > span.ot { color: #007020; } /* Other */
-code > span.al { color: #ff0000; font-weight: bold; } /* Alert */
-code > span.fu { color: #06287e; } /* Function */
-code > span.er { color: #ff0000; font-weight: bold; } /* Error */
-code > span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
-code > span.cn { color: #880000; } /* Constant */
-code > span.sc { color: #4070a0; } /* SpecialChar */
-code > span.vs { color: #4070a0; } /* VerbatimString */
-code > span.ss { color: #bb6688; } /* SpecialString */
-code > span.im { } /* Import */
-code > span.va { color: #19177c; } /* Variable */
-code > span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
-code > span.op { color: #666666; } /* Operator */
-code > span.bu { } /* BuiltIn */
-code > span.ex { } /* Extension */
-code > span.pp { color: #bc7a00; } /* Preprocessor */
-code > span.at { color: #7d9029; } /* Attribute */
-code > span.do { color: #ba2121; font-style: italic; } /* Documentation */
-code > span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
-code > span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
-code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+a.sourceLine { display: inline-block; line-height: 1.25; }
+a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
+a.sourceLine:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode { white-space: pre; position: relative; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+code.sourceCode { white-space: pre-wrap; }
+a.sourceLine { text-indent: -1em; padding-left: 1em; }
+}
+pre.numberSource a.sourceLine
+  { position: relative; left: -4em; }
+pre.numberSource a.sourceLine::before
+  { content: attr(data-line-number);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; pointer-events: all; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {  }
+@media screen {
+a.sourceLine::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
 </style>
 
 <link rel="stylesheet" href="style.css" type="text/css" />
@@ -212,87 +237,114 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <div id="about-offline-attribution" class="section level1">
 <h1><span class="header-section-number">10</span> About Offline Attribution</h1>
 <p>So far we have looked exclusively at digital marketing. However offline media channels also play an important part for many businesses. Generally speaking, the offline media channels include TV, broadcast, newspaper, coupons and outdoor advertising etc. Compared to online attribution, it is more difficult to measure the impact of offline marketing interventions.</p>
-<p>When a randomised controlled experiment is not possible, an inferential method can assist. Below we demonstrate one such method for causal inference.</p>
-<p>Developed by Google, the <code>CausalImpact</code> R package implements methods for causal inference using Bayesian structural time-series models <span class="citation">(Brodersen et al. <a href="#ref-causalimpact">2015</a>)</span>.</p>
+<p>When a randomised controlled experiment is not possible, an inferential method can
+assist. Below we demonstrate one such method for causal inference.</p>
+<p>Developed by Google, the <code>CausalImpact</code> R package implements methods for
+causal inference using Bayesian structural time-series models <span class="citation">(Brodersen et al. <a href="#ref-causalimpact">2015</a>)</span>.</p>
 <p>Lets see how this works.</p>
 <div id="scenario" class="section level2">
 <h2><span class="header-section-number">10.1</span> Scenario</h2>
-<p><em>You run a business that sells widgets. Throughout the year your product demand and website traffic goes up and down based on a variety of seasonal factors.<br />
-You decide to run a TV commercial to promote your product coming into a busy time of year. This advertisement kicks off on a specified launch date and runs in just one of your markets (not all regions).</em></p>
+<p><em>You run a business that sells widgets. Throughout the year your product demand
+and website traffic goes up and down based on a variety of seasonal factors.<br />
+You decide to run a TV commercial to promote your product coming into a busy
+time of year. This advertisement kicks off on a specified launch date and runs
+in just one of your markets (not all regions).</em></p>
 <p>How can we measure the impact of this TV advertisement on website traffic?</p>
-<p>The intuitive answer is measure the change in sessions before and after the launch date of the commercial. If we want to get more sophisticated we might try to compare the change in our advertising region vs. all others.</p>
-<p>However, a key problem here is recognising what would have happened if we <strong>didn’t</strong> run our TV commercial. If we timed our campaign to coincide with a busy time of year, how much of our uplift is due to the advertising versus just organic uplift? Are we giving the advertising channel too much credit and inflating our ROI estimates?</p>
+<p>The intuitive answer is measure the change in sessions before and after the launch
+date of the commercial. If we want to get more sophisticated we might try
+to compare the change in our advertising region vs. all others.</p>
+<p>However, a key problem here is recognising what would have happened if we
+<strong>didn’t</strong> run our TV commercial. If we timed our campaign to coincide with a
+busy time of year, how much of our uplift is due to the advertising versus
+just organic uplift? Are we giving the advertising channel too much credit and
+inflating our ROI estimates?</p>
 </div>
 <div id="causal-inference-modelling" class="section level2">
 <h2><span class="header-section-number">10.2</span> Causal Inference Modelling</h2>
 <p>The solution uses a three step process:</p>
 <ol style="list-style-type: decimal">
-<li>Identify a <em>control group</em> which in that case could be website sessions from another unaffected region.</li>
-<li>Using historical data from our advertising region, construct a model that predicts what would have happened in our advertising region during the campaign period if no action was taken. This is called the <em>counterfactual</em>.</li>
-<li>Compare this counterfactural prediction with the actual number of website sessions to calculate the actual uplift attributable to our TV commercial.</li>
+<li>Identify a <em>control group</em> which in that case could be website sessions from
+another unaffected region.</li>
+<li>Using historical data from our advertising region, construct a model that
+predicts what would have happened in our advertising region during the campaign
+period if no action was taken. This is called the <em>counterfactual</em>.</li>
+<li>Compare this counterfactural prediction with the actual number of website
+sessions to calculate the actual uplift attributable to our TV commercial.</li>
 </ol>
-<p>It is important that the control group selected is not impacted by the campaign in any way, otherwise the results may be misleading.</p>
+<p>It is important that the control group selected is not impacted by the campaign
+in any way, otherwise the results may be misleading.</p>
 <p>Lets first load the packages required:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(CausalImpact)
-<span class="kw">library</span>(tidyverse)</code></pre></div>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(CausalImpact)
+<span class="kw">library</span>(tidyverse)</code></pre>
 <p>For this example we will simulate some time series data.</p>
-<p>The red dashed line is the web traffic for our control region. The solid black line is the web traffic for our region where the TV commercial is airing.</p>
-<p>We will select our TV campaign period to be from day 70 - 100 with an uplift of 10 sessions per day.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">set.seed</span>(<span class="dv">2018</span>)
+<p>The red dashed line is the web traffic for our control region. The solid black
+line is the web traffic for our region where the TV commercial is airing.</p>
+<p>We will select our TV campaign period to be from day 70 - 100 with an uplift
+of 10 sessions per day.</p>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">set.seed</span>(<span class="dv">2018</span>)
 x1 &lt;-<span class="st"> </span><span class="dv">100</span> <span class="op">+</span><span class="st"> </span><span class="kw">arima.sim</span>(<span class="dt">model =</span> <span class="kw">list</span>(<span class="dt">order =</span> <span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">1</span>,<span class="dv">0</span>), <span class="dt">ar =</span> <span class="fl">0.7</span>), <span class="dt">n =</span> <span class="dv">99</span>)
 y &lt;-<span class="st"> </span><span class="fl">1.2</span> <span class="op">*</span><span class="st"> </span>x1 <span class="op">+</span><span class="st"> </span><span class="kw">rnorm</span>(<span class="dv">100</span>)
 y[<span class="dv">70</span><span class="op">:</span><span class="dv">100</span>] &lt;-<span class="st"> </span>y[<span class="dv">70</span><span class="op">:</span><span class="dv">100</span>] <span class="op">+</span><span class="st"> </span><span class="dv">10</span>
 data &lt;-<span class="st"> </span><span class="kw">cbind</span>(y, x1)
 
-<span class="kw">matplot</span>(data, <span class="dt">type =</span> <span class="st">&quot;l&quot;</span>)</code></pre></div>
+<span class="kw">matplot</span>(data, <span class="dt">type =</span> <span class="st">&quot;l&quot;</span>)</code></pre>
 <p><img src="irx-attribution-2019_files/figure-html/unnamed-chunk-69-1.png" width="672" /></p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">pre.period &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">70</span>)
-post.period &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">71</span>, <span class="dv">100</span>)</code></pre></div>
+<pre class="sourceCode r"><code class="sourceCode r">pre.period &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">70</span>)
+post.period &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">71</span>, <span class="dv">100</span>)</code></pre>
 <p>We can now fit the causal inference model using the <code>CausalImpact()</code> function.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">impact &lt;-<span class="st"> </span><span class="kw">CausalImpact</span>(data, pre.period, post.period)</code></pre></div>
+<pre class="sourceCode r"><code class="sourceCode r">impact &lt;-<span class="st"> </span><span class="kw">CausalImpact</span>(data, pre.period, post.period)</code></pre>
 <pre><code>## Posterior inference {CausalImpact}
 ## 
 ##                          Average        Cumulative   
 ## Actual                   135            4062         
-## Prediction (s.d.)        125 (0.89)     3765 (26.64) 
-## 95% CI                   [124, 127]     [3712, 3817] 
+## Prediction (s.d.)        125 (0.86)     3764 (25.69) 
+## 95% CI                   [124, 127]     [3713, 3815] 
 ##                                                      
-## Absolute effect (s.d.)   9.9 (0.89)     297.2 (26.64)
-## 95% CI                   [8.2, 12]      [245.0, 350] 
+## Absolute effect (s.d.)   9.9 (0.86)     297.6 (25.69)
+## 95% CI                   [8.2, 12]      [246.7, 349] 
 ##                                                      
-## Relative effect (s.d.)   7.9% (0.71%)   7.9% (0.71%) 
-## 95% CI                   [6.5%, 9.3%]   [6.5%, 9.3%] 
+## Relative effect (s.d.)   7.9% (0.68%)   7.9% (0.68%) 
+## 95% CI                   [6.6%, 9.3%]   [6.6%, 9.3%] 
 ## 
-## Posterior tail-area probability p:   0.001
-## Posterior prob. of a causal effect:  99.8997%
+## Posterior tail-area probability p:   0.00101
+## Posterior prob. of a causal effect:  99.89899%
 ## 
 ## For more details, type: summary(impact, &quot;report&quot;)</code></pre>
 <p>We can also view the results graphically.</p>
 <p>The ‘original’ facet shows the actual website visits in the black solid line and predicted values without marketing intervention in the blue dashed line. The period of intervention is shown as vertical dashed lines. The confidence intervals is shaded in blue.</p>
 <p>The second, ‘pointwise’ graph basically shows the difference between the actual values and the predicted values.</p>
 <p>The third, ‘cumulative’ graph shows the summed effect of the marketing intervention after accumulating the differences caused by the marketing activity since the start date of the intervention.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">plot</span>(impact)</code></pre></div>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">plot</span>(impact)</code></pre>
+<pre><code>## Warning: Removed 100 rows containing missing values (geom_path).</code></pre>
+<pre><code>## Warning: Removed 200 rows containing missing values (geom_path).</code></pre>
 <p><img src="irx-attribution-2019_files/figure-html/unnamed-chunk-72-1.png" width="672" /></p>
-<p>We can see that the modelled counterfactual increases in the campaign period, so too does the actual website sessions. Rather than rely on prior period comparisons we are able to extract the pointwise and cumulative uplift in a more reasoned way.</p>
-<p>We can also generate a written analysis report. We can see the estimate effect size is 9.91 extra sessions per day, very close to the +10 we injected in our made-up example.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">summary</span>(impact, <span class="st">&quot;report&quot;</span>)</code></pre></div>
+<p>We can see that the modelled counterfactual increases in the campaign period, so
+too does the actual website sessions. Rather than rely on prior period comparisons
+we are able to extract the pointwise and cumulative uplift in a more reasoned way.</p>
+<p>We can also generate a written analysis report. We can see the estimate
+effect size is 9.91 extra sessions per day, very close to the +10 we injected
+in our made-up example.</p>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">summary</span>(impact, <span class="st">&quot;report&quot;</span>)</code></pre>
 <pre><code>## Analysis report {CausalImpact}
 ## 
 ## 
-## During the post-intervention period, the response variable had an average value of approx. 135.40. By contrast, in the absence of an intervention, we would have expected an average response of 125.49. The 95% interval of this counterfactual prediction is [123.73, 127.23]. Subtracting this prediction from the observed response yields an estimate of the causal effect the intervention had on the response variable. This effect is 9.91 with a 95% interval of [8.17, 11.66]. For a discussion of the significance of this effect, see below.
+## During the post-intervention period, the response variable had an average value of approx. 135.40. By contrast, in the absence of an intervention, we would have expected an average response of 125.48. The 95% interval of this counterfactual prediction is [123.76, 127.17]. Subtracting this prediction from the observed response yields an estimate of the causal effect the intervention had on the response variable. This effect is 9.92 with a 95% interval of [8.22, 11.64]. For a discussion of the significance of this effect, see below.
 ## 
 ## Summing up the individual data points during the post-intervention period (which can only sometimes be meaningfully interpreted), the response variable had an overall value of 4.06K. By contrast, had the intervention not taken place, we would have expected a sum of 3.76K. The 95% interval of this prediction is [3.71K, 3.82K].
 ## 
 ## The above results are given in terms of absolute numbers. In relative terms, the response variable showed an increase of +8%. The 95% interval of this percentage is [+7%, +9%].
 ## 
-## This means that the positive effect observed during the intervention period is statistically significant and unlikely to be due to random fluctuations. It should be noted, however, that the question of whether this increase also bears substantive significance can only be answered by comparing the absolute effect (9.91) to the original goal of the underlying intervention.
+## This means that the positive effect observed during the intervention period is statistically significant and unlikely to be due to random fluctuations. It should be noted, however, that the question of whether this increase also bears substantive significance can only be answered by comparing the absolute effect (9.92) to the original goal of the underlying intervention.
 ## 
 ## The probability of obtaining this effect by chance is very small (Bayesian one-sided tail-area probability p = 0.001). This means the causal effect can be considered statistically significant.</code></pre>
 </div>
 <div id="comparing-to-other-methods" class="section level2">
 <h2><span class="header-section-number">10.3</span> Comparing to other methods</h2>
-<p>If we rely on a simple, more naive method in this case, we can overestimate the impact of our TV commercial.</p>
-<p>By comparing the average daily web sessions before vs. after the campaign started we see an uplift near +25 visits per day. We know this is an over-estimation as we only injected an uplift of +10 when we created the synthetic data.</p>
+<p>If we rely on a simple, more naive method in this case, we can overestimate the
+impact of our TV commercial.</p>
+<p>By comparing the average daily web sessions before vs. after the campaign started
+we see an uplift near +25 visits per day. We know this is an over-estimation as
+we only injected an uplift of +10 when we created the synthetic data.</p>
 <p><img src="irx-attribution-2019_files/figure-html/unnamed-chunk-74-1.png" width="672" /></p>
 
 </div>
@@ -359,7 +411,7 @@ gitbook.start({
   (function () {
     var script = document.createElement("script");
     script.type = "text/javascript";
-    var src = "";
+    var src = "true";
     if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
     if (location.protocol !== "file:" && /^https?:/.test(src))
       src = src.replace(/^https?:/, '');

@@ -1,18 +1,17 @@
 <!DOCTYPE html>
-<html >
-
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
 <head>
 
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>4 Methods | The Internetrix Advanced Guide to Attribution Modelling</title>
-  <meta name="description" content="This is an Internetrix guide on advanced marketing attribution modelling for eCommerce data">
-  <meta name="generator" content="bookdown  and GitBook 2.6.7">
+  <meta name="description" content="This is an Internetrix guide on advanced marketing attribution modelling for eCommerce data" />
+  <meta name="generator" content="bookdown 0.11 and GitBook 2.6.7" />
 
   <meta property="og:title" content="4 Methods | The Internetrix Advanced Guide to Attribution Modelling" />
   <meta property="og:type" content="book" />
   
-  <meta property="og:image" content="img/cover.png" />
+  <meta property="og:image" content="img/attributionmodellingcover.png" />
   <meta property="og:description" content="This is an Internetrix guide on advanced marketing attribution modelling for eCommerce data" />
   
 
@@ -20,17 +19,17 @@
   <meta name="twitter:title" content="4 Methods | The Internetrix Advanced Guide to Attribution Modelling" />
   
   <meta name="twitter:description" content="This is an Internetrix guide on advanced marketing attribution modelling for eCommerce data" />
-  <meta name="twitter:image" content="img/cover.png" />
+  <meta name="twitter:image" content="img/attributionmodellingcover.png" />
 
-<meta name="author" content="Dean Marchiori - Head of Data Science, Internetrix">
-<meta name="author" content="Tiffany Chen - Data Analyst, Internetrix">
+<meta name="author" content="Dean Marchiori - Head of Data Science, Internetrix" />
+<meta name="author" content="Tiffany Chen - Data Analyst, Internetrix" />
 
 
-<meta name="date" content="2019-05-07">
+<meta name="date" content="2019-06-05" />
 
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="apple-mobile-web-app-capable" content="yes">
-  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
 <link rel="prev" href="types-of-attribution.html">
@@ -52,41 +51,67 @@
 
 
 <style type="text/css">
-div.sourceCode { overflow-x: auto; }
-table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
-  margin: 0; padding: 0; vertical-align: baseline; border: none; }
-table.sourceCode { width: 100%; line-height: 100%; }
-td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
-td.sourceCode { padding-left: 5px; }
-code > span.kw { color: #007020; font-weight: bold; } /* Keyword */
-code > span.dt { color: #902000; } /* DataType */
-code > span.dv { color: #40a070; } /* DecVal */
-code > span.bn { color: #40a070; } /* BaseN */
-code > span.fl { color: #40a070; } /* Float */
-code > span.ch { color: #4070a0; } /* Char */
-code > span.st { color: #4070a0; } /* String */
-code > span.co { color: #60a0b0; font-style: italic; } /* Comment */
-code > span.ot { color: #007020; } /* Other */
-code > span.al { color: #ff0000; font-weight: bold; } /* Alert */
-code > span.fu { color: #06287e; } /* Function */
-code > span.er { color: #ff0000; font-weight: bold; } /* Error */
-code > span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
-code > span.cn { color: #880000; } /* Constant */
-code > span.sc { color: #4070a0; } /* SpecialChar */
-code > span.vs { color: #4070a0; } /* VerbatimString */
-code > span.ss { color: #bb6688; } /* SpecialString */
-code > span.im { } /* Import */
-code > span.va { color: #19177c; } /* Variable */
-code > span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
-code > span.op { color: #666666; } /* Operator */
-code > span.bu { } /* BuiltIn */
-code > span.ex { } /* Extension */
-code > span.pp { color: #bc7a00; } /* Preprocessor */
-code > span.at { color: #7d9029; } /* Attribute */
-code > span.do { color: #ba2121; font-style: italic; } /* Documentation */
-code > span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
-code > span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
-code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+a.sourceLine { display: inline-block; line-height: 1.25; }
+a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
+a.sourceLine:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode { white-space: pre; position: relative; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+code.sourceCode { white-space: pre-wrap; }
+a.sourceLine { text-indent: -1em; padding-left: 1em; }
+}
+pre.numberSource a.sourceLine
+  { position: relative; left: -4em; }
+pre.numberSource a.sourceLine::before
+  { content: attr(data-line-number);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; pointer-events: all; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {  }
+@media screen {
+a.sourceLine::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
 </style>
 
 <link rel="stylesheet" href="style.css" type="text/css" />
@@ -212,58 +237,105 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <div id="methods" class="section level1">
 <h1><span class="header-section-number">4</span> Methods</h1>
 <p>We will now take a practical tour of some common models for marketing attribution.</p>
-<p><em>A customer wants to buy some swimwear on your website. They start with a Google search that leads them to your website, but no purchase is made. A few days later they click on a display ad and go back to your website, perhaps to take another look at the product range and sign up for special offers. One week later they get an email campaign while at work and click though to check for special deals, but don’t yet purchase. Later that evening, they see a Facebook ad and remember to grab their credit card and make a purchase.</em></p>
-<p>So which channel caused this purchase? Was is the social channel that drove the customer to purchase, or was it the search result that made the customer initially aware of your brand, or was it the display and email campaigns that re-engaged the customer?</p>
+<p><em>A customer wants to buy some swimwear on your website. They start with a Google
+search that leads them to your website, but no purchase is made. A few days later
+they click on a display ad and go back to your website, perhaps to take another
+look at the product range and sign up for special offers. One week later they
+get an email campaign while at work and click though to check for special deals,
+but don’t yet purchase. Later that evening, they see a Facebook ad and remember to grab their
+credit card and make a purchase.</em></p>
+<p>So which channel caused this purchase? Was is the social channel that drove
+the customer to purchase, or was it the search result that made the customer
+initially aware of your brand, or was it the display and email campaigns that
+re-engaged the customer?</p>
 <p>We will now look at a few different methods for making this decision.</p>
 <div id="simplisitic-methods" class="section level2">
 <h2><span class="header-section-number">4.1</span> Simplisitic Methods</h2>
-<p>Simplistic methods assign credit for a conversion to just one pre-determined touch point in the marketing journey. This is common and robust, but quite naive way to assess your marketing performance.</p>
+<p>Simplistic methods assign credit for a conversion to just one pre-determined
+touch point in the marketing journey. This is common and robust, but quite naive
+way to assess your marketing performance.</p>
 <div id="last-touch" class="section level3">
 <h3><span class="header-section-number">4.1.1</span> Last Touch</h3>
-<p>A classic example of a simplistic method is <strong>Last Touch</strong> attribution (sometimes also referred to as Last Interaction or Last Click).</p>
-<p>In this model, all credit for the sale is attributed to the very last touch point in the customer’s conversion pathway. In this case the social channel.</p>
+<p>A classic example of a simplistic method is <strong>Last Touch</strong> attribution (sometimes
+also referred to as Last Interaction or Last Click).</p>
+<p>In this model, all credit for the sale is attributed to the very last touch point
+in the customer’s conversion pathway. In this case the social channel.</p>
 <p><img src="img/last_touch.png" width="564" /></p>
 </div>
 <div id="first-touch" class="section level3">
 <h3><span class="header-section-number">4.1.2</span> First Touch</h3>
-<p>A <strong>First Touch</strong> model assigns all credit for a sale to the first channel in a customer’s conversion pathway. Here it is the search channel.</p>
+<p>A <strong>First Touch</strong> model assigns all credit for a sale to the first channel
+in a customer’s conversion pathway. Here it is the search channel.</p>
 <p><img src="img/first_touch.png" width="542" /></p>
 </div>
 <div id="others" class="section level3">
 <h3><span class="header-section-number">4.1.3</span> Others</h3>
-<p>There are a number of modifications to these that enable greater refinement. For example <strong>Last non-direct click</strong> is the same as Last Touch, but if the last touch is the direct channel, it ignores this and looks back to the last pure marketing channel.</p>
+<p>There are a number of modifications to these that enable greater refinement. For
+example <strong>Last non-direct click</strong> is the same as Last Touch, but if the last
+touch is the direct channel, it ignores this and looks back to the last
+pure marketing channel.</p>
 </div>
 </div>
 <div id="fractional-heuristic-methods" class="section level2">
 <h2><span class="header-section-number">4.2</span> Fractional Heuristic Methods</h2>
-<p>In some specialised cases, a simplistic model may work well, however an intuitive next step is to split the credit across all or several channels that lead to the conversion. Just like a game of football, one person scores the goal, but its the entire team that works together to create the scoring opportunity.</p>
+<p>In some specialised cases, a simplistic model may work well, however an intuitive
+next step is to split the credit across all or several channels that lead to
+the conversion. Just like a game of football, one person scores the goal, but
+its the entire team that works together to create the scoring opportunity.</p>
 <div id="linear" class="section level3">
 <h3><span class="header-section-number">4.2.1</span> Linear</h3>
-<p>The least opinionated method is known as the <strong>Linear attribution model</strong>. This method assigns equal credit across all marketing channels in the customer’s conversion pathway.</p>
-<p>In the example below all four touch points are assigned 25% credit for the value of the conversion.</p>
+<p>The least opinionated method is known as the <strong>Linear attribution model</strong>.
+This method assigns equal credit across all marketing channels in the customer’s
+conversion pathway.</p>
+<p>In the example below all four touch points are assigned 25% credit for the value
+of the conversion.</p>
 <p><img src="img/linear.png" width="539" /></p>
 </div>
 <div id="time-decay" class="section level3">
 <h3><span class="header-section-number">4.2.2</span> Time Decay</h3>
-<p>In our scenario, considerable time passed between the first search, looking at the display ad, then getting an email campaign. A natural question is whether touch points from days or weeks ago really contribute equally to touch points made the day of a purchase? A model that accounts for this is the <strong>Time Decay model</strong>. This method adjusts the credit given to each channel based on how long ago the touch point occurred. This assigns less credit to distant touch points and more weighting to recent activity.</p>
+<p>In our scenario, considerable time passed between the first search, looking
+at the display ad, then getting an email campaign. A natural question is whether
+touch points from days or weeks ago really contribute equally to touch points made
+the day of a purchase? A model that accounts for this is the <strong>Time Decay model</strong>.
+This method adjusts the credit given to each channel based on how long ago the
+touch point occurred. This assigns less credit to distant touch points and more
+weighting to recent activity.</p>
 <p><img src="img/time_decay.png" width="568" /></p>
 </div>
 <div id="position-based" class="section level3">
 <h3><span class="header-section-number">4.2.3</span> Position Based</h3>
-<p>Taking the concept of First Touch and Last Touch a step further, we can arbitrarily define attribution rules based on where in the conversion pathway a channel sits.</p>
-<p>This is known as <strong>Position Based</strong> attribution. For example, below we have assigned 45% of the conversion credit to the first and last touch points, with equal amounts allocated to all touch points in between.</p>
+<p>Taking the concept of First Touch and Last Touch a step further, we can arbitrarily
+define attribution rules based on where in the conversion pathway a channel sits.</p>
+<p>This is known as <strong>Position Based</strong> attribution. For example, below we have assigned
+45% of the conversion credit to the first and last touch points, with equal
+amounts allocated to all touch points in between.</p>
 <p><img src="img/position_based.png" width="550" /></p>
 </div>
 </div>
 <div id="fractional-algorithmic-methods" class="section level2">
 <h2><span class="header-section-number">4.3</span> Fractional Algorithmic Methods</h2>
-<p>Algorithmic attribution models attempt to use historical data on actual conversion performance to measure or infer attribution, rather than rely on human defined rules and heuristics.</p>
+<p>Algorithmic attribution models attempt to use historical data on actual
+conversion performance to measure or infer attribution, rather than rely on
+human defined rules and heuristics.</p>
 <p><img src="img/fractional.png" width="544" /></p>
-<p>This is achieved through advanced statistical methods and algorithms that account for individual channel performance. Often these methods look at both the pathways for customers who converted and those who did not. This is a step up in sophistication and objectivity that can add tremendous value when simple rules are too naive to enable effective decision making.</p>
+<p>This is achieved through advanced statistical methods and algorithms that
+account for individual channel performance. Often these methods look at both
+the pathways for customers who converted and those who did not. This is a step
+up in sophistication and objectivity that can add tremendous value when simple
+rules are too naive to enable effective decision making.</p>
 <div id="logistic-regression" class="section level3">
 <h3><span class="header-section-number">4.3.1</span> Logistic Regression</h3>
-<p>Logistic regression is a commonly used statistical procedure developed in the 19th Century <span class="citation">(Cramer <a href="#ref-cramer2002origins">2002</a>)</span>. In simple terms, it uses a function known as the logistic function, to model a binary outcome. This may be yes/no, true/false or in our case converted/not converted. It bases this on a set of independent variables that may have contributed to the outcome of choice.</p>
-<p>As a fractional or multi-touch method, in our case this means determining which marketing channels contributed to whether a customer converted or not. Typically this means using the various marketing channels (email, display, search) as covariates in the model. For each customer journey, an indication will be made against each channel based on whether or not it was part of the customers conversion journey. This provides the basis for modelling the outcome of whether the customer converted or not.</p>
+<p>Logistic regression is a commonly used statistical procedure developed in the
+19th Century <span class="citation">(Cramer <a href="#ref-cramer2002origins">2002</a>)</span>. In simple terms, it uses a function known as
+the logistic function, to model a binary outcome. This may be yes/no, true/false
+or in our case converted/not converted. It bases this on a set of independent
+variables that may have contributed to the outcome of choice.</p>
+<p>As a fractional or multi-touch method, in our case this means determining which
+marketing channels contributed to whether a customer converted or not. Typically
+this means using the various marketing channels (email, display, search) as covariates
+in the model. For each customer journey, an indication will be made against each
+channel based on whether or not it was part of the customers conversion journey.
+This provides the basis for modelling the outcome of whether the customer converted or not.</p>
 <table>
 <thead>
 <tr class="header">
@@ -305,32 +377,62 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 </tr>
 </tbody>
 </table>
-<p>In practice, many of the channels will be related and gaining statistically rigorous estimates can be challenging. Other statistical techniques like ‘bagging’ have been used to improve accuracy with these methods <span class="citation">(Shao and Li <a href="#ref-shao2011data">2011</a>)</span>.</p>
+<p>In practice, many of the channels will be related and gaining statistically
+rigorous estimates can be challenging. Other statistical techniques like
+‘bagging’ have been used to improve accuracy with these methods <span class="citation">(Shao and Li <a href="#ref-shao2011data">2011</a>)</span>.</p>
 </div>
 <div id="shapley-value" class="section level3">
 <h3><span class="header-section-number">4.3.2</span> Shapley Value</h3>
-<p>The Shapley Value <span class="citation">(Shapley <a href="#ref-shapley1953value">1953</a>)</span> originated in 1953 by Nobel Prize winning mathematician Lloyd Shapley. It is a concept in Game Theory, specifically in systems where many factors need to cooperate to achieve a given outcome. The Shapley Value is a way of allocating credit for the total outcome achieved amongst these many cooperating factors.</p>
-<p>In terms of a marketing example, we can see a comparison of two pathways below. Including ‘Display’ in the sequence increases the likelihood of a purchase by 2%. Therefore we can attribute this increase to ‘Display’ despite it being only a link in the sequence. To get the complete credit given to Display, more historical comparisons need to be made with Display occurring at different locations and working with different touch points.</p>
+<p>The Shapley Value <span class="citation">(Shapley <a href="#ref-shapley1953value">1953</a>)</span> originated in 1953 by Nobel Prize winning
+mathematician Lloyd Shapley. It is a concept in Game Theory, specifically in
+systems where many factors need to cooperate to achieve a given outcome.
+The Shapley Value is a way of allocating credit for the total outcome
+achieved amongst these many cooperating factors.</p>
+<p>In terms of a marketing example, we can see a comparison of two pathways below.
+Including ‘Display’ in the sequence increases the likelihood of a purchase by 2%.
+Therefore we can attribute this increase to ‘Display’ despite it being only a
+link in the sequence. To get the complete credit given to Display, more historical
+comparisons need to be made with Display occurring at different locations and
+working with different touch points.</p>
 <p><img src="img/shapley.png" width="603" /></p>
 <p>For the technically inclined, the formula to calculate the Shapley value for a given contributor is:</p>
 <p><span class="math display">\[
 \phi_i(v) = \frac{1}{\mid{N!}\mid}\sum_{R}[v(P_i^R \cup \{i\}) - v(P_i^R)]
 \]</span></p>
-<p>To translate this, for any given marketing touch point (e.g. Display), what is the pay-off achieved where Display is part of the pathway sequence. Subtract from this the marginal contributions made by all the touch points preceding it. Add these contributions up across all permutations containing Display and divide by the total number of possible pathway permutations. This gives us our weighted marginal contribution to the overall outcome for a given marketing channel.</p>
+<p>To translate this, for any given marketing touch point (e.g. Display), what is
+the pay-off achieved where Display is part of the pathway sequence. Subtract from
+this the marginal contributions made by all the touch points preceding it. Add
+these contributions up across all permutations containing Display and divide by
+the total number of possible pathway permutations. This gives us our weighted
+marginal contribution to the overall outcome for a given marketing channel.</p>
 </div>
 <div id="markov-methods" class="section level3">
 <h3><span class="header-section-number">4.3.3</span> Markov Methods</h3>
-<p>A Markov Chain is a mathematical system that models events that transition from one ‘state’ to another. These states could be a touch point in a marketing journey, the current day’s weather or the health status of a patient. These concepts are explored further in <span class="citation">(Gagniuc <a href="#ref-gagniuc2017markov">2017</a>)</span>.</p>
-<p>By recording the probability of moving from one state to another a prediction of future states can be made by knowing the present state of the system.</p>
+<p>A Markov Chain is a mathematical system that models events that
+transition from one ‘state’ to another. These states could be a touch point in
+a marketing journey, the current day’s weather or the health status of a patient.
+These concepts are explored further in <span class="citation">(Gagniuc <a href="#ref-gagniuc2017markov">2017</a>)</span>.</p>
+<p>By recording the probability of moving from one state to another a prediction
+of future states can be made by knowing the present state of the system.</p>
 <p>A Markov Chain is defined by three properties:</p>
 <ul>
 <li>The state space – the set of all the states in which process could potentially exist</li>
 <li>The transition matrix – the probability of moving from one state to other state</li>
 <li>current state probability distribution – probability distribution of being in any one of the states at the start of the process.</li>
 </ul>
-<p>Markov chains are stochastic processes, but they have a characteristic of being ‘memory-less’. This means the predictions they make depend only on the present state of the system. Having said that, an extension to discrete time markov chains is the ability to use different ‘order’ models to account for a small number of previous states when making future predictions. We will explore this further in <a href="algorithmic-methods.html#markov-chains">Section 9.1</a>.</p>
-<p>A basic way to think about markov chains is via weather. If we look at some historical data on whether it is sunny, cloudy or rainy we can form probabilities of moving from one of these states to another. Intuitively if it’s sunny today, we could reasonably expect a high likelihood of sunny weather tomorrow. Conversely, if it is raining today then cloud or rain are probably more likely than sunshine tomorrow.</p>
-<p>We can view these probabilities as a ‘transition matrix’, and even plot them as a directed network graph.</p>
+<p>Markov chains are stochastic processes, but they have a characteristic of being
+‘memory-less’. This means the predictions they make depend only on the present
+state of the system. Having said that, an extension to discrete time markov chains
+is the ability to use different ‘order’ models to account for a small number
+of previous states when making future predictions. We will explore this further
+in <a href="algorithmic-methods.html#markov-chains">Section 9.1</a>.</p>
+<p>A basic way to think about markov chains is via weather. If we look at some historical data
+on whether it is sunny, cloudy or rainy we can form probabilities of moving from
+one of these states to another. Intuitively if it’s sunny today, we could reasonably expect a high likelihood of
+sunny weather tomorrow. Conversely, if it is raining today then cloud or rain
+are probably more likely than sunshine tomorrow.</p>
+<p>We can view these probabilities as a ‘transition matrix’, and even plot them
+as a directed network graph.</p>
 <table>
 <thead>
 <tr class="header">
@@ -366,7 +468,9 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <p><span class="math display">\[
 initial = \begin{bmatrix} sunny = 0 \\ cloudy = 1 \\ rain = 0\end{bmatrix}
 \]</span></p>
-<p>By multiplying this into the transition matrix, we can get the probabilities of the the weather tomorrow. We can also simply read this result off our initial transition matrix.</p>
+<p>By multiplying this into the transition matrix, we can get the probabilities of the
+the weather tomorrow. We can also simply read this result off our initial transition
+matrix.</p>
 <table>
 <thead>
 <tr class="header">
@@ -383,7 +487,8 @@ initial = \begin{bmatrix} sunny = 0 \\ cloudy = 1 \\ rain = 0\end{bmatrix}
 </tr>
 </tbody>
 </table>
-<p>We can continue this multiplication several times to forecast ahead say, seven days:</p>
+<p>We can continue this multiplication several times to forecast ahead say, seven
+days:</p>
 <table>
 <thead>
 <tr class="header">
@@ -400,45 +505,87 @@ initial = \begin{bmatrix} sunny = 0 \\ cloudy = 1 \\ rain = 0\end{bmatrix}
 </tr>
 </tbody>
 </table>
-<p>So how does this relate to marketing attribution? If we define the states in our model to be the various touch points, such as <code>email</code>, <code>paid search</code>, <code>display</code>, <code>social</code>, and include states such as <code>start</code>, <code>end</code>, <code>converted</code> we can fully articulate our multi touch attribution model by observing the historical probability of customers moving from one state to another.</p>
-<p>Once we have this graph defined we can measure the importance of each touch point by removing them one-by-one and simulating the resulting impact on conversions. This is known as the ‘Removal Effect’ <span class="citation">(Anderl et al. <a href="#ref-removal2018">2014</a>)</span> and is covered in more detail in the practical section in <a href="algorithmic-methods.html#markov-chains">Section 9.1</a>. It is a simple way to extend our ideas of multi-touch attribution beyond basic rule based methods.</p>
+<p>So how does this relate to marketing attribution? If we define the states in our model
+to be the various touch points, such as <code>email</code>, <code>paid search</code>, <code>display</code>, <code>social</code>,
+and include states such as <code>start</code>, <code>end</code>, <code>converted</code> we can fully articulate
+our multi touch attribution model by observing the historical probability of
+customers moving from one state to another.</p>
+<p>Once we have this graph defined we can measure the importance of each touch point
+by removing them one-by-one and simulating the resulting impact on conversions.
+This is known as the ‘Removal Effect’ <span class="citation">(Anderl et al. <a href="#ref-removal2018">2014</a>)</span> and is covered in more detail
+in the practical section in <a href="algorithmic-methods.html#markov-chains">Section 9.1</a>. It is a simple
+way to extend our ideas of multi-touch attribution beyond basic rule based
+methods.</p>
 </div>
 <div id="survivial-analysis" class="section level3">
 <h3><span class="header-section-number">4.3.4</span> Survivial Analysis</h3>
-<p>Survival analysis is a type of statistical analysis to model ‘time-to-event’ data. The name ‘survival’ evokes a medical application such as modelling how long diseased patients may survive under various treatments, however the method is applicable across a wide range of domains.</p>
+<p>Survival analysis is a type of statistical analysis to model ‘time-to-event’
+data. The name ‘survival’ evokes a medical application such as
+modelling how long diseased patients may survive under various treatments, however
+the method is applicable across a wide range of domains.</p>
 <p>The key components of a survival analysis are <span class="citation">(“Survival Analysis” <a href="#ref-noauthor_survival_2019">2019</a>)</span>:</p>
 <ul>
 <li><strong>Event</strong>: This is the thing of interest, it may be death, machine failure, or sales conversion etc.<br />
 </li>
-<li><strong>Time</strong>: The time from the beginning of an analysis period to either the end of the study period or until the event of interest occurs, or disqualification from the analysis.<br />
+<li><strong>Time</strong>: The time from the beginning of an analysis period to either the end of the
+study period or until the event of interest occurs, or disqualification from the analysis.<br />
 </li>
-<li><strong>Censoring</strong>: A key feature of survival analysis is censoring, which flags which observations did not experience the event in the time period of the analysis.<br />
+<li><strong>Censoring</strong>: A key feature of survival analysis is censoring, which flags which
+observations did not experience the event in the time period of the analysis.<br />
 </li>
 <li><strong>Survival Function</strong>: The probability that a subject survives longer than time t.</li>
 </ul>
-<p>The concept of censoring is a clear distinction with this method. While a customer may be exposed to a marketing campaign, if they do not convert in the time period of the analysis, we cannot conclude they wont ever convert, just we have not observed a conversion event in our analysis time period.</p>
-<p>A common method for estimating a survival function is with the use of a Kaplan-Meier curve <span class="citation">(Kaplan and Meier <a href="#ref-kaplan1958nonparametric">1958</a>)</span> which can be used to display a chart of declining horizontal steps over time, which approximates the true survival function.</p>
-<p><img src="img/Km_plot.png" width="369" /> source: <a href="https://upload.wikimedia.org/wikipedia/commons/7/73/Km_plot.jpg" class="uri">https://upload.wikimedia.org/wikipedia/commons/7/73/Km_plot.jpg</a></p>
+<p>The concept of censoring is a clear distinction with this method.
+While a customer may be exposed to a marketing campaign, if they do not convert
+in the time period of the analysis, we cannot conclude they wont ever convert, just
+we have not observed a conversion event in our analysis time period.</p>
+<p>A common method for estimating a survival function is with the use of a
+Kaplan-Meier curve <span class="citation">(Kaplan and Meier <a href="#ref-kaplan1958nonparametric">1958</a>)</span> which can be used to display
+a chart of declining horizontal steps over time, which approximates the
+true survival function.</p>
+<p><img src="img/Km_plot.png" width="369" />
+source: <a href="https://upload.wikimedia.org/wikipedia/commons/7/73/Km_plot.jpg" class="uri">https://upload.wikimedia.org/wikipedia/commons/7/73/Km_plot.jpg</a></p>
 <p>Mathematically this can be defined as</p>
 <p><span class="math display">\[
 \hat{S}(t) = \prod\limits_{i: t_i \leq{t}} (1 - \frac{d_i}{n_i})
 \]</span></p>
-<p>Where <span class="math inline">\(\hat{S(t)}\)</span> is our estimator of survival (non-conversion) at time <span class="math inline">\(t\)</span>. This formula looks at small time periods where events occur and calculates the survival probability based on the number of subjects who are still around at that time period.</p>
-<p>There are many ways to extend this idea to marketing attribution. Rather than looking at assigning credit to touch points, we will take a slightly different approach.</p>
-<p>In the practical section in <a href="algorithmic-methods.html#survival-analysis">section 9.2</a> we will compute an estimate for the survival function and stratify this by the channel in which our users converted. By doing this we can understand the likelihood of conversion though different channels at varying times throughout a typical conversion journey. This adds an interesting new dimension to analysing marketing performance.</p>
+<p>Where <span class="math inline">\(\hat{S(t)}\)</span> is our estimator of survival (non-conversion) at time <span class="math inline">\(t\)</span>. This
+formula looks at small time periods where events occur and calculates the survival
+probability based on the number of subjects who are still around at that time
+period.</p>
+<p>There are many ways to extend this idea to marketing attribution. Rather than
+looking at assigning credit to touch points, we will take a slightly different approach.</p>
+<p>In the practical section in <a href="algorithmic-methods.html#survival-analysis">section 9.2</a> we will compute an
+estimate for the survival function and stratify this by the channel in which our
+users converted. By doing this we can understand the likelihood of conversion
+though different channels at varying times throughout a typical conversion journey.
+This adds an interesting new dimension to analysing marketing performance.</p>
 </div>
 </div>
 <div id="comparison-of-methods" class="section level2">
 <h2><span class="header-section-number">4.4</span> Comparison of Methods</h2>
-<p>So which model is the right one to use? There is no clear cut answer. A one-size-fits-all model to attributing marketing credit does not exist <span class="citation">(Shao and Li <a href="#ref-shao2011data">2011</a>)</span>.</p>
-<p>The choice should be determined by an understanding of the goals of your marketing activities and how they drive business outcomes. As a general rule, without substantive justification, heuristic and simplistic methods are very subjective and should only serve as a baseline over the data-driven methods.</p>
+<p>So which model is the right one to use? There is no clear cut answer. A one-size-fits-all
+model to attributing marketing credit does not exist <span class="citation">(Shao and Li <a href="#ref-shao2011data">2011</a>)</span>.</p>
+<p>The choice should be determined by an understanding of the goals of your
+marketing activities and how they drive business outcomes. As a general rule,
+without substantive justification, heuristic and simplistic methods are
+very subjective and should only serve as a baseline over the data-driven methods.</p>
 
 </div>
 </div>
 <h3>References</h3>
 <div id="refs" class="references">
+<div id="ref-removal2018">
+<p>Anderl, Eva, Ingo Becker, Florian Wangenheim, and Jan Schumann. 2014. “Mapping the Customer Journey: A Graph-Based Framework for Online Attribution Modeling,” April. <a href="https://doi.org/10.2139/ssrn.2343077">https://doi.org/10.2139/ssrn.2343077</a>.</p>
+</div>
 <div id="ref-cramer2002origins">
 <p>Cramer, Jan Salomon. 2002. “The Origins of Logistic Regression.” Tinbergen Institute Working Paper.</p>
+</div>
+<div id="ref-gagniuc2017markov">
+<p>Gagniuc, Paul A. 2017. <em>Markov Chains: From Theory to Implementation and Experimentation</em>. John Wiley &amp; Sons.</p>
+</div>
+<div id="ref-kaplan1958nonparametric">
+<p>Kaplan, Edward L, and Paul Meier. 1958. “Nonparametric Estimation from Incomplete Observations.” <em>Journal of the American Statistical Association</em> 53 (282). Taylor &amp; Francis: 457–81.</p>
 </div>
 <div id="ref-shao2011data">
 <p>Shao, Xuhui, and Lexin Li. 2011. “Data-Driven Multi-Touch Attribution Models.” In <em>Proceedings of the 17th Acm Sigkdd International Conference on Knowledge Discovery and Data Mining</em>, 258–64. ACM.</p>
@@ -446,17 +593,8 @@ initial = \begin{bmatrix} sunny = 0 \\ cloudy = 1 \\ rain = 0\end{bmatrix}
 <div id="ref-shapley1953value">
 <p>Shapley, Lloyd S. 1953. “A Value for N-Person Games.” <em>Contributions to the Theory of Games</em> 2 (28): 307–17.</p>
 </div>
-<div id="ref-gagniuc2017markov">
-<p>Gagniuc, Paul A. 2017. <em>Markov Chains: From Theory to Implementation and Experimentation</em>. John Wiley &amp; Sons.</p>
-</div>
-<div id="ref-removal2018">
-<p>Anderl, Eva, Ingo Becker, Florian Wangenheim, and Jan Schumann. 2014. “Mapping the Customer Journey: A Graph-Based Framework for Online Attribution Modeling,” April. doi:<a href="https://doi.org/10.2139/ssrn.2343077">10.2139/ssrn.2343077</a>.</p>
-</div>
 <div id="ref-noauthor_survival_2019">
-<p>“Survival Analysis.” 2019. <em>Wikipedia</em>. <a href="https://en.wikipedia.org/w/index.php?title=Survival_analysis&amp;oldid=888519729" class="uri">https://en.wikipedia.org/w/index.php?title=Survival_analysis&amp;oldid=888519729</a>.</p>
-</div>
-<div id="ref-kaplan1958nonparametric">
-<p>Kaplan, Edward L, and Paul Meier. 1958. “Nonparametric Estimation from Incomplete Observations.” <em>Journal of the American Statistical Association</em> 53 (282). Taylor &amp; Francis: 457–81.</p>
+<p>“Survival Analysis.” 2019. <em>Wikipedia</em>. <a href="https://en.wikipedia.org/w/index.php?title=Survival_analysis&amp;oldid=888519729">https://en.wikipedia.org/w/index.php?title=Survival_analysis&amp;oldid=888519729</a>.</p>
 </div>
 </div>
             </section>
@@ -515,7 +653,7 @@ gitbook.start({
   (function () {
     var script = document.createElement("script");
     script.type = "text/javascript";
-    var src = "";
+    var src = "true";
     if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
     if (location.protocol !== "file:" && /^https?:/.test(src))
       src = src.replace(/^https?:/, '');

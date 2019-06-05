@@ -1,18 +1,17 @@
 <!DOCTYPE html>
-<html >
-
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
 <head>
 
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>5 Google Analytics Data | The Internetrix Advanced Guide to Attribution Modelling</title>
-  <meta name="description" content="This is an Internetrix guide on advanced marketing attribution modelling for eCommerce data">
-  <meta name="generator" content="bookdown  and GitBook 2.6.7">
+  <meta name="description" content="This is an Internetrix guide on advanced marketing attribution modelling for eCommerce data" />
+  <meta name="generator" content="bookdown 0.11 and GitBook 2.6.7" />
 
   <meta property="og:title" content="5 Google Analytics Data | The Internetrix Advanced Guide to Attribution Modelling" />
   <meta property="og:type" content="book" />
   
-  <meta property="og:image" content="img/cover.png" />
+  <meta property="og:image" content="img/attributionmodellingcover.png" />
   <meta property="og:description" content="This is an Internetrix guide on advanced marketing attribution modelling for eCommerce data" />
   
 
@@ -20,17 +19,17 @@
   <meta name="twitter:title" content="5 Google Analytics Data | The Internetrix Advanced Guide to Attribution Modelling" />
   
   <meta name="twitter:description" content="This is an Internetrix guide on advanced marketing attribution modelling for eCommerce data" />
-  <meta name="twitter:image" content="img/cover.png" />
+  <meta name="twitter:image" content="img/attributionmodellingcover.png" />
 
-<meta name="author" content="Dean Marchiori - Head of Data Science, Internetrix">
-<meta name="author" content="Tiffany Chen - Data Analyst, Internetrix">
+<meta name="author" content="Dean Marchiori - Head of Data Science, Internetrix" />
+<meta name="author" content="Tiffany Chen - Data Analyst, Internetrix" />
 
 
-<meta name="date" content="2019-05-07">
+<meta name="date" content="2019-06-05" />
 
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="apple-mobile-web-app-capable" content="yes">
-  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
 <link rel="prev" href="methods.html">
@@ -52,41 +51,67 @@
 
 
 <style type="text/css">
-div.sourceCode { overflow-x: auto; }
-table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
-  margin: 0; padding: 0; vertical-align: baseline; border: none; }
-table.sourceCode { width: 100%; line-height: 100%; }
-td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
-td.sourceCode { padding-left: 5px; }
-code > span.kw { color: #007020; font-weight: bold; } /* Keyword */
-code > span.dt { color: #902000; } /* DataType */
-code > span.dv { color: #40a070; } /* DecVal */
-code > span.bn { color: #40a070; } /* BaseN */
-code > span.fl { color: #40a070; } /* Float */
-code > span.ch { color: #4070a0; } /* Char */
-code > span.st { color: #4070a0; } /* String */
-code > span.co { color: #60a0b0; font-style: italic; } /* Comment */
-code > span.ot { color: #007020; } /* Other */
-code > span.al { color: #ff0000; font-weight: bold; } /* Alert */
-code > span.fu { color: #06287e; } /* Function */
-code > span.er { color: #ff0000; font-weight: bold; } /* Error */
-code > span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
-code > span.cn { color: #880000; } /* Constant */
-code > span.sc { color: #4070a0; } /* SpecialChar */
-code > span.vs { color: #4070a0; } /* VerbatimString */
-code > span.ss { color: #bb6688; } /* SpecialString */
-code > span.im { } /* Import */
-code > span.va { color: #19177c; } /* Variable */
-code > span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
-code > span.op { color: #666666; } /* Operator */
-code > span.bu { } /* BuiltIn */
-code > span.ex { } /* Extension */
-code > span.pp { color: #bc7a00; } /* Preprocessor */
-code > span.at { color: #7d9029; } /* Attribute */
-code > span.do { color: #ba2121; font-style: italic; } /* Documentation */
-code > span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
-code > span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
-code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+a.sourceLine { display: inline-block; line-height: 1.25; }
+a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
+a.sourceLine:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode { white-space: pre; position: relative; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+code.sourceCode { white-space: pre-wrap; }
+a.sourceLine { text-indent: -1em; padding-left: 1em; }
+}
+pre.numberSource a.sourceLine
+  { position: relative; left: -4em; }
+pre.numberSource a.sourceLine::before
+  { content: attr(data-line-number);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; pointer-events: all; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {  }
+@media screen {
+a.sourceLine::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
 </style>
 
 <link rel="stylesheet" href="style.css" type="text/css" />
@@ -211,8 +236,12 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
             <section class="normal" id="section-">
 <div id="google-analytics-data" class="section level1">
 <h1><span class="header-section-number">5</span> Google Analytics Data</h1>
-<p>Google Analytics users can benefit from a range of simple and heuristic attribution models for their digital data, build right into the platform. <span class="citation">(“Google Marketing Platform - Unified Advertising and Analytics” <a href="#ref-noauthor_google_nodate">2019</a>)</span></p>
-<p>This is a great start, but they have one thing in common - they are heuristics. In other words, you ultimately make the decision on which model to use and this logic is hard-wired into the report. While these methods are quite intuitive, they are also quite naive.</p>
+<p>Google Analytics users can benefit from a range of simple and heuristic attribution
+models for their digital data, build right into the platform. <span class="citation">(“Google Marketing Platform - Unified Advertising and Analytics” <a href="#ref-noauthor_google_nodate">2019</a>)</span></p>
+<p>This is a great start, but they have one thing in common - they are heuristics.
+In other words, you ultimately make the decision on which model to use and this
+logic is hard-wired into the report. While these methods are quite intuitive,
+they are also quite naive.</p>
 <div id="survey-of-basic-methods-in-google-analytics" class="section level2">
 <h2><span class="header-section-number">5.1</span> Survey of Basic Methods in Google Analytics</h2>
 <ul>
@@ -225,39 +254,71 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li><strong>Position Based</strong></li>
 </ul>
 <p>A full overview is contained on the <a href="https://support.google.com/analytics/answer/1665189?hl=en&amp;ref_topic=3205717">Google Help Pages</a></p>
-<p>Google also has a useful feature called the <a href="https://support.google.com/analytics/answer/6148697">Model Comparison Tool</a> which allows the comparison of up to 3 attribution models at once.</p>
+<p>Google also has a useful feature called the <a href="https://support.google.com/analytics/answer/6148697">Model Comparison Tool</a>
+which allows the comparison of up to 3 attribution models at once.</p>
 </div>
 <div id="about-data-driven-attribution" class="section level2">
 <h2><span class="header-section-number">5.2</span> About Data Driven Attribution</h2>
-<p>Google’s <a href="https://support.google.com/analytics/answer/3264076?%20hl=en&amp;ref_topic=3180362">Data-Driven Attribution</a> is a feature only available in Google Analytics 360, part of Google Marketing Platform. Rather than using the position-based heuristics above, Data-Driven Attribution uses real data from your Google Analytics account to generate a custom model, driven by a more sophisticated algorithm.</p>
+<p>Google’s <a href="https://support.google.com/analytics/answer/3264076?%20hl=en&amp;ref_topic=3180362">Data-Driven Attribution</a> is a feature only available in Google Analytics 360, part of Google Marketing Platform.
+Rather than using the position-based heuristics above, Data-Driven Attribution uses real data from your Google
+Analytics account to generate a custom model, driven by a more sophisticated algorithm.</p>
 <div id="how-does-it-work" class="section level3">
 <h3><span class="header-section-number">5.2.1</span> How does it work?</h3>
-<p>The more basic, position-based methods are only interested in the paths that led to a conversion. Google’s Data-Driven Attribution model analyses both converting and non-converting pathways. According to Google, it has two main steps:</p>
+<p>The more basic, position-based methods are only interested in the paths that led
+to a conversion. Google’s Data-Driven Attribution model analyses both converting
+and non-converting pathways. According to Google, it has two main steps:</p>
 <ol style="list-style-type: decimal">
-<li><p>Analyse all available path data to develop a probabilistic model of how customer journey’s progress on your site.</p></li>
-<li><p>Apply a sophisticated algorithm to this data to assign credit to particular marketing touch points.</p></li>
+<li><p>Analyse all available path data to develop a probabilistic model of how
+customer journey’s progress on your site.</p></li>
+<li><p>Apply a sophisticated algorithm to this data to assign credit to particular
+marketing touch points.</p></li>
 </ol>
-<p>The algorithm used in Data-Driven Attribution is based on a concept called the Shapley Value <a href="methods.html#shapley-value">See Section 4.3.2</a>, which is from the field of cooperative game theory. This method recognises the contribution a marketing touch point makes depends on where in the conversion pathway it occurs. By comparing many similar customer pathway sequences both with and without a given touch point included, a form of weighted contribution can be calculated. Put another way, intuitively this is like removing a particular marketing channel from a sequence of touch points in a user’s journey and wondering what downstream impact it would have on conversions.</p>
+<p>The algorithm used in Data-Driven Attribution is based on a concept called the
+Shapley Value <a href="methods.html#shapley-value">See Section 4.3.2</a>, which is from the field of cooperative game theory. This method
+recognises the contribution a marketing touch point makes depends on where in
+the conversion pathway it occurs. By comparing many similar customer pathway
+sequences both with and without a given touch point included, a form of weighted
+contribution can be calculated. Put another way, intuitively this is like
+removing a particular marketing channel from a sequence of touch points in
+a user’s journey and wondering what downstream impact it would have on
+conversions.</p>
 </div>
 <div id="limitations" class="section level3">
 <h3><span class="header-section-number">5.2.2</span> Limitations</h3>
-<p>There are some important factors to be aware of with Data-Driven Attribution. Firstly, the results presented are refreshed by Google on a weekly basis and look back at the last 28 days of conversion history at the time the model is trained. The benefit here is that models will evolve as your online activity does. Also, the model will only look back to a maximum of 4 interactions within the prior 90 days to each conversion.</p>
-<p>Given this method learns from historical data, for the results to be meaningful there are thresholds imposed. These thresholds set the minimum amount of pathways and conversions to ensure there is enough data to train the model. At the time of writing these thresholds are:</p>
+<p>There are some important factors to be aware of with Data-Driven Attribution.
+Firstly, the results presented are refreshed by Google on a weekly basis and
+look back at the last 28 days of conversion history at the time the model is
+trained. The benefit here is that models will evolve as your online activity
+does. Also, the model will only look back to a maximum of 4 interactions
+within the prior 90 days to each conversion.</p>
+<p>Given this method learns from historical data, for the results to be meaningful
+there are thresholds imposed. These thresholds set the minimum amount of
+pathways and conversions to ensure there is enough data to train the model.
+At the time of writing these thresholds are:</p>
 <ul>
-<li>400 conversions per conversion type with a path length of 2+ interactions (i.e., 400 conversions for a specific goal or transaction, not a sum of 400 over all conversion types) AND<br />
+<li>400 conversions per conversion type with a path length of 2+ interactions
+(i.e., 400 conversions for a specific goal or transaction, not a sum of 400
+over all conversion types) AND<br />
 </li>
-<li>10,000 paths in the selected reporting view (roughly equivalent to 10,000 users, although a single user may generate multiple paths)</li>
+<li>10,000 paths in the selected reporting view (roughly equivalent to 10,000
+users, although a single user may generate multiple paths)</li>
 </ul>
 </div>
 </div>
 <div id="bigquery" class="section level2">
 <h2><span class="header-section-number">5.3</span> BigQuery</h2>
 <blockquote>
-<p>BigQuery is a Google Developers tool that lets you run super-fast queries of large datasets.</p>
+<p>BigQuery is a Google Developers tool that lets you run super-fast queries of
+large datasets.</p>
 </blockquote>
-<p>While Google Analytics contains a plethora of online tool for analysis, when aiming to conduct more advanced digital analytics and attribution modelling, having <em>all</em> of your hit level data available is key. <span class="citation">(“BigQuery - Analytics Data Warehouse BigQuery” <a href="#ref-noauthor_bigquery_nodate">2019</a>)</span></p>
-<p>For customers that use Google Analytics 360 as part of the Google Marketing Platform, they have access to the <a href="https://support.google.com/analytics/answer/3437618?hl=en&amp;ref_topic=3416089">BigQuery Export for Analytics.</a></p>
-<p>Using BigQuery lets you access both session and hit level data using an SQL like syntax. Plus you benefit from the speed and scale of BigQuery along with the ability to create tables, data sets and manage jobs with your data.</p>
+<p>While Google Analytics contains a plethora of online tool for analysis, when
+aiming to conduct more advanced digital analytics and attribution modelling,
+having <em>all</em> of your hit level data available is key. <span class="citation">(“BigQuery - Analytics Data Warehouse BigQuery” <a href="#ref-noauthor_bigquery_nodate">2019</a>)</span></p>
+<p>For customers that use Google Analytics 360 as part of the Google Marketing Platform,
+they have access to the <a href="https://support.google.com/analytics/answer/3437618?hl=en&amp;ref_topic=3416089">BigQuery Export for Analytics.</a></p>
+<p>Using BigQuery lets you access both session and hit level data using an SQL
+like syntax. Plus you benefit from the speed and scale of BigQuery along with
+the ability to create tables, data sets and manage jobs with your data.</p>
 
 </div>
 </div>
@@ -266,11 +327,11 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 
 <h3>References</h3>
 <div id="refs" class="references">
-<div id="ref-noauthor_google_nodate">
-<p>“Google Marketing Platform - Unified Advertising and Analytics.” 2019. <a href="https://marketingplatform.google.com/about/" class="uri">https://marketingplatform.google.com/about/</a>.</p>
-</div>
 <div id="ref-noauthor_bigquery_nodate">
-<p>“BigQuery - Analytics Data Warehouse BigQuery.” 2019. <em>Google Cloud</em>. <a href="https://cloud.google.com/bigquery/" class="uri">https://cloud.google.com/bigquery/</a>.</p>
+<p>“BigQuery - Analytics Data Warehouse BigQuery.” 2019. <em>Google Cloud</em>. <a href="https://cloud.google.com/bigquery/">https://cloud.google.com/bigquery/</a>.</p>
+</div>
+<div id="ref-noauthor_google_nodate">
+<p>“Google Marketing Platform - Unified Advertising and Analytics.” 2019. <a href="https://marketingplatform.google.com/about/">https://marketingplatform.google.com/about/</a>.</p>
 </div>
 </div>
             </section>
@@ -329,7 +390,7 @@ gitbook.start({
   (function () {
     var script = document.createElement("script");
     script.type = "text/javascript";
-    var src = "";
+    var src = "true";
     if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
     if (location.protocol !== "file:" && /^https?:/.test(src))
       src = src.replace(/^https?:/, '');

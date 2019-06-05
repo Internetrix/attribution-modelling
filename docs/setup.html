@@ -1,18 +1,17 @@
 <!DOCTYPE html>
-<html >
-
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
 <head>
 
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>6 Setup | The Internetrix Advanced Guide to Attribution Modelling</title>
-  <meta name="description" content="This is an Internetrix guide on advanced marketing attribution modelling for eCommerce data">
-  <meta name="generator" content="bookdown  and GitBook 2.6.7">
+  <meta name="description" content="This is an Internetrix guide on advanced marketing attribution modelling for eCommerce data" />
+  <meta name="generator" content="bookdown 0.11 and GitBook 2.6.7" />
 
   <meta property="og:title" content="6 Setup | The Internetrix Advanced Guide to Attribution Modelling" />
   <meta property="og:type" content="book" />
   
-  <meta property="og:image" content="img/cover.png" />
+  <meta property="og:image" content="img/attributionmodellingcover.png" />
   <meta property="og:description" content="This is an Internetrix guide on advanced marketing attribution modelling for eCommerce data" />
   
 
@@ -20,17 +19,17 @@
   <meta name="twitter:title" content="6 Setup | The Internetrix Advanced Guide to Attribution Modelling" />
   
   <meta name="twitter:description" content="This is an Internetrix guide on advanced marketing attribution modelling for eCommerce data" />
-  <meta name="twitter:image" content="img/cover.png" />
+  <meta name="twitter:image" content="img/attributionmodellingcover.png" />
 
-<meta name="author" content="Dean Marchiori - Head of Data Science, Internetrix">
-<meta name="author" content="Tiffany Chen - Data Analyst, Internetrix">
+<meta name="author" content="Dean Marchiori - Head of Data Science, Internetrix" />
+<meta name="author" content="Tiffany Chen - Data Analyst, Internetrix" />
 
 
-<meta name="date" content="2019-05-07">
+<meta name="date" content="2019-06-05" />
 
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="apple-mobile-web-app-capable" content="yes">
-  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
 <link rel="prev" href="google-analytics-data.html">
@@ -52,41 +51,67 @@
 
 
 <style type="text/css">
-div.sourceCode { overflow-x: auto; }
-table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
-  margin: 0; padding: 0; vertical-align: baseline; border: none; }
-table.sourceCode { width: 100%; line-height: 100%; }
-td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
-td.sourceCode { padding-left: 5px; }
-code > span.kw { color: #007020; font-weight: bold; } /* Keyword */
-code > span.dt { color: #902000; } /* DataType */
-code > span.dv { color: #40a070; } /* DecVal */
-code > span.bn { color: #40a070; } /* BaseN */
-code > span.fl { color: #40a070; } /* Float */
-code > span.ch { color: #4070a0; } /* Char */
-code > span.st { color: #4070a0; } /* String */
-code > span.co { color: #60a0b0; font-style: italic; } /* Comment */
-code > span.ot { color: #007020; } /* Other */
-code > span.al { color: #ff0000; font-weight: bold; } /* Alert */
-code > span.fu { color: #06287e; } /* Function */
-code > span.er { color: #ff0000; font-weight: bold; } /* Error */
-code > span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
-code > span.cn { color: #880000; } /* Constant */
-code > span.sc { color: #4070a0; } /* SpecialChar */
-code > span.vs { color: #4070a0; } /* VerbatimString */
-code > span.ss { color: #bb6688; } /* SpecialString */
-code > span.im { } /* Import */
-code > span.va { color: #19177c; } /* Variable */
-code > span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
-code > span.op { color: #666666; } /* Operator */
-code > span.bu { } /* BuiltIn */
-code > span.ex { } /* Extension */
-code > span.pp { color: #bc7a00; } /* Preprocessor */
-code > span.at { color: #7d9029; } /* Attribute */
-code > span.do { color: #ba2121; font-style: italic; } /* Documentation */
-code > span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
-code > span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
-code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+a.sourceLine { display: inline-block; line-height: 1.25; }
+a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
+a.sourceLine:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode { white-space: pre; position: relative; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+code.sourceCode { white-space: pre-wrap; }
+a.sourceLine { text-indent: -1em; padding-left: 1em; }
+}
+pre.numberSource a.sourceLine
+  { position: relative; left: -4em; }
+pre.numberSource a.sourceLine::before
+  { content: attr(data-line-number);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; pointer-events: all; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {  }
+@media screen {
+a.sourceLine::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
 </style>
 
 <link rel="stylesheet" href="style.css" type="text/css" />
@@ -211,53 +236,84 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
             <section class="normal" id="section-">
 <div id="setup" class="section level1">
 <h1><span class="header-section-number">6</span> Setup</h1>
-<p>Before we start with the practical guides, it is important to ensure we correctly install and setup the required dependencies.</p>
+<p>Before we start with the practical guides, it is important to ensure we
+correctly install and setup the required dependencies.</p>
 <div id="r" class="section level2">
 <h2><span class="header-section-number">6.1</span> R</h2>
 <div id="about-r" class="section level3">
 <h3><span class="header-section-number">6.1.1</span> About R</h3>
-<p>The R programming language <span class="citation">(R Core Team <a href="#ref-R-base">2018</a>)</span> is a popular and open-source tool for data analysis and statistical computing.</p>
+<p>The R programming language <span class="citation">(R Core Team <a href="#ref-R-base">2018</a>)</span> is a popular and open-source tool
+for data analysis and statistical computing.</p>
 <p>We will use R throughout this paper for the practical examples.</p>
 <p><img src="img/R.png" width="96" /></p>
 </div>
 <div id="install-r" class="section level3">
 <h3><span class="header-section-number">6.1.2</span> Install R</h3>
 <p>To install R, head over to <a href="https://www.r-project.org/" class="uri">https://www.r-project.org/</a> and follow the instructions.</p>
-<p>It will prompt you to choose a CRAN Mirror. This is an archive server that contains the latest R version.</p>
+<p>It will prompt you to choose a CRAN Mirror. This is an archive server that
+contains the latest R version.</p>
 <p>There are instructions to install R on Linux, Mac and Windows.</p>
-<p>This will install the base R software, which on its own is just a command line-like interface.</p>
+<p>This will install the base R software, which on its own is just a command line-like
+interface.</p>
 <p><img src="img/R_cmd.png" width="578" /></p>
 </div>
 <div id="install-rstudio" class="section level3">
 <h3><span class="header-section-number">6.1.3</span> Install RStudio</h3>
-<p>To get the most out of R we recommend installing the RStudio <span class="citation">(“RStudio” <a href="#ref-noauthor_rstudio_2019">2019</a>)</span> integrated development environment. It is an environment that provides a console with a range of features to enrich the use of R.</p>
-<p>To download, visit <a href="https://www.rstudio.com/products/rstudio/" class="uri">https://www.rstudio.com/products/rstudio/</a> and follow the instructions for your system.</p>
+<p>To get the most out of R we recommend installing the RStudio <span class="citation">(“RStudio” <a href="#ref-noauthor_rstudio_2019">2019</a>)</span>
+integrated development environment. It is an environment that provides a console
+with a range of features to enrich the use of R.</p>
+<p>To download, visit <a href="https://www.rstudio.com/products/rstudio/" class="uri">https://www.rstudio.com/products/rstudio/</a> and follow
+the instructions for your system.</p>
 <p>The end results should look similar to this:</p>
 <p><img src="img/rstudio.png" width="577" /></p>
 </div>
 <div id="install-required-r-packages" class="section level3">
 <h3><span class="header-section-number">6.1.4</span> Install Required R Packages</h3>
-<p>R has a ecosystem of open source packages that work like add-ins. These packages typically contain specialised functionality that may be required when performing analysis. You can install R packages from the R console and they will be downloaded onto your system and available whenever you use R.</p>
+<p>R has a ecosystem of open source packages that work like add-ins. These packages
+typically contain specialised functionality that may be required when
+performing analysis. You can install R packages from the R console and they will
+be downloaded onto your system and available whenever you use R.</p>
 <p>The main R packages we will use in this paper are:</p>
 <ul>
-<li><p><a href="https://www.tidyverse.org/">tidyverse</a> - The tidyverse is an opinionated collection of R packages designed for data science. All packages share an underlying design philosophy, grammar, and data structures. <span class="citation">(Wickham <a href="#ref-R-tidyverse">2017</a>)</span></p></li>
-<li><p><a href="https://bigrquery.r-dbi.org/">bigrquery</a> - The bigrquery package makes it easy to work with data stored in Google BigQuery by allowing you to query BigQuery tables and retrieve metadata about your projects, data sets, tables, and jobs. <span class="citation">(Wickham <a href="#ref-R-bigrquery">2019</a>)</span></p></li>
-<li><p><a href="https://cran.r-project.org/web/packages/ChannelAttribution">ChannelAttribution</a> - Implements a Markov Model for the Online Multi-Channel Attribution Problem. <span class="citation">(Altomare and Loris <a href="#ref-R-ChannelAttribution">2018</a>)</span></p></li>
-<li><p><a href="https://cran.r-project.org/web/packages/survival/">survival</a> - Contains the core survival analysis routines, including definition of Surv objects, Kaplan-Meier and Aalen-Johansen (multi-state) curves, Cox models, and parametric accelerated failure time models. <span class="citation">(Therneau <a href="#ref-R-survival">2019</a>)</span></p></li>
-<li><p><a href="https://cran.r-project.org/web/packages/CausalImpact/">CausalImpact</a> - Implements a Bayesian approach to causal impact estimation in time series, as described in <span class="citation">Brodersen et al. (<a href="#ref-causalimpact">2015</a>)</span></p></li>
+<li><p><a href="https://www.tidyverse.org/">tidyverse</a> - The tidyverse is an opinionated
+collection of R packages designed for data science. All packages share an
+underlying design philosophy, grammar, and data structures. <span class="citation">(Wickham <a href="#ref-R-tidyverse">2017</a>)</span></p></li>
+<li><p><a href="https://bigrquery.r-dbi.org/">bigrquery</a> - The bigrquery package makes it
+easy to work with data stored in Google BigQuery by allowing you to query
+BigQuery tables and retrieve metadata about your projects, data sets, tables, and
+jobs. <span class="citation">(Wickham <a href="#ref-R-bigrquery">2019</a>)</span></p></li>
+<li><p><a href="https://cran.r-project.org/web/packages/ChannelAttribution">ChannelAttribution</a> -
+Implements a Markov Model for the Online Multi-Channel Attribution Problem. <span class="citation">(Altomare and Loris <a href="#ref-R-ChannelAttribution">2019</a>)</span></p></li>
+<li><p><a href="https://cran.r-project.org/web/packages/survival/">survival</a> - Contains the
+core survival analysis routines, including definition of Surv objects,
+Kaplan-Meier and Aalen-Johansen (multi-state) curves, Cox models, and
+parametric accelerated failure time models. <span class="citation">(Therneau <a href="#ref-R-survival">2018</a>)</span></p></li>
+<li><p><a href="https://cran.r-project.org/web/packages/CausalImpact/">CausalImpact</a> - Implements
+a Bayesian approach to causal impact estimation in time series, as described
+in <span class="citation">Brodersen et al. (<a href="#ref-causalimpact">2015</a>)</span></p></li>
 </ul>
-<p>To install these packages, and some other supporting packages used in this paper, you can run the command below</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">install.packages</span>(<span class="kw">c</span>(<span class="st">&quot;tidyverse&quot;</span>, <span class="st">&quot;bigrquery&quot;</span>, <span class="st">&quot;ChannelAttribtion&quot;</span>, <span class="st">&quot;survival&quot;</span>,
-                   <span class="st">&quot;lubridate&quot;</span>, <span class="st">&quot;survminer&quot;</span>, <span class="st">&quot;DBI&quot;</span>, <span class="st">&quot;CausalImpact&quot;</span>))</code></pre></div>
+<p>To install these packages, and some other supporting packages used in this
+paper, you can run the command below</p>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">install.packages</span>(<span class="kw">c</span>(<span class="st">&quot;tidyverse&quot;</span>, <span class="st">&quot;bigrquery&quot;</span>, <span class="st">&quot;ChannelAttribtion&quot;</span>, <span class="st">&quot;survival&quot;</span>,
+                   <span class="st">&quot;lubridate&quot;</span>, <span class="st">&quot;survminer&quot;</span>, <span class="st">&quot;DBI&quot;</span>, <span class="st">&quot;CausalImpact&quot;</span>))</code></pre>
 </div>
 </div>
 <div id="bigquery-1" class="section level2">
 <h2><span class="header-section-number">6.2</span> BigQuery</h2>
-<p>The first step to more advanced modelling is extracting and cleaning the data. Here we will go through a basic setup and familiarisation guide to get your Analytics data from BigQuery. It is expected that you have some experience using SQL and knowledge of basic database operations.</p>
+<p>The first step to more advanced modelling is extracting and cleaning the data. Here
+we will go through a basic setup and familiarisation guide to get your
+Analytics data from BigQuery. It is expected that you have some experience
+using SQL and knowledge of basic database operations.</p>
 <div id="setup-1" class="section level3">
 <h3><span class="header-section-number">6.2.1</span> Setup</h3>
-<p>If you are an Analytics 360 customer, you can setup BigQuery for use with Google Analytics data. Refer to the <a href="https://support.google.com/analytics/answer/3416092?hl=en&amp;ref_topic=3416089">Google Help Pages</a> for detailed instructions.</p>
-<p>If you don’t yet have Analytics 360, you can still benefit from these practical code examples by using the free <a href="https://support.google.com/analytics/answer/7586738?hl=en&amp;ref_topic=3416089">Google Analytics Sample Dataset</a>. This is a complete Google Analytics 360 data set from the Google Merchant Store, a real eCommerce platform.</p>
+<p>If you are an Analytics 360 customer, you can setup BigQuery for use with
+Google Analytics data. Refer to the
+<a href="https://support.google.com/analytics/answer/3416092?hl=en&amp;ref_topic=3416089">Google Help Pages</a>
+for detailed instructions.</p>
+<p>If you don’t yet have Analytics 360, you can still benefit from these practical
+code examples by using the free <a href="https://support.google.com/analytics/answer/7586738?hl=en&amp;ref_topic=3416089">Google Analytics Sample Dataset</a>.
+This is a complete Google Analytics 360 data set from the Google Merchant Store,
+a real eCommerce platform.</p>
 <p>To access the data set follow the instructions provided by <a href="https://support.google.com/analytics/answer/7586738?hl=en&amp;ref_topic=3416089">Google</a>:</p>
 <ol style="list-style-type: decimal">
 <li><p>Go to <a href="http://bigquery.cloud.google.com" class="uri">http://bigquery.cloud.google.com</a>.</p></li>
@@ -265,26 +321,37 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li><p>Select this <a href="https://bigquery.cloud.google.com/table/bigquery-public-data:google_analytics_sample.ga_sessions_20170801?pli=1">link</a> to go directly to the data set.</p></li>
 <li><p>Click <strong>Query Table</strong> to run a query.</p></li>
 </ol>
-<p>In the future you can access the data set within BigQuery by selecting the <code>bigquery-public-data</code> project from the left-hand navigation panel, then select the <code>ga_sessions</code> table under the <code>google_analytics_sample</code> data set.</p>
-<p>Please be mindful that using BigQuery can incur a cost. Please refer to Google’s billing and quota information before use.</p>
+<p>In the future you can access the data set within BigQuery by selecting the
+<code>bigquery-public-data</code> project from the left-hand navigation panel, then
+select the <code>ga_sessions</code> table under the <code>google_analytics_sample</code> data set.</p>
+<p>Please be mindful that using BigQuery can incur a cost. Please refer to Google’s
+billing and quota information before use.</p>
 </div>
 <div id="export-schema" class="section level3">
 <h3><span class="header-section-number">6.2.2</span> Export Schema</h3>
-<p>The way Google Analytics structures its data export into BigQuery is known as the export schema. This schema is able to take advantage of data structures that may be counter-intuitive for users who are familiar with normalised relational databases. BigQuery supports de-normalised tables, where instead of joining lots of flat, normalised tables, you can have one table with nested records.</p>
+<p>The way Google Analytics structures its data export into BigQuery is known
+as the export schema. This schema is able to take advantage of data structures
+that may be counter-intuitive for users who are familiar with normalised relational
+databases. BigQuery supports de-normalised tables, where instead of joining lots
+of flat, normalised tables, you can have one table with nested records.</p>
 <p><img src="img/bqexport.png" width="420" /></p>
-<p>In the bigquery data set, there is one table per day, defined at the session level that contains all Analytics related data nested within, such as hits and events. Below we will demonstrate some basic queries on this data.</p>
+<p>In the bigquery data set, there is one table per day, defined at the session level
+that contains all Analytics related data nested within, such as hits and events.
+Below we will demonstrate some basic queries on this data.</p>
 <p>For more information you can refer to the <a href="https://support.google.com/analytics/answer/3437719?hl=en&amp;ref_topic=3416089#">BigQuery Export Schema</a></p>
 </div>
 <div id="running-queries" class="section level3">
 <h3><span class="header-section-number">6.2.3</span> Running Queries</h3>
 <div id="hello-world" class="section level4">
 <h4><span class="header-section-number">6.2.3.1</span> Hello World</h4>
-<p>This is a basic query to run that simply sums the page views over a given day. You will note the use of <code>#standardSQL</code> in the header. This lets bigquery know you are using the ‘standard’ SQL flavour over it’s older ‘legacy’ flavour.</p>
-<div class="sourceCode"><pre class="sourceCode sql"><code class="sourceCode sql"><span class="co">/* Hello World Example */</span>
+<p>This is a basic query to run that simply sums the page views over a given day.
+You will note the use of <code>#standardSQL</code> in the header. This lets bigquery know
+you are using the ‘standard’ SQL flavour over it’s older ‘legacy’ flavour.</p>
+<pre class="sourceCode sql"><code class="sourceCode sql"><span class="co">/* Hello World Example */</span>
 #standardSQL
 <span class="kw">SELECT</span> <span class="fu">SUM</span>(totals.pageviews) <span class="kw">as</span> TotalPageviews
     
-<span class="kw">FROM</span> `bigquery-public-data.google_analytics_sample.ga_sessions_20170101`</code></pre></div>
+<span class="kw">FROM</span> `bigquery-public-data.google_analytics_sample.ga_sessions_20170101`</code></pre>
 <table>
 <thead>
 <tr class="header">
@@ -304,7 +371,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <h4><span class="header-section-number">6.2.3.2</span> Using Table Ranges</h4>
 <p>As the GA Export Schema provides one table per day, to scan across date ranges we need to specify a table range to query.</p>
 <p>Notice the <code>*</code> in the FROM clause and the inclusion of <code>_TABLE_SUFFIX</code>.</p>
-<div class="sourceCode"><pre class="sourceCode sql"><code class="sourceCode sql"><span class="co">/* Using Table Ranges */</span>
+<pre class="sourceCode sql"><code class="sourceCode sql"><span class="co">/* Using Table Ranges */</span>
 #standardSQL
 <span class="kw">SELECT</span>  <span class="dt">date</span>, 
         <span class="fu">SUM</span>(totals.pageviews) <span class="kw">as</span> TotalPageviews
@@ -315,12 +382,13 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 
 <span class="kw">GROUP</span> <span class="kw">BY</span> <span class="dt">date</span>
 
-<span class="kw">ORDER</span> <span class="kw">BY</span> <span class="dt">date</span></code></pre></div>
+<span class="kw">ORDER</span> <span class="kw">BY</span> <span class="dt">date</span></code></pre>
 </div>
 <div id="hit-level-data" class="section level4">
 <h4><span class="header-section-number">6.2.3.3</span> Hit Level Data</h4>
-<p>Accessing ‘hit’ level data, that is, individual hits within each user’s session requires ‘un-nesting’ the hits data and joining it to the <code>ga_sessions_</code> table</p>
-<div class="sourceCode"><pre class="sourceCode sql"><code class="sourceCode sql"><span class="co">/* Now at the hit level */</span>
+<p>Accessing ‘hit’ level data, that is, individual hits within each user’s session
+requires ‘un-nesting’ the hits data and joining it to the <code>ga_sessions_</code> table</p>
+<pre class="sourceCode sql"><code class="sourceCode sql"><span class="co">/* Now at the hit level */</span>
 #standardSQL
 <span class="kw">SELECT</span>  fullVisitorId,  
         visitNumber, 
@@ -334,25 +402,28 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <span class="kw">FROM</span> `bigquery-public-data.google_analytics_sample.ga_sessions_20170101`,
   UNNEST(hits) <span class="kw">as</span> hits
   
-<span class="kw">WHERE</span> fullVisitorId = <span class="st">&#39;6170732910727440668&#39;</span> <span class="co">/*Random Visitor Selected*/</span></code></pre></div>
-<p>Now that we are equipped with the basics we can further our understanding in future chapters to extract the data we need for modelling.</p>
+<span class="kw">WHERE</span> fullVisitorId = <span class="st">&#39;6170732910727440668&#39;</span> <span class="co">/*Random Visitor Selected*/</span></code></pre>
+<p>Now that we are equipped with the basics we can further our understanding
+in future chapters to extract the data we need for modelling.</p>
 </div>
 </div>
 <div id="using-r-with-bigquery" class="section level3">
 <h3><span class="header-section-number">6.2.4</span> Using R with BigQuery</h3>
 <p>We can also interact with the BigQuery API using the <code>bigrquery</code> package in R.</p>
-<p>To set up we load this package, along with the <code>DBI</code> package which helps with database interfacing.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(bigrquery)
-<span class="kw">library</span>(DBI)</code></pre></div>
-<p>Next we establish a connection to BigQuery. Here you would replace <code>bq_test_project()</code> with the project id you have established in Google Cloud Console.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">con &lt;-<span class="st"> </span><span class="kw">dbConnect</span>(
+<p>To set up we load this package, along with the <code>DBI</code> package which helps with
+database interfacing.</p>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(bigrquery)
+<span class="kw">library</span>(DBI)</code></pre>
+<p>Next we establish a connection to BigQuery. Here you would replace <code>bq_test_project()</code>
+with the project id you have established in Google Cloud Console.</p>
+<pre class="sourceCode r"><code class="sourceCode r">con &lt;-<span class="st"> </span><span class="kw">dbConnect</span>(
   bigrquery<span class="op">::</span><span class="kw">bigquery</span>(),
   <span class="dt">project =</span> <span class="st">&quot;bigquery-public-data&quot;</span>,
   <span class="dt">dataset =</span> <span class="st">&quot;google_analytics_sample&quot;</span>,
   <span class="dt">billing =</span> <span class="kw">bq_test_project</span>()
-)</code></pre></div>
+)</code></pre>
 <p>We can save any SQL queries and forward these for execution as text strings.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">sql &lt;-<span class="st"> &quot;</span>
+<pre class="sourceCode r"><code class="sourceCode r">sql &lt;-<span class="st"> &quot;</span>
 <span class="st">  /* Using Table Ranges */</span>
 <span class="st">  #standardSQL</span>
 <span class="st">  SELECT  date, </span>
@@ -365,10 +436,11 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <span class="st">  GROUP BY date</span>
 <span class="st">  </span>
 <span class="st">  ORDER BY date</span>
-<span class="st">  &quot;</span></code></pre></div>
-<p>Here the query is executed and saved as a temp table. The <code>bq_table_download</code> function returns the results to the console.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">query &lt;-<span class="st"> </span><span class="kw">bq_project_query</span>(<span class="dt">x =</span> <span class="kw">bq_test_project</span>(), sql)
-<span class="kw">bq_table_download</span>(query)</code></pre></div>
+<span class="st">  &quot;</span></code></pre>
+<p>Here the query is executed and saved as a temp table. The <code>bq_table_download</code>
+function returns the results to the console.</p>
+<pre class="sourceCode r"><code class="sourceCode r">query &lt;-<span class="st"> </span><span class="kw">bq_project_query</span>(<span class="dt">x =</span> <span class="kw">bq_test_project</span>(), sql)
+<span class="kw">bq_table_download</span>(query)</code></pre>
 <table>
 <thead>
 <tr class="header">
@@ -417,26 +489,26 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 </div>
 <h3>References</h3>
 <div id="refs" class="references">
-<div id="ref-R-base">
-<p>R Core Team. 2018. <em>R: A Language and Environment for Statistical Computing</em>. Vienna, Austria: R Foundation for Statistical Computing. <a href="https://www.R-project.org/" class="uri">https://www.R-project.org/</a>.</p>
-</div>
-<div id="ref-noauthor_rstudio_2019">
-<p>“RStudio.” 2019. <em>RStudio</em>. <a href="https://www.rstudio.com/products/rstudio/" class="uri">https://www.rstudio.com/products/rstudio/</a>.</p>
-</div>
-<div id="ref-R-tidyverse">
-<p>Wickham, Hadley. 2017. <em>Tidyverse: Easily Install and Load the ’Tidyverse’</em>. <a href="https://CRAN.R-project.org/package=tidyverse" class="uri">https://CRAN.R-project.org/package=tidyverse</a>.</p>
-</div>
-<div id="ref-R-bigrquery">
-<p>Wickham, Hadley. 2019. <em>Bigrquery: An Interface to Google’s ’Bigquery’ ’Api’</em>. <a href="https://CRAN.R-project.org/package=bigrquery" class="uri">https://CRAN.R-project.org/package=bigrquery</a>.</p>
-</div>
 <div id="ref-R-ChannelAttribution">
-<p>Altomare, Davide, and David Loris. 2018. <em>ChannelAttribution: Markov Model for the Online Multi-Channel Attribution Problem</em>. <a href="https://CRAN.R-project.org/package=ChannelAttribution" class="uri">https://CRAN.R-project.org/package=ChannelAttribution</a>.</p>
-</div>
-<div id="ref-R-survival">
-<p>Therneau, Terry M. 2019. <em>Survival: Survival Analysis</em>. <a href="https://CRAN.R-project.org/package=survival" class="uri">https://CRAN.R-project.org/package=survival</a>.</p>
+<p>Altomare, Davide, and David Loris. 2019. <em>ChannelAttribution: Markov Model for the Online Multi-Channel Attribution Problem</em>. <a href="https://CRAN.R-project.org/package=ChannelAttribution">https://CRAN.R-project.org/package=ChannelAttribution</a>.</p>
 </div>
 <div id="ref-causalimpact">
 <p>Brodersen, Kay H., Fabian Gallusser, Jim Koehler, Nicolas Remy, and Steven L. Scott. 2015. “Inferring Causal Impact Using Bayesian Structural Time-Series Models.” <em>Annals of Applied Statistics</em> 9: 247–74.</p>
+</div>
+<div id="ref-R-base">
+<p>R Core Team. 2018. <em>R: A Language and Environment for Statistical Computing</em>. Vienna, Austria: R Foundation for Statistical Computing. <a href="https://www.R-project.org/">https://www.R-project.org/</a>.</p>
+</div>
+<div id="ref-noauthor_rstudio_2019">
+<p>“RStudio.” 2019. <em>RStudio</em>. <a href="https://www.rstudio.com/products/rstudio/">https://www.rstudio.com/products/rstudio/</a>.</p>
+</div>
+<div id="ref-R-survival">
+<p>Therneau, Terry M. 2018. <em>Survival: Survival Analysis</em>. <a href="https://CRAN.R-project.org/package=survival">https://CRAN.R-project.org/package=survival</a>.</p>
+</div>
+<div id="ref-R-tidyverse">
+<p>Wickham, Hadley. 2017. <em>Tidyverse: Easily Install and Load the ’Tidyverse’</em>. <a href="https://CRAN.R-project.org/package=tidyverse">https://CRAN.R-project.org/package=tidyverse</a>.</p>
+</div>
+<div id="ref-R-bigrquery">
+<p>Wickham, Hadley. 2019. <em>Bigrquery: An Interface to Google’s ’Bigquery’ ’Api’</em>. <a href="https://CRAN.R-project.org/package=bigrquery">https://CRAN.R-project.org/package=bigrquery</a>.</p>
 </div>
 </div>
             </section>
@@ -495,7 +567,7 @@ gitbook.start({
   (function () {
     var script = document.createElement("script");
     script.type = "text/javascript";
-    var src = "";
+    var src = "true";
     if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
     if (location.protocol !== "file:" && /^https?:/.test(src))
       src = src.replace(/^https?:/, '');
